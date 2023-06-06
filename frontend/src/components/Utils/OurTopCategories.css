@@ -1,0 +1,38 @@
+.heading {
+    text-align: center;
+    font-size: 1.4vmax;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+    width: 20vmax;
+    padding: 1vmax;
+    margin: 3vmax auto;
+    color: rgb(0, 0, 0, 0.7);
+}
+
+.flex-c {
+    flex-direction: column;
+}
+
+.items {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    align-items: center;
+
+}
+
+@media screen and (max-width:1024px) {
+    .items {
+        width: 75%;
+    }
+
+}
+
+@media screen and (max-width:768px) {
+    .items {
+        width: 95%;
+    }
+
+}

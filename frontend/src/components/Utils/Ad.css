@@ -1,0 +1,72 @@
+.ad-container {
+    margin: 2rem 0;
+    width: 95%;
+    background-color: #ffe6cc;
+    padding: 2.5vmax;
+    display: flex;
+    height: 20rem;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.left {
+    width: 50vw;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.left h1 {
+    font-size: 3vmax;
+    padding: 1vmax;
+}
+
+.left button {
+    border: none;
+    margin: 1vmax;
+    padding: 1vmax 2vmax;
+    color: black;
+    border-radius: .25vmax;
+    cursor: pointer;
+    font-size: 1.5vmax;
+    transition: all 400ms linear;
+}
+
+.left button:hover {
+    color: white;
+    background-color: darkgray;
+}
+
+.right {
+    position: relative;
+
+}
+
+.right>img {
+    height: 10rem;
+    width: 15rem;
+}
+
+.d1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-25deg);
+}
+
+.d2 {
+    height: 20rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-40deg);
+}
+
+@media screen and (max-width:900px) {
+    .right {
+        display: none;
+    }
+}
