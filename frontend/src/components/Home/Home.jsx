@@ -129,7 +129,7 @@ const Home = () => {
 
 
                     <Hero />
-                    <Product />
+                    <Product data={products} />
                     <div className="product-container-wrapper" id='container'>
                         <Wrapper Card={CategoryCard} data={Categories} heading="Shop Our Top Categories" hw={'20rem'} />
 

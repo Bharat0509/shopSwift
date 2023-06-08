@@ -28,21 +28,21 @@ const ProductCard = ({ ratings, _id, images, name, price, numOfReviews, descript
 
         <div className='card'>
             <div className='card-upper'>
-                <Link to={`/product/${_id}`}><img src="./pngegg.png" alt="Product" /></Link>
+                <Link to={`/product/${_id}`}><img src={images[0]?.url} alt="Product" /></Link>
             </div>
             <div className='card-lower'>
-                <div className='card-lower-title'><Link to={`/product/${_id}`}> Realme 6 - Bad Qulity Phone</Link></div>
+                <div className='card-lower-title'><Link to={`/product/${_id}`}> {name}</Link></div>
 
 
                 <div className="product-rating">
                     <div className="star-wrap"><Rating {...options} /></div>
-                    <div className="total-rating">({7})</div>
+                    <div className="total-rating">({numOfReviews})</div>
                 </div>
                 <div className='card-lower-info'>
 
                     <div className='price'>
                         <div style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }} className='oldPrice'>$15.99</div>
-                        <div id='finalPrice'>$12.99</div>
+                        <div id='finalPrice'>${price}</div>
                     </div>
 
                     <div className='add-to-cart'>
