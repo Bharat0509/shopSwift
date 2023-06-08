@@ -28,7 +28,7 @@ const ProductCard = ({ ratings, _id, images, name, price, numOfReviews, descript
 
         <div className='card'>
             <div className='card-upper'>
-                <img src="./pngegg.png" alt="Product" />
+                <Link to={`/product/${_id}`}><img src="./pngegg.png" alt="Product" /></Link>
             </div>
             <div className='card-lower'>
                 <div className='card-lower-title'><Link to={`/product/${_id}`}> Realme 6 - Bad Qulity Phone</Link></div>

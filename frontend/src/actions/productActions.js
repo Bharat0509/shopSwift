@@ -266,7 +266,7 @@ export const deleteProduct = (id, token) => async (dispatch) => {
             type: DELETE_PRODUCT_REQUEST
         });
 
-        const { data } = await axios.delete(
+        const { data } = await axios.post(
             `${REQUEST_URL}/api/v1/admin/product/${id}`,
             { token }
         );

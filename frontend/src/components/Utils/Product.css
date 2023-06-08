@@ -70,18 +70,19 @@ a {
 
 .card {
 
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
+
     display: block;
     margin: auto;
-    border-right: 1px solid rgba(128, 128, 128, 0.5);
+    border: 1px solid rgba(128, 128, 128, 0.4);
     padding: 1rem;
-    width: 18rem;
+    flex: 1;
+
+    /* width: 18rem; */
 }
 
 
 .card-upper {
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,6 +99,7 @@ a {
 }
 
 .card-lower {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -198,9 +200,36 @@ a {
     background-color: red;
 }
 
-.products {
+.products-detail {
     margin-top: 2rem;
-    width: 100%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
     overflow: hidden;
     border: 1px solid gray;
+}
+
+.products-btn {
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+
+    border-radius: 50%;
+}
+
+.backward {
+    top: 45%;
+    left: 0;
+    transform: rotate(180deg);
+}
+
+.forward {
+    right: 0;
+    top: 45%;
 }

@@ -1,5 +1,6 @@
 import './Product.css'
 import { HiArrowSmRight } from 'react-icons/hi'
+import { MdArrowForwardIos } from 'react-icons/md'
 import ProductCard from './ProductCard'
 const Product = () => {
 
@@ -35,11 +36,14 @@ const Product = () => {
                     <HiArrowSmRight />
                 </div>
             </div>
-            <div className='products'>
+            <div className='products-detail'>
+                <button className='products-btn backward'> <MdArrowForwardIos size={32} /></button>
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />
+                <button className='products-btn forward'><MdArrowForwardIos size={32} /></button>
+
             </div>
 
 

@@ -14,7 +14,7 @@ const Hero = () => {
                         <img src="./banner3.jpg" alt="" />
                     </div>
                     <div class="div5" >
-                        <img src="./banner4.jpg" alt="" />
+                        <img src="./banner.jpg" alt="" />
                     </div>
                 </div>
                 <div class="div3">

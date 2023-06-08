@@ -11,6 +11,8 @@ import { RiShoppingBag3Line, RiShoppingCartLine } from 'react-icons/ri'
 import Input from './Input/Input'
 const Navbar = () => {
     const { cartItems } = useSelector(state => state.cart)
+    const { user } = useSelector(state => state.authData)
+
     const navigate = useNavigate();
     const [keyword, setKeyword] = useState("")
     const searchSubmitHandler = (e) => {
@@ -45,7 +47,12 @@ const Navbar = () => {
                     <Input onSubmit={searchSubmitHandler} setKeyword={setKeyword} value={keyword} />
                 </div>
                 <div className='nav-l-right'>
-                    <Link to='/account'><span><RxPerson size={22} /></span>Hi,Bharat</Link>
+                    <Link to='/account'><span><RxPerson size={22} /></span>
+                        {
+                            user?.name ? `Hi, ${user.name}` : "Sign In"
+                        }
+
+                    </Link>
                     <Link to='/orders'><span><RiShoppingBag3Line size={22} /></span>Quick Order </Link>
                     <Link to='/cart' className='cart'>
                         <span><RiShoppingCartLine size={22} /></span>Cart
