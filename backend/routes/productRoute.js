@@ -19,7 +19,7 @@ router
     .route('/admin/products')
     .post(isAuthenticatedUser, authorizeRoles('admin'), getAdminProducts);
 
-router.route('/product/:id').post(getProductDetails);
+router.route('/product/:id').get(getProductDetails);
 
 router.route('/products/new').post(createProduct);
 
