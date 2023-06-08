@@ -1,13 +1,10 @@
 import './App.css';
-
-import Header from './components/layout/Header/Header.js';
 import Footer from './components/layout/Footer/Footer.jsx';
 import Home from './components/Home/Home.jsx';
 import UserOptions from './components/layout/Header/UserOptions.js';
 import ProductDetails from './components/Product/ProductDetails';
 import Products from './components/Product/Products.js';
 import Search from './components/Product/Search.jsx';
-import Profile from './components/User/Profile.jsx';
 import UpdateProfile from './components/User/UpdateProfile.jsx';
 import UpdatePassword from './components/User/UpdatePassword.jsx';
 import ForgotPassword from './components/User/ForgotPassword.jsx';
@@ -26,7 +23,6 @@ import OrderList from './components/Admin/OrderList.jsx';
 import UpdateOrder from './components/Admin/UpdateOrder.jsx';
 import UpdateUser from './components/Admin/UpdateUser.jsx';
 import ProductReviews from './components/Admin/ProductReviews.jsx';
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import webfont from 'webfontloader';
 import { useEffect, useState } from 'react';
@@ -42,6 +38,8 @@ import axios from 'axios';
 import NewProduct from './components/Admin/NewProduct';
 import UserList from './components/Admin/UserList';
 import ScrollToTop from './ScrollToTop';
+import MyAccount from './components/User/MyAccount';
+import Navbar from './components/layout/Header/Navbar';
 
 function App() {
     const { user, isAuthenticated } = useSelector((state) => state.authData);
@@ -64,7 +62,8 @@ function App() {
     return (
         <Router>
             <ScrollToTop />
-            <Header />
+            {/* <Header /> */}
+            <Navbar />
             {isAuthenticated && <UserOptions user={user} />}
             <Routes>
                 <Route exact path="/" element={<Home />} />
@@ -90,7 +89,7 @@ function App() {
                 <Route path="/test" element={<Test />} />
 
                 <Route element={<ProtectedRoutes stripeKey={stripeApiKey} />}>
-                    <Route exact path="/account" element={<Profile />} />
+                    <Route exact path="/account" element={<MyAccount />} />
                     <Route
                         exact
                         path="/me/update"

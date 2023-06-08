@@ -85,24 +85,6 @@ app.use('/api/v1', order);
 // ********Payment Route*********** */
 app.use('/api/v1', payment);
 
-// app.use(express.static(path.join(__dirname, '../frontend/build')));
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'));
-// });
-
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-app.get('*', function (req, res) {
-    res.sendFile(
-        path.join(__dirname, '../frontend/build/index.html'),
-        function (err) {
-            if (err) {
-                res.status(500).send(err);
-            }
-        }
-    );
-});
-
 // ********Error Handler Route*********** */
 app.use(ErrorHandlerMiddleware);
 

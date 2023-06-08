@@ -7,12 +7,6 @@ import {
 
 import { REQUEST_URL } from '../Constants.js';
 
-// ///////////////////////////////////////////////////////////////
-// //REQUEST URL
-// const   REQUEST_URL="https://bharatecommerce.onrender.com"
-
-// ///////////////////////////////////////////////////////////////
-
 //Add to Card ser Action
 export const addItemToCart = (id, quantity) => async (dispatch) => {
     const { data } = await axios.get(`${REQUEST_URL}/api/v1/product/${id}`);

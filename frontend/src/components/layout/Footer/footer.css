@@ -86,13 +86,14 @@ p {
 
 .li-heading {
     padding: .5vmax;
+    color: rgba(78, 74, 74, 0.828);
     font-size: 1.3vmax;
     font-weight: 500;
 }
 
 .li-items {
     padding: .5vmax;
-    color: rgba(70, 70, 70, 0.9);
+    color: rgba(99, 96, 96, 0.791);
     font-size: 1vmax;
     transition: all 400ms linear;
     cursor: pointer;

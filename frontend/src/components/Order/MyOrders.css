@@ -3,9 +3,7 @@
     max-width: 100%;
     padding: 0 6vmax;
     background-color: rgb(235, 235, 235);
-    position: fixed;
-    left: 0;
-    top: 0;
+
     height: 100vh;
     display: flex;
     box-sizing: border-box;

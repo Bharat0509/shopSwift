@@ -5,6 +5,7 @@ import { clearErrors, getProducts } from '../../actions/productActions'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import ProductCard from '../Utils/ProductCard'
+import Product from "../Utils/Product";
 import Loader from '../layout/Loader/Loader'
 import { useAlert } from 'react-alert'
 import Brands from '../Utils/Brands'
@@ -12,6 +13,7 @@ import Wrapper from '../Utils/Wrapper'
 import ServiceInfoCard from '../Utils/ServiceInfoCard'
 import CategoryCard from '../Utils/CategoryCard'
 import Ad from '../Utils/Ad'
+import Hero from '../Hero/Hero'
 
 const Categories = [
     {
@@ -107,6 +109,7 @@ const Home = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
     const { products, loading, error } = useSelector(state => state.products) || [];
+
     useEffect(() => {
         if (error) {
             alert.error(error);
@@ -124,20 +127,9 @@ const Home = () => {
                 <>
                     <MetaData title="BharatEcom" />
 
-                    <div className="banner">
 
-                        <img src="https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e9b930e006824963189865_bg-stage.png" alt="" className="m1" />
-                        <img src="./topStair1.png" alt="" className="m2" />
-                        <img src="./topStair2.png" alt="" className="m3" />
-                        <img src="./topStair3.png" alt="" className="m4" />
-                        <img src="./topStair4.png" alt="" className="m5" />
-                        <div className="details">
-                            <span>Shopping And Department Store</span>
-                            <p>Shopping is a bit of a relaxing hobby for me, which is sometimes troubling for the bank balance.</p>
-                            <a href='#container'><button>Explore More</button></a>
-                        </div>
-                    </div>
-
+                    <Hero />
+                    <Product />
                     <div className="product-container-wrapper" id='container'>
                         <Wrapper Card={CategoryCard} data={Categories} heading="Shop Our Top Categories" hw={'20rem'} />
 
