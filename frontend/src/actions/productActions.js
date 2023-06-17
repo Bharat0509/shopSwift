@@ -95,10 +95,7 @@ export const getProductsDetails = (id, token) => async (dispatch) => {
         dispatch({
             type: PRODUCT_DETAILS_REQUEST
         });
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/product/${id}`,
-            { token }
-        );
+        const { data } = await axios.get(`${REQUEST_URL}/api/v1/product/${id}`);
 
         // console.log(data);
 

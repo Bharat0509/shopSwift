@@ -1,13 +1,14 @@
 .myOrdersPage {
-    width: 100vw;
-    max-width: 100%;
-    padding: 0 6vmax;
-    background-color: rgb(235, 235, 235);
 
-    height: 100vh;
-    display: flex;
+
+    width: 100%;
     box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    border-left: 1px solid rgba(0, 0, 0, .15);
+    display: flex;
     flex-direction: column;
+    height: 100vh;
+    padding: 4vw 2vw;
 }
 
 .greenColor {
@@ -20,50 +21,58 @@
 }
 
 
-#myOrderHeading {
+
+
+.theading {
+    width: 95%;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid gray;
+    background-color: rgba(128, 128, 128, 0.2);
+    padding: 1rem 0;
+
+
+}
+
+.theading h3, .tdata h3 {
+    min-width: 15rem;
     text-align: center;
-    font: 400 1.2vmax "Roboto";
-    /* padding: .5vmax; */
-    box-sizing: border-box;
-    color: white;
-    background-color: rgb(44, 44, 44);
-    transition: all 500ms;
 }
 
-.myOrdersTable {
 
-    background-color: white;
-    padding: 1vmax;
+.tdata {
+    width: 95%;
+
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.25);
+
+    padding: 1rem 0;
 }
 
-.myOrdersTable div {
-    font: 300 1vmax "Roboto";
-    /* color: rgba(0, 0, 0, 0.75); */
-    border: none;
-    outline: none;
-    margin-right: .5rem;
+.tdata>h3 {
+    font-weight: 500;
+    color: gray;
+    font-size: .80rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.p-id {
+    width: 15%;
 
 }
 
-.myOrdersTable a {
+.tdata .p-id {
+    color: orange;
+}
+
+.tdata a {
+    color: blue;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.75);
-    transition: all 500ms;
-    z-index: 100;
 }
 
-.myOrdersTable a:hover {
-    color: tomato;
-}
-
-.MuiDataGrid-columnHeaders {
-    background-color: tomato;
-    padding: 1vmax !important;
-}
-
-.MuiDataGrid-columnHeaders>div {
-    color: white;
-    padding: 1vmax !important;
+.tdata a:hover {
+    text-decoration: underline;
 }
 
 

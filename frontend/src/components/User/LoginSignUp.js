@@ -55,7 +55,7 @@ const LoginSignUp = () => {
     useEffect(() => {
         const redirectLink = location.search
             ? location.search.split('=')[1]
-            : 'account';
+            : 'account/me';
 
         if (error) {
             alert.error(error);

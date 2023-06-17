@@ -2,14 +2,12 @@ import React, { useEffect } from 'react'
 import './MyOrders.css'
 import MetaData from '../layout/MetaData.js'
 import Loader from '../layout/Loader/Loader'
-import { useNavigate } from 'react-router-dom'
-import { DataGrid } from '@mui/x-data-grid'
-import { Link, Typography } from '@material-ui/core'
+import { Link, useNavigate } from 'react-router-dom'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { myOrders, clearErrors } from '../../actions/newOrderAction'
-
-import LaunchIcon from '@mui/icons-material/Launch';
+import Sidebar from '../Admin/Sidebar'
 
 const MyOrders = () => {
 
@@ -21,57 +19,7 @@ const MyOrders = () => {
     const { user, isAuthenticated } = useSelector(state => state.authData)
     const { token } = useSelector(state => state.authToken)
 
-    const columns = [
-        {
-            field: "id",
-            headerName: "Order ID",
-            maxWidth: 400,
-            flex: 0.20
-        },
-        {
-            field: "status",
-            headerName: "Status", maxWidth: 400, flex: 0.20,
-            cellClassName: (params) => {
-                return (params?.rows?.status === "Delivered" ? "greenColor" : "redColor")
-            }
 
-
-        },
-        {
-            field: 'itemQuantity',
-            headerName: "Items Qty",
-            type: "number", maxWidth: 300, flex: 0.20
-        },
-        {
-            field: "amount",
-            headerName: "Amount",
-            type: "number", maxWidth: 250, flex: 0.20
-        },
-        {
-            field: "actions",
-            headerName: "Actions",
-            maxWidth: 100,
-            zIndex: 999,
-            type: "number",
-
-            sortable: true,
-
-            renderCell: (params) => {
-                return <Link tabIndex={params.tabIndex} href={`/order/${params?.rows?.id}`}><LaunchIcon /></Link>
-            }
-        }
-    ];
-    const rows = [];
-
-    orders && orders.forEach((item, index) => {
-        rows.push({
-            itemQuantity: item.orderItems.length,
-            id: item._id,
-            status: item.orderStatus,
-            amount: item.totalPrice
-
-        })
-    });
 
     useEffect(() => {
         if (error) {
@@ -86,26 +34,40 @@ const MyOrders = () => {
     return (
         <>
             <MetaData title={`${user?.name}-Orders`} />
-            {
-                loading ?
+            <div className='dashboard'>
+                <Sidebar />
+                {
+                    loading ?
 
-                    <Loader />
-                    :
+                        <Loader />
+                        :
 
-                    <div className="myOrdersPage">
-                        <DataGrid
-                            rows={rows}
-                            columns={columns}
-                            pageSize={10}
-                            disableSelectionOnClick
-                            className='myOrdersTable'
-                            autoHeight
+                        <div className="myOrdersPage">
 
-                        />
-                        <Typography id="myOrderHeading">{user?.name}'s Orders</Typography>
-                    </div>
+                            <div className='theading'>
+                                <h3 className='p-id'>Product ID</h3>
+                                <h3>Payment ID</h3>
+                                <h3>Status</h3>
+                                <h3>Amount</h3>
+                                <h3>Actions</h3>
+                            </div>
+                            {orders && orders.length > 0 &&
+                                orders.map(order =>
+                                    <div className='tdata'>
+                                        <h3 className='p-id'>{order._id}</h3>
+                                        <h3>{order.paymentInfo.id}</h3>
+                                        <h3 className={`${order.orderStatus === 'Delivered' ? 'greenColor' : 'redColor'}`}>{order.orderStatus}</h3>
+                                        <h3>{order.totalPrice}</h3>
+                                        <h3><Link to={`orders/${order._id}`}> View Details</Link></h3>
+                                    </div>)
+                            }
 
-            }
+
+
+                        </div>
+
+                }
+            </div>
 
         </>
     )

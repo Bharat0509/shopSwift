@@ -1,0 +1,53 @@
+.account-info-container {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    border-left: 1px solid rgba(0, 0, 0, .15);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 4vw 2vw;
+}
+
+.personal-info {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.personal-info>div {
+    width: 45%;
+    padding: .5rem;
+    background-color: rgba(128, 128, 128, 0.10);
+    margin: .5rem;
+    border-radius: .5rem;
+}
+
+.personal-info>div>h4 {
+    color: tomato;
+    padding: .5rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1.2rem;
+}
+
+.personal-info>div>h4>span {
+
+    font-size: 1.5rem;
+}
+
+.personal-info>div>p {
+    color: rgb(55, 55, 55);
+    padding: 0 .5rem;
+    padding-bottom: .5rem;
+    font-size: 1.125rem;
+}
+
+@media screen and (max-width:768px) {
+    .personal-info>div {
+        width: 100%;
+    }
+}

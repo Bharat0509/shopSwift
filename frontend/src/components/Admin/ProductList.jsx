@@ -45,7 +45,7 @@ const ProductList = () => {
         }
         dispatch(getAdminProducts(token))
 
-    }, [dispatch, alert, error, deleteError, navigate, isDeleted])
+    }, [dispatch, alert, error, deleteError, navigate, isDeleted, token])
 
     const columns = [
         {

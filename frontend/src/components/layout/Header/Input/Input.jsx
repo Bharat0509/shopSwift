@@ -6,9 +6,9 @@ const Input = ({ setKeyword, onSubmit, value }) => {
 
     return (
         <div className='search-input'>
-            <input type="text" placeholder='Search...' onChange={(e) => setKeyword(e.target.value)} value={value} />
+            <input type="text" id='keyword' placeholder='Search...' onChange={(e) => setKeyword(e.target.value)} value={value} />
             <div>
-                <select name="category" id="category">
+                <select name="category" id="category" >
                     {
                         categories.map(cat => (
                             <option key={cat} value={cat}>
@@ -19,6 +19,8 @@ const Input = ({ setKeyword, onSubmit, value }) => {
                 </select>
             </div>
             <div className='search-btn' onClick={onSubmit}><BiSearch /></div>
+
+
         </div>
     )
 }

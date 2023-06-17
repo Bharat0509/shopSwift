@@ -2,7 +2,7 @@
     "name": "shopSwift",
     "version": "1.0.0",
     "description": "",
-    "proxy": "https://bharatecommerce.onrender.com",
+    "proxy": "https://tiny-plum-coyote-vest.cyclic.app/",
     "main": "backend/app.js",
     "type": "module",
     "scripts": {

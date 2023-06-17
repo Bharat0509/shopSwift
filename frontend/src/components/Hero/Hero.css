@@ -18,33 +18,33 @@
 }
 
 .div1 {
-    height: 40rem;
+    height: 40vw;
 
 
 }
 
 .div2 {
     background-color: blue;
-    width: 30rem;
-    height: 35rem;
+    width: 30vw;
+    height: 35vw;
 }
 
 .div3 {
-    width: 30rem;
+    width: 30vw;
     background-color: yellow;
-    height: 35rem;
+    height: 35vw;
 }
 
 .div4 {
 
     background-color: green;
-    height: 17rem;
+    height: 17vw;
 }
 
 .div5 {
 
     background-color: red;
-    height: 17rem;
+    height: 17vw;
 }
 
 .div1>img, .div2>img, .div3>img, .div4>img, .div5>img {

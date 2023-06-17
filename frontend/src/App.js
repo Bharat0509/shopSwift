@@ -1,7 +1,6 @@
 import './App.css';
 import Footer from './components/layout/Footer/Footer.jsx';
 import Home from './components/Home/Home.jsx';
-import UserOptions from './components/layout/Header/UserOptions.js';
 import ProductDetails from './components/Product/ProductDetails';
 import Products from './components/Product/Products.js';
 import Search from './components/Product/Search.jsx';
@@ -30,7 +29,7 @@ import LoginSignUp from './components/User/LoginSignUp';
 import store from './store';
 import { loadUser } from './actions/userActions';
 import { useSelector } from 'react-redux';
-import Test from './Test';
+
 import ProtectedRoutes, {
     ProtectedRoutesAdmin
 } from './components/Routes/ProtectedRoute';
@@ -38,8 +37,9 @@ import axios from 'axios';
 import NewProduct from './components/Admin/NewProduct';
 import UserList from './components/Admin/UserList';
 import ScrollToTop from './ScrollToTop';
-import MyAccount from './components/User/MyAccount';
 import Navbar from './components/layout/Header/Navbar';
+import MyAccountInfo from './components/User/MyAccountInfo';
+import Sidebar from './components/Admin/Sidebar';
 
 function App() {
     const { user, isAuthenticated } = useSelector((state) => state.authData);
@@ -47,7 +47,9 @@ function App() {
     const [stripeApiKey, setStripeApiKey] = useState('');
 
     async function getStripeApiKey() {
-        const { data } = await axios.get(`/api/v1/stripeapikey`);
+        const { data } = await axios.get(
+            `https://tiny-plum-coyote-vest.cyclic.app//api/v1/stripeapikey`
+        );
         setStripeApiKey(data.stripeApiKey);
     }
     useEffect(() => {
@@ -62,9 +64,9 @@ function App() {
     return (
         <Router>
             <ScrollToTop />
-            {/* <Header /> */}
+
             <Navbar />
-            {isAuthenticated && <UserOptions user={user} />}
+
             <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/product/:id" element={<ProductDetails />} />
@@ -73,7 +75,6 @@ function App() {
                 <Route exact path="/login" element={<LoginSignUp />} />
                 <Route exact path="/orders" element={<MyOrders />} />
                 <Route exact path="/order/:id" element={<MyOrderDetails />} />
-
                 <Route
                     exact
                     path="/password/forgot"
@@ -86,10 +87,15 @@ function App() {
                 />
                 <Route path="/products/:keyword" element={<Products />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/test" element={<Test />} />
 
+                {/* Protected User Routes */}
                 <Route element={<ProtectedRoutes stripeKey={stripeApiKey} />}>
-                    <Route exact path="/account" element={<MyAccount />} />
+                    <Route exact path="/account" element={<Sidebar />} />
+                    <Route
+                        exact
+                        path="/account/me"
+                        element={<MyAccountInfo />}
+                    />
                     <Route
                         exact
                         path="/me/update"
@@ -113,6 +119,8 @@ function App() {
                     />
                     <Route exact path="/success" element={<PaymentSuccess />} />
                 </Route>
+
+                {/* Admin Routes */}
                 <Route element={<ProtectedRoutesAdmin />}>
                     <Route
                         isAdmin={true}

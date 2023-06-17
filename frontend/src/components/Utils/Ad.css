@@ -1,6 +1,7 @@
 .ad-container {
+    overflow: hidden;
     margin: 2rem 0;
-    width: 95%;
+    /* width: 95%; */
     background-color: #ffe6cc;
     padding: 2.5vmax;
     display: flex;
@@ -65,8 +66,13 @@
     transform: rotate(-40deg);
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width:768px) {
+
     .right {
         display: none;
+    }
+
+    .left {
+        width: 100%;
     }
 }

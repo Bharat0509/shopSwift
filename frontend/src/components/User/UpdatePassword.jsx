@@ -9,6 +9,7 @@ import MetaData from '../layout/MetaData'
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import LockIcon from '@mui/icons-material/Lock';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import Sidebar from '../Admin/Sidebar'
 
 const UpdatePassword = () => {
 
@@ -59,51 +60,55 @@ const UpdatePassword = () => {
 
         <>
             <MetaData title={`Change Password-${user?.name}`} />
-            <div className='updatePasswordContainer'>
-                <div className='updatePasswordBox'>
-                    <h2><span className='profile-name'>Update Pro</span>file</h2>
+            <div className='dashboard'>
+                <Sidebar />
+                <div className='updatePasswordContainer'>
+                    <div className='updatePasswordBox'>
+                        <h2><span className='profile-name'>Update Pass</span>word</h2>
 
-                    <form className='updatePasswordForm' encType="multipart/form-data" onSubmit={updatePasswordSubmit}>
-                        <div className='loginPassword'>
-                            <VpnKeyIcon />
-                            <input
-                                type='password'
+                        <form className='updatePasswordForm' encType="multipart/form-data" onSubmit={updatePasswordSubmit}>
+                            <div className='loginPassword'>
+                                <VpnKeyIcon />
+                                <input
+                                    type='password'
 
-                                placeholder='Old Password'
-                                required
-                                value={oldPassword}
-                                onChange={(e) => setOldPassword(e.target.value)} />
-                        </div>
+                                    placeholder='Old Password'
+                                    required
+                                    value={oldPassword}
+                                    onChange={(e) => setOldPassword(e.target.value)} />
+                            </div>
 
-                        <div className='loginPassword'>
-                            <LockOpenIcon />
-                            <input
-                                type='password'
+                            <div className='loginPassword'>
+                                <LockOpenIcon />
+                                <input
+                                    type='password'
 
-                                placeholder='New Password'
-                                required
-                                value={newPassword}
-                                onChange={(e) => setNewPassword(e.target.value)} />
-                        </div>
+                                    placeholder='New Password'
+                                    required
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)} />
+                            </div>
 
-                        <div className='loginPassword'>
-                            <LockIcon />
-                            <input
-                                type='password'
+                            <div className='loginPassword'>
+                                <LockIcon />
+                                <input
+                                    type='password'
 
-                                placeholder='Confirm Password'
-                                required
-                                value={confirmNewPassword}
-                                onChange={(e) => setConfirmNewPassword(e.target.value)} />
-                        </div>
-
-
+                                    placeholder='Confirm Password'
+                                    required
+                                    value={confirmNewPassword}
+                                    onChange={(e) => setConfirmNewPassword(e.target.value)} />
+                            </div>
 
 
-                        <input type='submit' value='Change Password' className='updatePasswordBtn' disabled={loading ? true : false} />
-                    </form>
+
+
+                            <input type='submit' value='Change Password' className='updatePasswordBtn' disabled={loading ? true : false} />
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </>
 
     )
