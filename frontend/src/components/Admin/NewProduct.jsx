@@ -15,7 +15,6 @@ import { clearErrors } from '../../actions/productActions'
 import { NEW_PRODUCT_RESET } from '../../constants/productConstant'
 import { newProduct } from '../../actions/productActions'
 import Sidebar from './Sidebar';
-import { toast } from 'react-toastify'
 
 const categories = [
   "Select Category",
@@ -59,7 +58,7 @@ const NewProduct = () => {
     images.forEach(image => {
       myForm.append("images", image)
     })
-    const itoast.loading('Creating new Products. Please wait...')
+
     dispatch(newProduct(myForm))
 
 
