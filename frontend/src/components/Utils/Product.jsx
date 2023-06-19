@@ -41,7 +41,7 @@ const Product = ({ data, heading }) => {
                 <button className='products-btn backward'> <MdArrowForwardIos size={32} /></button>
 
                 {
-                    data.map((item) => <ProductCard {...item} />)
+                    data?.map((item) => <ProductCard {...item} />)
                 }
                 <button className='products-btn forward'><MdArrowForwardIos size={32} /></button>
 
