@@ -115,7 +115,7 @@
     display: flex;
     margin: 2vmax auto;
     width: 80%;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: center;
 
 }

@@ -29,3 +29,19 @@ input[type=number] {
 .redColor {
     color: red !important;
 }
+
+.MuiDataGrid-columnHeader div {
+
+    color: black !important;
+    text-align: center;
+    padding-left: 0.5rem;
+}
+
+.noReviews {
+    margin-top: 2rem;
+
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -38,12 +38,11 @@ const Product = ({ data, heading }) => {
                 </div>
             </div>
             <div className='products-detail'>
-                <button className='products-btn backward'> <MdArrowForwardIos size={32} /></button>
 
                 {
-                    data?.map((item) => <ProductCard {...item} />)
+                    data && data?.map((item) => <ProductCard {...item} />)
                 }
-                <button className='products-btn forward'><MdArrowForwardIos size={32} /></button>
+
 
             </div>
 

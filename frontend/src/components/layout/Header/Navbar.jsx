@@ -63,7 +63,7 @@ const Navbar = () => {
 
                 </div>
                 <div className='nav-l-right'>
-                    <Link to='/account'>
+                    <Link to='/account/me'>
 
                         {
                             user?.name ?

@@ -27,6 +27,14 @@ a {
     gap: 4rem;
 }
 
+.products-detail {
+    margin-top: 2rem;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
 .product-upper-r a {
     display: flex;
     align-items: center;
@@ -78,9 +86,12 @@ a {
     margin: auto;
     border: 1px solid #8080802d;
     padding: 1rem;
+    border-radius: .5rem;
     flex: 1;
 
-    min-width: 21rem;
+    min-width: 20vw;
+    max-width: 30vw;
+    min-height: 25rem;
 }
 
 
@@ -98,6 +109,7 @@ a {
 .card-upper img {
     height: 15rem;
     width: 15rem;
+    object-fit: contain;
     /* filter: drop-shadow(10px 5px 5px #0000008d); */
 }
 
@@ -204,14 +216,6 @@ a {
     background-color: red;
 }
 
-.products-detail {
-    margin-top: 2rem;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(128, 128, 128, 0.25);
-}
 
 .products-btn {
     position: absolute;

@@ -53,7 +53,7 @@ const Home = () => {
         <>
             {loading ? <Loader /> :
                 <>
-                    <MetaData title="BharatEcom" />
+                    <MetaData title="ShopSwift-Ecommerce store" />
 
 
                     <Hero />
@@ -61,9 +61,7 @@ const Home = () => {
                     <Ad />
 
                     <Product heading={'Top Rated Products'} data={products} />
-                    <div className="product-container-wrapper" id='container'>
-                        <Wrapper Card={ProductCard} data={products} heading="Weekly Popular Deal For You !" hw={'20rem'} />
-                    </div>
+
 
                     <div className="product-container-wrapper" id='container'>
                         <Wrapper Card={ServiceInfoCard} data={service} heading="Service To Help You Shop " hw={'18rem'} />
