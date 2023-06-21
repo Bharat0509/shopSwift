@@ -99,30 +99,30 @@ const ProductDetails = () => {
                     <div className="product-info-card">
                         <div className="product-info-image">
                             <img
-                                src={product?.images[0].url}
+                                src={product?.images[0]?.url}
                                 alt="Mobile Phone"
                             />
                         </div>
                         <div className="product-info-info">
                             <div className="product-info-title">
-                                {product.name}
+                                {product?.name}
                             </div>
                             <div className="product-info-more">
                                 <div className="product-info-id">
-                                    <span className="id"># {product._id}</span>
+                                    <span className="id"># {product?._id}</span>
                                     <span>
                                         <span id="product-info-rating">
-                                            {product.rating}
+                                            {product?.rating}
                                         </span>
                                         <Rating {...options} /> (
-                                        {product.numOfReviews} Reviews)
+                                        {product?.numOfReviews} Reviews)
                                     </span>
                                 </div>
                             </div>
                             <div className="product-info-cart">
                                 <div className="product-info-price">
                                     <span>$4999.99</span>
-                                    <span>${product.price}</span>
+                                    <span>${product?.price}</span>
                                 </div>
                                 <div className="product-info-add-to-cart">
                                     <button onClick={decrementQuantity}>
@@ -144,7 +144,7 @@ const ProductDetails = () => {
                             <div className="product-info-desc">
                                 <span>Product Information :</span>
                                 <br />
-                                {product.description}
+                                {product?.description}
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@ const ProductDetails = () => {
                             </DialogActions>
                         </DialogContent>
                     </Dialog>
-                    {product.reviews && product.reviews[0] ? (
+                    {product && product.reviews && product.reviews[0] ? (
                         <div className="reviews">
                             {product.reviews &&
                                 product.reviews?.map((review) => (

@@ -90,14 +90,12 @@ export const getAdminProducts = (token) => async (dispatch) => {
 };
 
 //Product details
-export const getProductsDetails = (id, token) => async (dispatch) => {
+export const getProductsDetails = (id) => async (dispatch) => {
     try {
         dispatch({
             type: PRODUCT_DETAILS_REQUEST
         });
         const { data } = await axios.get(`${REQUEST_URL}/api/v1/product/${id}`);
-
-        // console.log(data);
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
