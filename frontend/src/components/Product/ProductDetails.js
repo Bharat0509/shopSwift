@@ -99,7 +99,11 @@ const ProductDetails = () => {
                     <div className="product-info-card">
                         <div className="product-info-image">
                             <img
-                                src={product?.images[0]?.url}
+                                src={
+                                    product && product?.images.length > 0
+                                        ? 'product'
+                                        : 'abs'
+                                }
                                 alt="Mobile Phone"
                             />
                         </div>
