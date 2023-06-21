@@ -5,9 +5,7 @@ import App from './App';
 import store from './store';
 import { positions, transitions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -19,9 +17,9 @@ const options = {
 
 root.render(
     <Provider store={store}>
+        <Toaster position="top-center" reverseOrder={false} />
         <AlertProvider template={AlertTemplate} {...options}>
             <App />
         </AlertProvider>
-        <ToastContainer />
     </Provider>
 );

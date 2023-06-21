@@ -84,14 +84,14 @@ const Navbar = () => {
                                                     </p>
                                                 </Link>
 
-                                                <Link to="/account/me">
+                                                <Link to="/account/update/password">
                                                     <p>
                                                         <ChangeCircleIcon />
                                                         Change Password
                                                     </p>
                                                 </Link>
 
-                                                <Link to="/account/me">
+                                                <Link to="/orders">
                                                     <p>
                                                         <HistoryIcon />
                                                         Order History

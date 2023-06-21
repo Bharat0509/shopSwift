@@ -8,13 +8,17 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import StorageIcon from '@mui/icons-material/Storage';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+
+
 
 import { useNavigate, useParams } from 'react-router-dom'
 import { clearErrors, updateProduct, getProductsDetails } from '../../actions/productActions'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstant'
 
 import Loader from '../layout/Loader/Loader'
-import Sidebar from './Sidebar';
+import Sidebar from './Sidebar'; import { toast } from 'react-hot-toast'
+
 
 const categories = [
     "Select Category",
@@ -36,6 +40,12 @@ const UpdateProduct = () => {
     const { error, product } = useSelector(state => state.productDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.product)
 
+
+    const toastId = React.useRef(null);
+    const notify = (msg) => toastId.current = toast.loading(msg);
+    const success = (msg) => toastId.current = toast.success(msg, { id: toastId.current })
+
+
     const [Name, setName] = useState('')
     const [Price, setPrice] = useState(0)
     const [Description, setDescription] = useState('')
@@ -44,7 +54,6 @@ const UpdateProduct = () => {
     const [images, setImages] = useState([])
     const [OldImages, setOldImages] = useState([])
     const [imagesPreview, setImagesPreview] = useState([])
-
 
 
     const UpdateProductSubmitHandler = (e) => {
@@ -63,6 +72,7 @@ const UpdateProduct = () => {
         images?.forEach(image => {
             myForm.images.push(image)
         })
+        notify('Updating...')
         dispatch(updateProduct(params.id, myForm))
 
 
@@ -96,18 +106,23 @@ const UpdateProduct = () => {
     useEffect(() => {
 
         if (!product || product._id !== productId) {
+
             dispatch(getProductsDetails(productId))
 
 
         }
         else {
 
+
             setName(product.name)
             setDescription(product.description)
             setPrice(product.price)
             setCategory(product.category)
             setStock(product.stock)
-            setOldImages(product.images)
+            let imagesArray = [];
+            product.images.map(img => imagesArray.push(img.url));
+            setImagesPreview(imagesArray)
+            setOldImages(imagesArray)
 
         }
         if (error) {
@@ -119,11 +134,13 @@ const UpdateProduct = () => {
             dispatch(clearErrors())
         }
         if (isUpdated) {
-            alert.success("Product Updated Successfully")
+            success('Product Updated Successfully.')
             dispatch({ type: UPDATE_PRODUCT_RESET })
             navigate('/admin/products')
 
         }
+
+
     }, [dispatch, alert, error, navigate, isUpdated, product, productId, updateError])
 
     return (
@@ -133,102 +150,151 @@ const UpdateProduct = () => {
                     <MetaData title={'Create Product'} />
                     <div className="dashboard">
                         <Sidebar />
-                        <div className="newProductContainer">
+                        <div className="addProductContainer">
 
                             <form
-                                className='createProductForm'
+                                className='addProductForm'
                                 encType='multipart/form-data'
                                 onSubmit={UpdateProductSubmitHandler}
                             >
-                                <h1>Update Product</h1>
+                                <div><h1>Add Product</h1>
+                                    <span className='extra-info'>To start selling,all you need is name, price, category and a photo</span></div>
                                 <div>
-                                    <SpellcheckIcon />
-                                    <input
-                                        type="text"
-                                        placeholder='Product Name'
-                                        required
-                                        value={Name}
-                                        onChange={e => setName(e.target.value)} />
-                                </div>
-
-                                <div>
-                                    <AttachMoneyIcon />
-                                    <input
-                                        type="number"
-                                        placeholder='Price'
-                                        required
-                                        value={Price}
-                                        onChange={e => setPrice(e.target.value)} />
-                                </div>
-
-                                <div>
-                                    <DescriptionIcon />
-                                    <textarea
-
-                                        placeholder='Product Description'
-                                        required
-                                        value={Description}
-                                        onChange={e => setDescription(e.target.value)}
-                                        cols="30"
-                                        rows="5"
-                                    />
+                                    <div>
+                                        <label htmlFor="p-name">Name</label>
+                                    </div>
+                                    <div className='form-input'>
+                                        <SpellcheckIcon />
+                                        <input
+                                            type="text"
+                                            id='p-name'
+                                            value={Name}
+                                            placeholder='Product Name'
+                                            required
+                                            onChange={e => setName(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <span className='extra-info'>Give your product a short and clear name</span>
+                                    </div>
                                 </div>
 
                                 <div>
-                                    <AccountTreeIcon />
-                                    <select
-                                        onChange={e => setCategory(e.target.value)}
-                                        value={Category}
-                                    >
-                                        {
-                                            categories.map(cate => (<option key={cate} value={cate}>{cate}</option>))
-                                        }
-
-                                    </select>
+                                    <div>
+                                        <label htmlFor="p-price">Price</label>
+                                    </div>
+                                    <div className='form-input'>
+                                        <AttachMoneyIcon />
+                                        <input
+                                            type="number"
+                                            placeholder='Price'
+                                            value={Price}
+                                            id='p-price'
+                                            required
+                                            onChange={e => setPrice(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <span className='extra-info'>Allow customers to pay what they want?</span>
+                                    </div>
                                 </div>
+
+
                                 <div>
-                                    <StorageIcon />
-                                    <input
-                                        type="Number"
-                                        placeholder='Stock'
-                                        required
-                                        value={Stock}
-                                        onChange={(e) => setStock(e.target.value)}
-                                    />
-                                </div>
-                                <div id='registerImage'>
+                                    <div>
+                                        <label htmlFor="p-desc">Description</label>
+                                    </div>
+                                    <div className='form-input'>
+                                        <DescriptionIcon />
+                                        <textarea
+                                            id='p-desc'
+                                            placeholder='Product Description'
+                                            value={Description}
+                                            required
+                                            onChange={e => setDescription(e.target.value)}
 
-                                    <input type="file"
-                                        name='avatar'
-                                        accept='image/*'
-                                        multiple
-                                        onChange={UpdateProductImagesChange} />
-
-                                </div>
-
-                                <div id="createProductFormImage">
-                                    {
-                                        OldImages?.map((image, idx) =>
-                                            <img key={idx} src={image.url} alt="Old Product Preview" />
-                                        )
-
-                                    }
+                                        />
+                                    </div>
+                                    <div>
+                                        <span className='extra-info'>Give your product a short and clear description</span>
+                                    </div>
                                 </div>
 
-                                <div id="createProductFormImage">
-                                    {
-                                        imagesPreview?.map((image, idx) =>
-                                            <img key={idx} src={image} alt="Product Preview" />
-                                        )
 
-                                    }
+                                <div>
+                                    <div>
+                                        <label >Category</label>
+                                    </div>
+                                    <div className='form-input'>
+                                        <AccountTreeIcon />
+                                        <select
+                                            value={Category}
+                                            onChange={e => setCategory(e.target.value)}
+                                        >
+                                            {
+                                                categories.map(cate => (<option key={cate} value={cate}>{cate}</option>))
+                                            }
+
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <span className='extra-info'>Tag a category which suites most to your product</span>
+                                    </div>
                                 </div>
+
+                                <div>
+                                    <div>
+                                        <label htmlFor='p-stock'>Stock</label>
+                                    </div>
+                                    <div className='form-input'>
+                                        <StorageIcon />
+                                        <input
+                                            type="Number"
+                                            placeholder='Stock'
+                                            required
+                                            value={Stock}
+                                            onChange={(e) => setStock(e.target.value)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <span className='extra-info'>Allot expected stock you have</span>
+                                    </div>
+                                </div>
+
+                                <div >
+                                    <span className='extra-info'>Add upto 5 clear images of your product</span>
+                                    <div className='media'>
+                                        <div id='registerImage'>
+
+                                            <input type="file"
+                                                id='p-media'
+                                                name='avatar'
+                                                accept='image/*'
+                                                multiple
+                                                style={{ display: 'none' }}
+                                                onChange={UpdateProductImagesChange} />
+
+                                        </div>
+
+                                        <div id="addProductFormImage">
+                                            {
+                                                imagesPreview.map((image, idx) =>
+                                                    <img key={idx} src={image} alt="Avatar Preview" />
+                                                )
+
+                                            }
+                                        </div>
+                                        <div className='addMediaFiles' title='Add media files'>
+                                            <label htmlFor='p-media'><AddPhotoAlternateIcon /></label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                                 <button
                                     className='createProductBtn'
                                     type='submit'
                                     disabled={loading ? true : false}
                                 >
-                                    Update
+                                    Create
                                 </button>
 
 

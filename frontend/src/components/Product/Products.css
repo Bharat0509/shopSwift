@@ -7,23 +7,67 @@
 
 .products-container {
     width: 95%;
+    position: relative;
 
     margin: auto;
     display: flex;
     gap: 4rem;
+
 
 }
 
 .products-sidebar {
     /* background-color: green; */
     background-color: rgba(128, 128, 128, 0.1);
-    width: 20rem;
-    height: 100vh;
+    width: 15rem;
+    display: flex;
 
+    flex-direction: column;
+    gap: 1rem;
+    /* height: 100vh; */
+
+}
+
+
+.ratingFilter, .categoryFilter {
+
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.filterLabel {
+    padding: 0 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+.ratingFilter>div, .categoryFilter>div {
+    padding: 0 1rem;
+    display: flex;
+    gap: .5rem;
+}
+
+.priceFilter>div {
+    margin: auto;
+    padding: 1vw;
 }
 
 .products-main {
     display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: row !important;
+}
+
+@media screen and (max-width:768px) {
+    .products-sidebar {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .products-container {
+        padding-bottom: 32rem;
+    }
 }

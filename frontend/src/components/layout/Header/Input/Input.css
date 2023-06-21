@@ -56,3 +56,15 @@
         width: 55vw;
     }
 }
+
+@media screen and (max-width:768px) {
+
+    .search-input>input, .search-btn, .search-input>div>select {
+        font-size: 3vw;
+    }
+
+    .search-input {
+        width: 95vw;
+        font-size: 3vw;
+    }
+}

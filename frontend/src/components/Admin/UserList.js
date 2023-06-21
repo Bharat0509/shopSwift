@@ -63,26 +63,26 @@ const UserList = () => {
         {
             field: 'id',
             headerName: 'User ID',
-            minWidth: 200,
+            minWidth: 100,
             flex: 0.5
         },
         {
             field: 'email',
             headerName: 'Email',
-            minWidth: 350,
+            minWidth: 200,
             flex: 0.5
         },
         {
             field: 'name',
             headerName: 'Name',
             // type: "number",
-            minWidth: 150,
+            minWidth: 100,
             flex: 0.5
         },
         {
             field: 'role',
             headerName: 'Role',
-            minWidth: 270,
+            minWidth: 100,
             flex: 0.3,
             cellClassName: (params) => {
                 return params.row.role === 'admin' ? 'greenColor' : 'redColor';
@@ -91,7 +91,7 @@ const UserList = () => {
         {
             field: 'actions',
             headerName: 'Actions',
-            minWidth: 150,
+            minWidth: 100,
             sortable: false,
             flex: 0.3,
             renderCell: (params) => (

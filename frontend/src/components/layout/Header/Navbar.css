@@ -146,7 +146,7 @@
     position: absolute;
     width: 13rem;
     top: 3vw;
-    left: -13rem;
+    left: -10rem;
 
 }
 
@@ -232,5 +232,41 @@
 
     .nav-l-left>a>span {
         font-weight: 600;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .nav-l-left {
+        padding-bottom: 4rem;
+    }
+
+    .navbar-user {
+        flex-direction: row;
+    }
+
+    .nav-l-left a {
+        font-size: 1.25rem;
+    }
+
+    .nav-l-right {
+        position: absolute;
+        gap: 1rem;
+        right: 2rem;
+    }
+
+    .nav-l-right svg {
+        display: none;
+    }
+
+    .nav-l-right>a {
+        display: flex;
+        flex-direction: row;
+        font-size: 1.25rem;
+    }
+
+    .search-input {
+        position: absolute;
+        top: 3rem;
+        width: 95vw;
     }
 }

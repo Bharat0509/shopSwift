@@ -45,3 +45,11 @@ input[type=number] {
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width:768px) {
+    .css-1fs1i0f-MuiDataGrid-root.MuiDataGrid-autoHeight {
+
+        width: 92vw;
+    }
+
+}
