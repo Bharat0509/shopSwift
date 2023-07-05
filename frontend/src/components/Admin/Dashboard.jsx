@@ -64,7 +64,9 @@ const Dashboard = () => {
     }
     return (
         <div className='dashboard'>
-            <Sidebar />
+            <div className='sidebar'>
+                <Sidebar />
+            </div>
             <div className="dashboardContainer">
                 <Typography component={"h1"} >
                     Dashboard

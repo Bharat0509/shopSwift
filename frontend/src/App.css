@@ -18,7 +18,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* //Firefox */
-input[type=number] {
+input[type='number'] {
     -moz-appearance: textfield;
 }
 
@@ -31,7 +31,6 @@ input[type=number] {
 }
 
 .MuiDataGrid-columnHeader div {
-
     color: black !important;
     text-align: center;
     padding-left: 0.5rem;
@@ -46,10 +45,8 @@ input[type=number] {
     justify-content: center;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
     .css-1fs1i0f-MuiDataGrid-root.MuiDataGrid-autoHeight {
-
         width: 92vw;
     }
-
 }

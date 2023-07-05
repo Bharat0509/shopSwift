@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ProductDetails.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import {
     clearErrors,
     getProductsDetails,
@@ -27,17 +27,19 @@ const ProductDetails = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
     const params = useParams();
+    let pathname = useLocation().pathname.replaceAll('/', ' > ');
+    pathname = 'ShopSwift' + pathname;
 
     const { token } = useSelector((state) => state.authToken);
     const { product, loading, error } = useSelector(
         (state) => state.productDetails
     );
-    console.log(product);
 
     const { success, error: reviewError } = useSelector(
         (state) => state.newReview
     );
 
+    const [posterImageIndex, setPosterImageIndex] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [open, setOpen] = useState(false);
     const [rating, setRating] = useState(0);
@@ -96,18 +98,46 @@ const ProductDetails = () => {
                 <>
                     <MetaData title={`${product?.name}`} />
 
+                    <div className="pathLink">
+                        <p>
+                            {pathname.length > 0 && pathname} ({' '}
+                            {product && product.name} )
+                        </p>
+                    </div>
                     <div className="product-info-card">
                         <div className="product-info-image">
-                            <img
-                                src={
-                                    product &&
+                            <div className="left">
+                                {product &&
                                     product.images &&
-                                    product?.images?.length > 0
-                                        ? product.images[0].url
-                                        : '#'
-                                }
-                                alt="Mobile Phone"
-                            />
+                                    product.images.map((img, ind) => (
+                                        <img
+                                            onClick={(e) =>
+                                                setPosterImageIndex(ind)
+                                            }
+                                            key={img.url}
+                                            src={img.url}
+                                            alt="Preview"
+                                            className={`${
+                                                ind === posterImageIndex &&
+                                                'active-image '
+                                            }`}
+                                        />
+                                    ))}
+                            </div>
+                            <div className="right">
+                                {' '}
+                                <img
+                                    src={
+                                        product &&
+                                        product.images &&
+                                        product?.images?.length > 0
+                                            ? product.images[posterImageIndex]
+                                                  .url
+                                            : '#'
+                                    }
+                                    alt="Mobile Phone"
+                                />
+                            </div>
                         </div>
                         <div className="product-info-info">
                             <div className="product-info-title">

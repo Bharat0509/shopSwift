@@ -1,14 +1,14 @@
 .cat-card {
-    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg)
+        rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
     transform-style: preserve-3d;
     position: relative;
     overflow: hidden;
     width: 12rem;
     height: 18rem;
     border-radius: 10px;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
 }
-
 
 .category-title {
     position: absolute;
@@ -27,7 +27,6 @@
     font-family: Eina02, sans-serif;
 }
 
-
 .category-img {
     overflow: hidden;
     margin: 0;
@@ -42,16 +41,15 @@
 }
 
 .category-img:hover {
-    transform: translateX(-.25vmax) translateY(-.5vmax);
+    transform: translateX(-0.25vmax) translateY(-0.5vmax);
     scale: 1.2;
 }
 
-
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 1024px) {
     .cat-card {
-        width: 13rem;
-
-        height: 18rem;
+        width: 13vw;
+        min-width: 12vw;
+        height: 18vw;
     }
 
     .category-title {
@@ -59,10 +57,10 @@
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
     .cat-card {
-        width: 20rem;
-        height: 25rem;
+        width: 20vw;
+        height: 25vw;
     }
 
     .category-title {
@@ -70,7 +68,7 @@
     }
 }
 
-@media screen and (max-width:500px) {
+/* @media screen and (max-width: 500px) {
     .cat-card {
         width: 24rem;
         height: 25rem;
@@ -79,4 +77,4 @@
     .category-title {
         font-size: 18px;
     }
-}
+} */

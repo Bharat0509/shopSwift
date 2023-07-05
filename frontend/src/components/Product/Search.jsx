@@ -16,7 +16,7 @@ const Search = ({ history }) => {
     }
     return (
         <>
-            <MetaData title={`Search A Product -- BHARATECOM`} />
+            <MetaData title={`Search A Product`} />
             <form className='searchBox' onSubmit={searchSubmitHandler}>
                 <input type="text"
                     placeholder='Search a Product...'

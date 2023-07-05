@@ -68,7 +68,7 @@ const Navbar = () => {
                         {
                             user?.name ?
                                 <div className='navbar-user' onClick={e => setShowNavbarSidebar(!showNavbarSidebar)} onMouseEnter={e => setShowNavbarSidebar(true)} >
-                                    <span><RxPerson size={22} /></span>
+                                    <RxPerson size={22} />
                                     <span >Hi, {user.name} <RxTriangleDown style={{ display: 'inline-block' }} /></span>
                                     {
                                         showNavbarSidebar &&
@@ -155,15 +155,17 @@ const Navbar = () => {
                                 </div>
                                 :
                                 <>
-                                    <span><RxPerson size={22} /></span>
-                                    Sign In
+                                    <RxPerson size={22} />
+                                    <span>Sign In</span>
                                 </>
                         }
 
                     </Link>
-                    <Link to='/orders'><span><RiShoppingBag3Line size={22} /></span>Quick Order </Link>
+                    <Link to='/orders'><RiShoppingBag3Line size={22} />
+                        <span >Quick Order</span>
+                    </Link>
                     <Link to='/cart' className='cart'>
-                        <span><RiShoppingCartLine size={22} /></span>Cart
+                        <RiShoppingCartLine size={22} /><span>Cart</span>
                         {cartItems.length > 0 && <span className='cartItem'>{cartItems.length}</span>}
                     </Link>
                 </div>

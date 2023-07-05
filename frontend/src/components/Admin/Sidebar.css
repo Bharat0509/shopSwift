@@ -16,18 +16,15 @@ a {
     flex-direction: column;
     align-items: center;
     margin: 1rem 0;
-
 }
 
-.p-info-name>img {
+.p-info-name > img {
     width: 5rem;
 }
 
-.p-info-name>div {
+.p-info-name > div {
     color: rgb(75, 75, 75);
 }
-
-
 
 img {
     margin: 0;
@@ -35,7 +32,8 @@ img {
     box-sizing: border-box;
 }
 
-.sidebar-items>span, .sidebar-items>div {
+.sidebar-items > span,
+.sidebar-items > div {
     font-weight: 400;
     font-size: 1.25rem;
     color: rgb(75, 75, 75) !important;
@@ -43,28 +41,29 @@ img {
     padding: 0;
 }
 
-.sidebar-items>a, .sidebar-items>div {
+.sidebar-items > a,
+.sidebar-items > div {
     display: flex;
 
     padding: 0 1rem;
     margin: 1rem 0;
     transition: all 400ms ease-in;
-
 }
 
-.sidebar-items>a>p:hover, .sidebar-items>div:hover, .sidebar-items>a>p:active, .sidebar-items>div:active {
+.sidebar-items > a > p:hover,
+.sidebar-items > div:hover,
+.sidebar-items > a > p:active,
+.sidebar-items > div:active {
     color: tomato !important;
-    transform: translateX(.5rem);
-
+    transform: translateX(0.5rem);
 }
 
-.sidebar-items>a>p {
+.sidebar-items > a > p {
     display: flex;
-    gap: .5vw;
+    gap: 0.5vw;
     color: rgb(75, 75, 75) !important;
     align-items: center;
     transition: all 400ms ease-in;
-
 }
 
 .MuiTypography-root {
@@ -72,15 +71,15 @@ img {
 }
 
 .MuiTreeItem-content {
-    gap: .5rem;
-    padding-left: .5rem;
+    gap: 0.5rem;
+    padding-left: 0.5rem;
 }
 
 .MuiTreeItem-iconContainer svg {
     font-size: 30px !important;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
     .sidebar {
         display: none;
     }

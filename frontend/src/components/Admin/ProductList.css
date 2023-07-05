@@ -2,17 +2,18 @@
     width: 100%;
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
-    border-left: 1px solid rgba(0, 0, 0, .15);
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
+
     height: 100vh;
 }
 
 .productListHeading {
-    font: 400 2rem "Roboto";
-    padding: .5vmax;
+    font: 400 2rem 'Roboto';
+    padding: 0.5vmax;
     box-sizing: border-box;
-    color: rgba(0, 0, 0, .75);
+    color: rgba(0, 0, 0, 0.75);
     transition: all 500ms;
     margin: 2rem;
     text-align: center;
@@ -30,13 +31,13 @@
 }
 
 .productListTable div {
-    font: 350 1vmax "Roboto";
-    color: rgba(0, 0, 0, .75);
+    font: 350 1vmax 'Roboto';
+    color: rgba(0, 0, 0, 0.75);
     border: none !important;
 }
 
 .productListTable a {
-    color: rgba(0, 0, 0, .55);
+    color: rgba(0, 0, 0, 0.55);
     transition: all 500ms;
 }
 
@@ -51,16 +52,15 @@
 
 .productListTable a:hover {
     color: tomato;
-
 }
 
 .MuiDataGrid-columnHeader div {
     color: aliceblue;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
     .productListTable div {
-        font: 350 4vw "Roboto";
+        font: 350 4vw 'Roboto';
     }
 
     .MuiDataGrid-row {
@@ -68,5 +68,4 @@
         align-items: center;
         padding: 0 1rem;
     }
-
 }

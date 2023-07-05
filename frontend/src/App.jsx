@@ -1,9 +1,8 @@
 import './App.css';
 import Footer from './components/layout/Footer/Footer.jsx';
-import Home from './components/Home/Home.jsx';
+import Home from './components/Home/Home';
 import ProductDetails from './components/Product/ProductDetails';
-import Products from './components/Product/Products.js';
-import Search from './components/Product/Search.jsx';
+import Products from './components/Product/Products';
 import UpdateProfile from './components/User/UpdateProfile.jsx';
 import UpdatePassword from './components/User/UpdatePassword.jsx';
 import ForgotPassword from './components/User/ForgotPassword.jsx';
@@ -29,7 +28,6 @@ import LoginSignUp from './components/User/LoginSignUp';
 import store from './store';
 import { loadUser } from './actions/userActions';
 import { useSelector } from 'react-redux';
-
 import ProtectedRoutes, {
     ProtectedRoutesAdmin
 } from './components/Routes/ProtectedRoute';
@@ -40,16 +38,14 @@ import ScrollToTop from './ScrollToTop';
 import Navbar from './components/layout/Header/Navbar';
 import MyAccountInfo from './components/User/MyAccountInfo';
 import Sidebar from './components/Admin/Sidebar';
+import { REQUEST_URL } from './Constants';
 
 function App() {
-    const { user, isAuthenticated } = useSelector((state) => state.authData);
     const { token } = useSelector((state) => state.authToken);
     const [stripeApiKey, setStripeApiKey] = useState('');
 
     async function getStripeApiKey() {
-        const { data } = await axios.get(
-            `https://tiny-plum-coyote-vest.cyclic.app//api/v1/stripeapikey`
-        );
+        const { data } = await axios.get(`${REQUEST_URL}/api/v1/stripeapikey`);
         setStripeApiKey(data.stripeApiKey);
     }
     useEffect(() => {
@@ -71,7 +67,6 @@ function App() {
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/product/:id" element={<ProductDetails />} />
                 <Route exact path="/products" element={<Products />} />
-                <Route exact path="/search" element={<Search />} />
                 <Route exact path="/login" element={<LoginSignUp />} />
                 <Route exact path="/orders" element={<MyOrders />} />
                 <Route exact path="/order/:id" element={<MyOrderDetails />} />
