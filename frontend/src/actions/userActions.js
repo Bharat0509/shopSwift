@@ -38,32 +38,23 @@ import {
     USER_DETAILS_SUCCESS
 } from '../constants/userContants';
 import axios from 'axios';
-import { REQUEST_URL } from '../Constants.js';
+import { Axios, REQUEST_URL } from '../Constants.js';
 
 const config = {
-    withCredentials: true,
     headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true
+        'Content-Type': 'application/json'
     }
 };
 //Login A User Action
 export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({ type: LOGIN_REQUEST });
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/login`,
+        const { data } = await Axios.post(
+            `/api/v1/login`,
             { email, password },
-            {
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
+            config
         );
-
         dispatch({ type: SET_TOKEN_SUCCESS, payload: data.user.token });
-
         dispatch({ type: LOGIN_SUCCESS, payload: data.user });
     } catch (error) {
         dispatch({ type: LOGIN_FAIL, payload: error?.response?.data?.error });
@@ -76,18 +67,14 @@ export const register = (userData) => async (dispatch) => {
     try {
         dispatch({ type: REGISTER_REQUEST });
 
-        const config = {
-            withCredentials: true,
+        const configs = {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         };
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/register`,
-            userData,
-            { config }
-        );
-
+        const { data } = await Axios.post(`/api/v1/register`, userData, {
+            configs
+        });
         dispatch({ type: REGISTER_SUCCESS, payload: data.user });
     } catch (error) {
         dispatch({
@@ -102,10 +89,9 @@ export const loadUser = (token) => async (dispatch) => {
     try {
         dispatch({ type: LOAD_USER_REQUEST });
 
-        const { data } = await axios.post(`${REQUEST_URL}/api/v1/me`, {
-            token
+        const { data } = await Axios.get(`/api/v1/me`, {
+            headers: { Authorization: `Bearer ${token}` }
         });
-
         dispatch({ type: LOAD_USER_SUCCESS, payload: data?.user });
     } catch (error) {
         dispatch({
@@ -118,7 +104,7 @@ export const loadUser = (token) => async (dispatch) => {
 //Logout A User Action
 export const logout = () => async (dispatch) => {
     try {
-        await axios.get(`${REQUEST_URL}/api/v1/logout`);
+        await Axios.get(`/api/v1/logout`);
 
         dispatch({ type: CLEAR_TOKEN_SUCCESS });
         dispatch({ type: LOGOUT_SUCCESS });
@@ -136,17 +122,17 @@ export const updateProfile = (userData) => async (dispatch) => {
         dispatch({ type: UPDATE_PROFILE_REQUEST });
 
         const config = {
-            withCredentials: true,
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${userData?.token}`
             }
         };
-        const { data } = await axios.put(
-            `${REQUEST_URL}/api/v1/me/update`,
-            userData,
-            { config }
-        );
-        dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data });
+        const { data } = Axios.put(`/api/v1/me/update`, userData, { config });
+
+        dispatch({
+            type: UPDATE_PROFILE_SUCCESS,
+            payload: data
+        });
     } catch (error) {
         dispatch({
             type: UPDATE_PROFILE_FAIL,
@@ -156,21 +142,13 @@ export const updateProfile = (userData) => async (dispatch) => {
 };
 
 //Update A User Profile Password Action
-export const updatePassword = (password) => async (dispatch) => {
+export const updatePassword = (passwords, token) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PASSWORD_REQUEST });
 
-        const config = {
-            withCredentials: true,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-        const { data } = await axios.put(
-            `${REQUEST_URL}/api/v1/password/update`,
-            password,
-            { config }
-        );
+        const { data } = await Axios.put(`/api/v1/password/update`, passwords, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
         dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
@@ -185,16 +163,12 @@ export const forgotPassword = (email) => async (dispatch) => {
     try {
         dispatch({ type: FORGOT_PASSWORD_SUCCESS });
 
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/password/forgot`,
-            email,
-            { config }
-        );
+        const { data } = await Axios.post(`/api/v1/password/forgot`, email, {
+            config
+        });
 
-        // dispatch({type:SET_TOKEN_SUCCESS,payload:data.user.token})
         dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data?.message });
     } catch (error) {
-        // dispatch({type:LOGIN_FAIL,payload:error?.response?})
         dispatch({ type: FORGOT_PASSWORD_FAIL });
     }
 };
@@ -212,13 +186,12 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
         dispatch({ type: RESET_PASSWORD_REQUEST });
 
         const config = {
-            withCredentials: true,
             headers: {
                 'Content-Type': 'application/json'
             }
         };
-        const { data } = await axios.put(
-            `${REQUEST_URL}/api/v1/password/reset/${token}`,
+        const { data } = await Axios.put(
+            `/api/v1/password/reset/${token}`,
             passwords,
             { config }
         );
@@ -232,14 +205,16 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 };
 
 //Get All users
-//Load A User Action
 export const getAllUsers = (token) => async (dispatch) => {
     try {
         dispatch({ type: ALL_USERS_REQUEST });
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        };
 
-        const { data } = await axios.post(`${REQUEST_URL}/api/v1/admin/users`, {
-            token
-        });
+        const { data } = await Axios.get(`/api/v1/admin/users`, config);
 
         dispatch({ type: ALL_USERS_SUCCESS, payload: data?.users });
     } catch (error) {
@@ -250,16 +225,13 @@ export const getAllUsers = (token) => async (dispatch) => {
     }
 };
 
-//Get All users Details
 //Load A User  Details ADMIN
 export const getUserDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: USER_DETAILS_REQUEST });
 
-        const { data } = await axios.get(
-            `${REQUEST_URL}/api/v1/admin/user/${id}`
-        );
-        console.log('user details-->', data);
+        const { data } = await Axios.get(`/api/v1/admin/user/${id}`);
+
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data?.user });
     } catch (error) {
         dispatch({
@@ -275,15 +247,16 @@ export const updateUser = (id, userData) => async (dispatch) => {
         dispatch({ type: UPDATE_USER_REQUEST });
 
         const config = {
-            withCredentials: true,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userData?.token}`
             }
         };
-        const { data } = await axios.put(
-            `${REQUEST_URL}/api/v1/admin/user/${id}`,
+
+        const { data } = await Axios.put(
+            `/api/v1/admin/user/${id}`,
             userData,
-            { config }
+            config
         );
         dispatch({ type: UPDATE_USER_SUCCESS, payload: data });
     } catch (error) {
@@ -298,11 +271,12 @@ export const updateUser = (id, userData) => async (dispatch) => {
 export const deleteUser = (id, token) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_USER_REQUEST });
-
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/admin/user/delete/${id}`,
-            { token }
-        );
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const { data } = await Axios.delete(`/api/v1/admin/user/${id}`, config);
         dispatch({ type: DELETE_USER_SUCCESS, payload: data });
     } catch (error) {
         dispatch({

@@ -1,6 +1,5 @@
 import express from 'express';
 import {
-    setCookie,
     deleteUser,
     forgotPassword,
     getAllUser,
@@ -12,8 +11,7 @@ import {
     resetPassword,
     updateUserPassword,
     updateUserProfile,
-    updateUserRole,
-    getCookie
+    updateUserRole
 } from '../controllers/userController.js';
 import { authorizeRoles, isAuthenticatedUser } from '../middlewares/auth.js';
 
@@ -29,7 +27,7 @@ router.route('/password/reset/:token').put(resetPassword);
 
 router.route('/logout').get(logoutUser);
 
-router.route('/me').post(isAuthenticatedUser, getUserDetails);
+router.route('/me').get(isAuthenticatedUser, getUserDetails);
 
 router.route('/password/update').put(isAuthenticatedUser, updateUserPassword);
 
@@ -37,18 +35,18 @@ router.route('/me/update').put(isAuthenticatedUser, updateUserProfile);
 
 router
     .route('/admin/users')
-    .post(isAuthenticatedUser, authorizeRoles('admin'), getAllUser);
+    .get(isAuthenticatedUser, authorizeRoles('admin'), getAllUser);
 
 router
     .route('/admin/user/:id')
-    .post(isAuthenticatedUser, authorizeRoles('admin'), getUserDetailAdmin);
+    .get(isAuthenticatedUser, authorizeRoles('admin'), getUserDetailAdmin);
 
 router
     .route('/admin/user/:id')
     .put(isAuthenticatedUser, authorizeRoles('admin'), updateUserRole);
 
 router
-    .route('/admin/user/delete/:id')
-    .post(isAuthenticatedUser, authorizeRoles('admin'), deleteUser);
+    .route('/admin/user/:id')
+    .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteUser);
 
 export default router;

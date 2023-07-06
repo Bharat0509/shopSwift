@@ -31,8 +31,8 @@ const UpdatePassword = () => {
         myForm.set('oldPassword', oldPassword)
         myForm.set('newPassword', newPassword)
         myForm.set('confirmPassword', confirmNewPassword)
-        myForm.set("token", token)
-        dispatch(updatePassword(myForm))
+
+        dispatch(updatePassword(myForm, token))
 
     }
 

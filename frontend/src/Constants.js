@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const REQUEST_URL =
     process.env.NODE_ENV === 'production'
         ? 'https://tiny-plum-coyote-vest.cyclic.app/'
@@ -27,3 +29,5 @@ export const categoryItems = [
     { label: 'Attire', value: 'Attire' },
     { label: 'SmartPhones', value: 'SmartPhones' }
 ];
+
+export const Axios = axios.create({ baseURL: REQUEST_URL });

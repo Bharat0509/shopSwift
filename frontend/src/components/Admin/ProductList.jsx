@@ -88,7 +88,7 @@ const ProductList = () => {
 
                 <>
                     <Link to={`/admin/product/${params?.id}`}><EditIcon /></Link>
-                    <Button onClick={e => deleteProductHandler(params.id)}>
+                    <Button onClick={e => deleteProductHandler(params?.id)}>
                         <DeleteIcon />
                     </Button>
 

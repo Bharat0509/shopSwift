@@ -20,7 +20,7 @@ import {
     UPDATE_ORDER_SUCCESS
 } from '../constants/orderConstant.js';
 import axios from 'axios';
-import { REQUEST_URL } from '../Constants.js';
+import { Axios, REQUEST_URL } from '../Constants.js';
 
 //Create Order
 export const createOrder = (order) => async (dispatch) => {
@@ -31,8 +31,8 @@ export const createOrder = (order) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         };
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/order/new`,
+        const { data } = await Axios.post(
+            `/api/v1/order/new`,
             { ...order },
             config
         );
@@ -51,8 +51,10 @@ export const myOrders = (token) => async (dispatch) => {
     try {
         dispatch({ type: MY_ORDERS_REQUEST });
         console.log('MY ORDERS TOKEN', token);
-        const { data } = await axios.post(`${REQUEST_URL}/api/v1/orders/me`, {
-            token
+        const { data } = await Axios.get(`/api/v1/orders/me`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         });
 
         dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
@@ -69,10 +71,11 @@ export const getAllOrders = (token) => async (dispatch) => {
     try {
         dispatch({ type: ALL_ORDERS_REQUEST });
 
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/admin/orders`,
-            { token }
-        );
+        const { data } = await Axios.get(`/api/v1/admin/orders`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 
         dispatch({ type: ALL_ORDERS_SUCCESS, payload: data.orders });
     } catch (error) {
@@ -89,11 +92,12 @@ export const updateOrder = (id, order) => async (dispatch) => {
         dispatch({ type: UPDATE_ORDER_REQUEST });
         const config = {
             Headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${order.token}`
             }
         };
-        const { data } = await axios.put(
-            `${REQUEST_URL}/api/v1/admin/order/${id}`,
+        const { data } = await Axios.put(
+            `/api/v1/admin/order/${id}`,
             order,
             config
         );
@@ -108,13 +112,15 @@ export const updateOrder = (id, order) => async (dispatch) => {
 };
 
 //Delete  Orders
-export const deleteOrder = (id) => async (dispatch) => {
+export const deleteOrder = (id, token) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_ORDER_REQUEST });
 
-        const { data } = await axios.delete(
-            `${REQUEST_URL}/api/v1/admin/order/delete/${id}`
-        );
+        const { data } = await Axios.delete(`/api/v1/admin/order/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 
         dispatch({ type: DELETE_ORDER_SUCCESS, payload: data.success });
     } catch (error) {
@@ -130,8 +136,10 @@ export const getOrderDetail = (id, token) => async (dispatch) => {
     try {
         dispatch({ type: ORDER_DETAILS_REQUEST });
 
-        const { data } = await axios.post(`${REQUEST_URL}/api/v1/order/${id}`, {
-            token
+        const { data } = await Axios.get(`${REQUEST_URL}/api/v1/order/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         });
 
         dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });

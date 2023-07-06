@@ -29,13 +29,7 @@ import {
     UPDATE_PRODUCT_REQUEST,
     UPDATE_PRODUCT_SUCCESS
 } from '../constants/productConstant';
-import { REQUEST_URL } from '../Constants.js';
-
-// ///////////////////////////////////////////////////////////////
-// //REQUEST URL
-// const   REQUEST_URL="https://bharatecommerce.onrender.com"
-
-// ///////////////////////////////////////////////////////////////
+import { Axios, REQUEST_URL } from '../Constants.js';
 
 export const getProducts =
     (
@@ -50,13 +44,13 @@ export const getProducts =
             dispatch({
                 type: ALL_PRODUCT_REQUEST
             });
-            let link = `${REQUEST_URL}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
+            let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
 
             if (category.length > 0) {
-                link = `${REQUEST_URL}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+                link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
             }
 
-            const { data } = await axios.get(link);
+            const { data } = await Axios.get(link);
 
             dispatch({
                 type: ALL_PRODUCT_SUCCESS,
@@ -69,14 +63,14 @@ export const getProducts =
             });
         }
     };
+
 //GET ALL PRODUCTS ADMIN
 export const getAdminProducts = (token) => async (dispatch) => {
     try {
         dispatch({ type: ADMIN_PRODUCT_REQUEST });
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/admin/products`,
-            { token }
-        );
+        const { data } = await Axios.get(`/api/v1/admin/products`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
         dispatch({
             type: ADMIN_PRODUCT_SUCCESS,
             payload: data
@@ -95,7 +89,7 @@ export const getProductsDetails = (id) => async (dispatch) => {
         dispatch({
             type: PRODUCT_DETAILS_REQUEST
         });
-        const { data } = await axios.get(`${REQUEST_URL}/api/v1/product/${id}`);
+        const { data } = await Axios.get(`/api/v1/product/${id}`);
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -120,13 +114,11 @@ export const newProduct = (productData) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         };
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/admin/product/new`,
+        const { data } = await Axios.post(
+            `/api/v1/admin/product/new`,
             productData,
             config
         );
-
-        console.log(data);
 
         dispatch({
             type: NEW_PRODUCT_SUCCESS,
@@ -148,16 +140,15 @@ export const updateProduct = (id, productData) => async (dispatch) => {
         });
         const config = {
             Headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${productData.token}`
             }
         };
-        const { data } = await axios.put(
-            `${REQUEST_URL}/api/v1/admin/product/${id}`,
+        const { data } = await Axios.put(
+            `/api/v1/admin/product/${id}`,
             productData,
             config
         );
-
-        console.log(data);
 
         dispatch({
             type: UPDATE_PRODUCT_SUCCESS,
@@ -178,16 +169,11 @@ export const newReview = (reviewData) => async (dispatch) => {
         });
         const config = {
             Headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${reviewData.token}`
             }
         };
-        const { data } = await axios.put(
-            `${REQUEST_URL}/api/v1/review`,
-            reviewData,
-            config
-        );
-
-        console.log(data);
+        const { data } = await Axios.put(`/api/v1/review`, reviewData, config);
 
         dispatch({
             type: NEW_REVIEW_SUCCESS,
@@ -208,12 +194,11 @@ export const getReviews = (id, token) => async (dispatch) => {
             type: ALL_REVIEW_REQUEST
         });
 
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/reviews?id=${id}`,
-            { token }
-        );
-
-        console.log(data);
+        const { data } = await Axios.get(`/api/v1/reviews?id=${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 
         dispatch({
             type: ALL_REVIEW_SUCCESS,
@@ -235,12 +220,10 @@ export const deleteReviews =
                 type: DELETE_REVIEW_REQUEST
             });
 
-            const { data } = await axios.post(
-                `${REQUEST_URL}/api/v1/delete/reviews?id=${reviewId}&productId=${productId}`,
-                { token }
+            const { data } = await Axios.delete(
+                `/api/v1/delete/reviews?id=${reviewId}&productId=${productId}`,
+                { headers: { Authorization: `Bearer ${token}` } }
             );
-
-            console.log(data);
 
             dispatch({
                 type: DELETE_REVIEW_SUCCESS,
@@ -261,12 +244,11 @@ export const deleteProduct = (id, token) => async (dispatch) => {
             type: DELETE_PRODUCT_REQUEST
         });
 
-        const { data } = await axios.post(
-            `${REQUEST_URL}/api/v1/admin/product/${id}`,
-            { token }
-        );
-
-        console.log(data);
+        const { data } = await Axios.delete(`/api/v1/admin/product/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
