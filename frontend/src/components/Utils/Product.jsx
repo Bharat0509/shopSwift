@@ -1,6 +1,5 @@
 import './Product.css'
 import { HiArrowSmRight } from 'react-icons/hi'
-import { MdArrowForwardIos } from 'react-icons/md'
 import ProductCard from './ProductCard'
 import { Link } from 'react-router-dom'
 const Product = ({ data, heading }) => {
@@ -41,6 +40,9 @@ const Product = ({ data, heading }) => {
 
                 {
                     data && data?.map((item) => <ProductCard {...item} />)
+                }
+                {
+                    !data && <h4 style={{ display: 'flex', width: "100%", alignItems: "center", justifyContent: "center" }}>No Data Available </h4>
                 }
 
 
