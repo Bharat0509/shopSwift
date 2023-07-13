@@ -1,16 +1,22 @@
-import React from 'react'
+
 import './OrderSuccess.css'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 
 const PaymentSuccess = () => {
+    const { orderInfo } = window.sessionStorage;
+    const data = JSON.parse(orderInfo || {})
+
     return (
-        <div className="orderSucess">
-            <CheckCircleIcon />
-            <Typography>Your Order Has Been Placed Successfully !!</Typography>
-            <Link to={'/order/me'}>View Your Orders</Link>
+        <div className="order-success">
+            <img src="./success.gif" alt="" />
+
+            <div className='order-tag'>Total amount</div>
+            <div className='order-price'>${data && data?.totalPrice}</div>
+            <div className='order-status'>Payment successful</div>
+            <p>Congratulations, your payment was
+                successfully processed</p>
+            <Link to={'/order/me'}>View My Orders</Link>
         </div>
     )
 }

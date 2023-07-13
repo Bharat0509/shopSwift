@@ -33,28 +33,30 @@ const ConfirmOrder = () => {
         <>
             <MetaData title={"Confirm Order"} />
             <CheckoutSteps activeStep={1} />
-            <div className="confirmOrderPage">
+            <div className="confirm_order-page">
                 <div>
-                    <div className='confirmShippingArea'>
-                        <Typography>Shipping Info</Typography>
-                        <div className="confirmShippingAreaBox">
+                    <div className='confirm_shipping-area'>
+                        <h2 className='order-heading'><span className='profile-name'>Billing Add</span>ress</h2>
+                        <div className="confirm_shipping-areaBox">
                             <div>
-                                <p>Name:</p>
-                                <span>{user.name}</span>
+                                <span>Name:</span>
+                                <p>{user.name}</p>
                             </div>
                             <div>
-                                <p>Phone:</p>
-                                <span>{shippingInfo.phoneNo}</span>
+                                <span>Phone:</span>
+                                <p>+91 {shippingInfo.phoneNo}</p>
                             </div>
+
                             <div>
-                                <p>Address:</p>
-                                <span>{address}</span>
+                                <span>Address:</span>
+                                <p>{address.toString()}</p>
                             </div>
+
                         </div>
                     </div>
-                    <div className="confirmCartItems">
-                        <Typography>Your Cart Items:</Typography>
-                        <div className="confirmCartItemsContainer">
+                    <div className="confirm_cart-items">
+                        <h2 className='order-heading'><span className='profile-name'>Yout Ca</span>rt Items</h2>
+                        <div className="confirm_cartItems-container">
                             {
                                 cartItems &&
                                 cartItems.map((item) => (
@@ -68,11 +70,10 @@ const ConfirmOrder = () => {
                             }
                         </div>
                     </div>
-
-
                 </div>
+
                 <div>
-                    <div className="orderSummary">
+                    <div className="order-summary">
                         <Typography>Order Summary</Typography>
                         <div>
                             <div>
@@ -96,7 +97,9 @@ const ConfirmOrder = () => {
                             </p>
                             <span>₹ {totalPrice}</span>
                         </div>
-                        <button onClick={proceedToPayment}>Proceed To Payment</button>
+                        <div className='confirm_order-btn'>
+                            <button onClick={proceedToPayment}>Proceed To Payment</button>
+                        </div>
                     </div>
                 </div>
             </div>

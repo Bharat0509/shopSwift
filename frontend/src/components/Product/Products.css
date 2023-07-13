@@ -1,10 +1,13 @@
 .productHeading {
     margin: 2vmax auto;
-    width: 95vw;
     padding: 0 3rem;
     font: 600 1.5vmax 'Roboto';
 }
-
+.products-sidebar > button {
+    border: none;
+    background-color: transparent;
+    gap: 0;
+}
 .products-container {
     width: 95%;
     height: 100%;
@@ -19,7 +22,7 @@
 .products-sidebar {
     /* background-color: green; */
     background-color: rgba(128, 128, 128, 0.1);
-    width: 25rem;
+    width: 12rem;
     display: flex;
     padding: 1rem;
     flex-direction: column;
@@ -34,6 +37,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5vw;
+    /* margin: 1rem 0; */
     align-items: flex-start;
 }
 .selected-filters > li {
@@ -74,19 +78,12 @@
     padding: 1vw;
 }
 .filter_btn {
-    display: flex;
-    gap: 0.25rem;
-    align-items: center;
-    padding: 0.25rem;
-    background-color: white;
-    border: 1px solid gray;
-    border-radius: 0.25rem;
-    width: 10vw;
+    border: none;
+    outline: none;
 }
 .filter_btn > span {
-    margin: 0;
-    padding: 0;
-    font-size: 1.1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .products-main {
@@ -97,12 +94,19 @@
 }
 
 @media screen and (max-width: 768px) {
+    .products-container {
+        gap: 0;
+    }
     .products-sidebar {
-        position: absolute;
-        bottom: 0;
+        flex-direction: column;
+        width: 100vw;
+    }
+    .products-sidebar > ul {
+        flex-direction: row;
+        overflow-x: scroll;
     }
 
-    .products-container {
-        padding-bottom: 32rem;
+    .productHeading {
+        font: 600 4vw 'Roboto';
     }
 }

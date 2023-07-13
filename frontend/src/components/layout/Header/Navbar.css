@@ -103,7 +103,7 @@
     color: tomato;
 }
 
-.cart {
+.cartSVG {
     position: relative;
 }
 
@@ -125,6 +125,7 @@
 .navbar-user {
     position: relative;
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
 
@@ -182,7 +183,12 @@
 .MuiTypography-root {
     background-color: transparent !important;
 }
-
+.navbar_user-image {
+    border: 1px solid rgba(255, 99, 71, 0.4);
+    height: 2.25rem;
+    width: 2.25rem;
+    border-radius: 50%;
+}
 /* ----------Media Query------- */
 @media screen and (max-width: 1200px) {
     .nav-upper {
@@ -254,7 +260,7 @@
     }
 
     .nav-l-right svg {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
     .nav-l-right > a {
         display: flex;
@@ -266,5 +272,10 @@
         position: absolute;
         top: 3rem;
         width: 95vw;
+    }
+    .navbar_user-image {
+        border: none;
+        width: 1.75rem;
+        height: 1.75rem;
     }
 }

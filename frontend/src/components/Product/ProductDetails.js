@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ProductDetails.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import {
     clearErrors,
     getProductsDetails,
@@ -92,7 +92,7 @@ const ProductDetails = () => {
 
     return (
         <>
-            {loading ? (
+            {loading || product?._id !== params?.id ? (
                 <Loader />
             ) : (
                 <>

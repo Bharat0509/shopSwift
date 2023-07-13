@@ -36,7 +36,7 @@ const Shipping = () => {
             return;
         }
         const data = { cartItems, address, city, state, country, pinCode, phoneNo }
-        console.log(data);
+
         dispatch(saveShippingInfo(data))
         navigate('/order/confirm')
 

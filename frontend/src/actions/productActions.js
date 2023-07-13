@@ -29,8 +29,6 @@ import {
     UPDATE_PRODUCT_REQUEST,
     UPDATE_PRODUCT_SUCCESS
 } from '../constants/productConstant';
-import { Axios, REQUEST_URL } from '../Constants.js';
-
 export const getProducts =
     (
         keyword = '',
@@ -50,7 +48,7 @@ export const getProducts =
                 link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
             }
 
-            const { data } = await Axios.get(link);
+            const { data } = await axios.get(link);
 
             dispatch({
                 type: ALL_PRODUCT_SUCCESS,
@@ -65,12 +63,10 @@ export const getProducts =
     };
 
 //GET ALL PRODUCTS ADMIN
-export const getAdminProducts = (token) => async (dispatch) => {
+export const getAdminProducts = () => async (dispatch) => {
     try {
         dispatch({ type: ADMIN_PRODUCT_REQUEST });
-        const { data } = await Axios.get(`/api/v1/admin/products`, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
+        const { data } = await axios.get(`/api/v1/admin/products`);
         dispatch({
             type: ADMIN_PRODUCT_SUCCESS,
             payload: data
@@ -89,7 +85,7 @@ export const getProductsDetails = (id) => async (dispatch) => {
         dispatch({
             type: PRODUCT_DETAILS_REQUEST
         });
-        const { data } = await Axios.get(`/api/v1/product/${id}`);
+        const { data } = await axios.get(`/api/v1/product/${id}`);
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -114,7 +110,7 @@ export const newProduct = (productData) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         };
-        const { data } = await Axios.post(
+        const { data } = await axios.post(
             `/api/v1/admin/product/new`,
             productData,
             config
@@ -140,11 +136,10 @@ export const updateProduct = (id, productData) => async (dispatch) => {
         });
         const config = {
             Headers: {
-                'Content-Type': 'multipart/form-data',
-                Authorization: `Bearer ${productData.token}`
+                'Content-Type': 'multipart/form-data'
             }
         };
-        const { data } = await Axios.put(
+        const { data } = await axios.put(
             `/api/v1/admin/product/${id}`,
             productData,
             config
@@ -169,11 +164,10 @@ export const newReview = (reviewData) => async (dispatch) => {
         });
         const config = {
             Headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${reviewData.token}`
+                'Content-Type': 'application/json'
             }
         };
-        const { data } = await Axios.put(`/api/v1/review`, reviewData, config);
+        const { data } = await axios.put(`/api/v1/review`, reviewData, config);
 
         dispatch({
             type: NEW_REVIEW_SUCCESS,
@@ -188,17 +182,13 @@ export const newReview = (reviewData) => async (dispatch) => {
 };
 
 //get Reviews admin for a Product
-export const getReviews = (id, token) => async (dispatch) => {
+export const getReviews = (id) => async (dispatch) => {
     try {
         dispatch({
             type: ALL_REVIEW_REQUEST
         });
 
-        const { data } = await Axios.get(`/api/v1/reviews?id=${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const { data } = await axios.get(`/api/v1/reviews?id=${id}`);
 
         dispatch({
             type: ALL_REVIEW_SUCCESS,
@@ -213,42 +203,36 @@ export const getReviews = (id, token) => async (dispatch) => {
 };
 
 //Delete Reviews admin for a Product
-export const deleteReviews =
-    (reviewId, productId, token) => async (dispatch) => {
-        try {
-            dispatch({
-                type: DELETE_REVIEW_REQUEST
-            });
+export const deleteReviews = (reviewId, productId) => async (dispatch) => {
+    try {
+        dispatch({
+            type: DELETE_REVIEW_REQUEST
+        });
 
-            const { data } = await Axios.delete(
-                `/api/v1/delete/reviews?id=${reviewId}&productId=${productId}`,
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
+        const { data } = await axios.delete(
+            `/api/v1/delete/reviews?id=${reviewId}&productId=${productId}`
+        );
 
-            dispatch({
-                type: DELETE_REVIEW_SUCCESS,
-                payload: data.success
-            });
-        } catch (error) {
-            dispatch({
-                type: DELETE_REVIEW_FAIL,
-                payload: error.response.data.error
-            });
-        }
-    };
+        dispatch({
+            type: DELETE_REVIEW_SUCCESS,
+            payload: data.success
+        });
+    } catch (error) {
+        dispatch({
+            type: DELETE_REVIEW_FAIL,
+            payload: error.response.data.error
+        });
+    }
+};
 
 //Delete Product
-export const deleteProduct = (id, token) => async (dispatch) => {
+export const deleteProduct = (id) => async (dispatch) => {
     try {
         dispatch({
             type: DELETE_PRODUCT_REQUEST
         });
 
-        const { data } = await Axios.delete(`/api/v1/admin/product/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const { data } = await axios.delete(`/api/v1/admin/product/${id}`);
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,

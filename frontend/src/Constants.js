@@ -1,10 +1,3 @@
-import axios from 'axios';
-
-export const REQUEST_URL =
-    process.env.NODE_ENV === 'production'
-        ? 'https://tiny-plum-coyote-vest.cyclic.app/'
-        : 'http://localhost:4000';
-
 export const filtersLabels = [
     'Category',
     'Sort By',
@@ -29,5 +22,3 @@ export const categoryItems = [
     { label: 'Attire', value: 'Attire' },
     { label: 'SmartPhones', value: 'SmartPhones' }
 ];
-
-export const Axios = axios.create({ baseURL: REQUEST_URL });

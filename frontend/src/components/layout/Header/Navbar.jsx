@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import './Navbar.css'
@@ -21,23 +22,25 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import RateReviewIcon from '@mui/icons-material/RateReview';
-import { TreeItem, TreeView } from '@material-ui/lab'
+import ProfileMenu from './ProfileMenu/ProfileMenu'
 const Navbar = () => {
     const { cartItems } = useSelector(state => state.cart)
     const { user } = useSelector(state => state.authData)
 
     const navigate = useNavigate();
     const [keyword, setKeyword] = useState("")
+    const [category, setCategory] = useState('')
     const searchSubmitHandler = (e) => {
-        const url = `/products/${keyword}`
+        const url = `/products/${keyword}?category=${category}`
         e.preventDefault();
         if (keyword.trim()) {
             navigate(url)
-            console.log(keyword);
+            console.log(url);
         } else {
             navigate(`/products`)
         }
     }
+
     const [showNavbarSidebar, setShowNavbarSidebar] = useState(false)
     useEffect(() => { }, [cartItems])
 
@@ -68,89 +71,12 @@ const Navbar = () => {
                         {
                             user?.name ?
                                 <div className='navbar-user' onClick={e => setShowNavbarSidebar(!showNavbarSidebar)} onMouseEnter={e => setShowNavbarSidebar(true)} >
-                                    <RxPerson size={22} />
-                                    <span >Hi, {user.name} <RxTriangleDown style={{ display: 'inline-block' }} /></span>
+                                    <img className='navbar_user-image' src={user.avatar.url} alt="" />
+
                                     {
                                         showNavbarSidebar &&
-                                        <div className='navbar-sidebar' onMouseLeave={e => setShowNavbarSidebar(false)}>
-                                            <div className='navbar-sidebar-items'>
+                                        <ProfileMenu setShowNavbarSidebar={setShowNavbarSidebar} user={user} />
 
-                                                <span className="title">My Account</span>
-
-                                                <Link to="/account/me">
-                                                    <p>
-                                                        <InfoIcon />
-                                                        Personal Information
-                                                    </p>
-                                                </Link>
-
-                                                <Link to="/account/update/password">
-                                                    <p>
-                                                        <ChangeCircleIcon />
-                                                        Change Password
-                                                    </p>
-                                                </Link>
-
-                                                <Link to="/orders">
-                                                    <p>
-                                                        <HistoryIcon />
-                                                        Order History
-                                                    </p>
-                                                </Link>
-
-                                            </div>
-                                            <div className='navbar-sidebar-items'>
-                                                <span className="title">Dashboard</span>
-                                                <Link to="/admin/dashboard">
-                                                    <p>
-                                                        <DashboardIcon />
-                                                        Analytics
-                                                    </p>
-                                                </Link>
-                                                <div>
-                                                    <TreeView
-                                                        defaultCollapseIcon={<ExpandMoreIcon />}
-                                                        defaultExpandIcon={<ImportExportIcon />}
-                                                    >
-                                                        <TreeItem nodeId="1" label="Products">
-                                                            <Link to="/admin/products">
-                                                                <TreeItem
-                                                                    nodeId="2"
-                                                                    label="All"
-                                                                    icon={<PostAddIcon />}
-                                                                />
-                                                            </Link>
-
-                                                            <Link to="/admin/product">
-                                                                <TreeItem
-                                                                    nodeId="3"
-                                                                    label="Create"
-                                                                    icon={<AddIcon />}
-                                                                />
-                                                            </Link>
-                                                        </TreeItem>
-                                                    </TreeView>
-                                                </div>
-                                                <Link to={'/admin/orders'}>
-                                                    <p>
-                                                        <ListAltIcon />
-                                                        Orders
-                                                    </p>
-                                                </Link>
-                                                <Link to={'/admin/users'}>
-                                                    <p>
-                                                        <PeopleIcon />
-                                                        Users
-                                                    </p>
-                                                </Link>
-                                                <Link to={'/admin/reviews'}>
-                                                    <p>
-                                                        <RateReviewIcon />
-                                                        Reviews
-                                                    </p>
-                                                </Link>
-                                            </div>
-                                        </div>
                                     }
                                 </div>
                                 :
@@ -164,7 +90,7 @@ const Navbar = () => {
                     <Link to='/orders'><RiShoppingBag3Line size={22} />
                         <span >Quick Order</span>
                     </Link>
-                    <Link to='/cart' className='cart'>
+                    <Link to='/cart' className='cartSVG'>
                         <RiShoppingCartLine size={22} /><span>Cart</span>
                         {cartItems.length > 0 && <span className='cartItem'>{cartItems.length}</span>}
                     </Link>

@@ -269,7 +269,18 @@
     .product-info-desc {
         width: 100%;
     }
+    .product-info-add-to-cart {
+        width: fit-content;
+    }
     .product-info-add-to-cart > button {
-        padding: 1vw;
+        padding: 0.5vw 2vw;
+        margin-bottom: 1.5vw;
+    }
+    .product-info-add-to-cart-btn {
+        font-size: 3vw;
+        text-align: center;
+    }
+    .reviews {
+        margin: 0;
     }
 }

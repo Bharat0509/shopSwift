@@ -3,13 +3,11 @@ import {
     ADD_TO_CARD,
     REMOVE_CART_ITEM,
     SAVE_SHIPPING_INFO
-} from '../constants/cartContants';
-
-import { REQUEST_URL } from '../Constants.js';
+} from '../constants/cartConstants';
 
 //Add to Card ser Action
 export const addItemToCart = (id, quantity) => async (dispatch) => {
-    const { data } = await axios.get(`${REQUEST_URL}/api/v1/product/${id}`);
+    const { data } = await axios.get(`/api/v1/product/${id}`);
 
     dispatch({
         type: ADD_TO_CARD,

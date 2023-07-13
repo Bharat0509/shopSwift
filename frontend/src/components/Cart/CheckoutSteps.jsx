@@ -26,7 +26,7 @@ const CheckoutSteps = ({ activeStep }) => {
     const stepStyle = {
         boxSizing: "border-box",
         padding: "2.5vmax 0 0 0",
-        backgroundColor: 'rgba(231, 231, 231)'
+
 
 
     }

@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ProductCard from '../Utils/ProductCard';
 import './Products.css';
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import TuneIcon from '@mui/icons-material/Tune';
 import MetaData from '../layout/MetaData';
@@ -13,12 +13,11 @@ import MetaData from '../layout/MetaData';
 import Filter from './Filter';
 
 const Products = () => {
-    const location = useLocation();
     const alert = useAlert();
+    const loc = window.location;
     const params = useParams();
     let keyword = '';
-    const { products, loading, error, resultPerPage, filteredProductsCount } =
-        useSelector((state) => state.products);
+    const { products, error } = useSelector((state) => state.products);
     const [selectedFilterOptions, setSelectedFilterOptions] = useState([
         'Popularity',
         'Rating: 4.0 +'
@@ -39,8 +38,16 @@ const Products = () => {
             alert.error(error);
             dispatch(clearErrors);
         }
-        dispatch(getProducts(keyword));
-    }, [dispatch, params.keyword, alert, error, keyword, setIsOpenModal]);
+        dispatch(getProducts(keyword, 1, [0, 10000]));
+    }, [
+        dispatch,
+        params.keyword,
+        alert,
+        error,
+        keyword,
+        setIsOpenModal,
+        loc.search
+    ]);
 
     return (
         <>
@@ -51,7 +58,7 @@ const Products = () => {
                 <div className="products-sidebar">
                     <button
                         className="filter_btn"
-                        onClick={(e) => setIsOpenModal(true)}
+                        onClick={() => setIsOpenModal(true)}
                     >
                         <TuneIcon /> <span>Filters</span>
                     </button>
@@ -60,7 +67,7 @@ const Products = () => {
                             <li className="filter_selected-btn" key={filter}>
                                 <span>{filter}</span>
                                 <CloseIcon
-                                    onClick={(e) => removeFilter(filter)}
+                                    onClick={() => removeFilter(filter)}
                                 />
                             </li>
                         ))}

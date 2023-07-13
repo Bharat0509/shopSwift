@@ -1,5 +1,4 @@
-import React from 'react';
-import './Sidebar.css';
+import './ProfileMenu.css'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import InfoIcon from '@mui/icons-material/Info';
@@ -11,21 +10,17 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import RateReviewIcon from '@mui/icons-material/RateReview';
-import { Link } from 'react-router-dom';
-import { TreeItem, TreeView } from '@material-ui/lab';
-import { useSelector } from 'react-redux';
+import { TreeItem, TreeView } from '@material-ui/lab'
+import { Link } from 'react-router-dom'
 
-const Sidebar = () => {
-    const { user, loading, isAuthenticated } = useSelector(state => state.authData)
-
+const ProfileMenu = ({ setShowNavbarSidebar, user }) => {
     return (
-        <div className="sidebar">
-            <div className="p-info-name">
-                <img src={user?.avatar?.url} alt={user.name} />
-                <div className="u-name">{user.name}</div>
-                <div className="u-email">{user.email}</div>
+        <div className='navbar-sidebar' onMouseLeave={e => setShowNavbarSidebar(false)}>
+            <div className='navbar-sidebar-user'>
+                <img src={user.avatar.url} alt={user.name} />
+                <h3>{user.name}</h3>
             </div>
-            <div className='sidebar-items'>
+            <div className='navbar-sidebar-items'>
 
                 <span className="title">My Account</span>
 
@@ -36,7 +31,7 @@ const Sidebar = () => {
                     </p>
                 </Link>
 
-                <Link to="/password/update">
+                <Link to="/account/update/password">
                     <p>
                         <ChangeCircleIcon />
                         Change Password
@@ -51,7 +46,7 @@ const Sidebar = () => {
                 </Link>
 
             </div>
-            <div className='sidebar-items'>
+            <div className='navbar-sidebar-items'>
                 <span className="title">Dashboard</span>
                 <Link to="/admin/dashboard">
                     <p>
@@ -103,7 +98,7 @@ const Sidebar = () => {
                 </Link>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Sidebar;
+export default ProfileMenu

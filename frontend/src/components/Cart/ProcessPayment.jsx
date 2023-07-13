@@ -12,6 +12,7 @@ import MetaData from '../layout/MetaData';
 import CheckoutSteps from './CheckoutSteps';
 import { Typography } from '@mui/material';
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { clearErrors, createOrder } from '../../actions/newOrderAction'
 
 const ProcessPayment = () => {
@@ -92,7 +93,6 @@ const ProcessPayment = () => {
                         status: result.paymentIntent.status
                     }
                     order.token = token
-                    console.log("TOKEN AT CREATION", order);
                     dispatch(createOrder(order))
                     navigate('/success')
                 }
@@ -118,32 +118,63 @@ const ProcessPayment = () => {
         <>
             <MetaData title={"Process Payment"} />
             <CheckoutSteps activeStep={2} />
-            <div className="paymentContainer">
-                <form onSubmit={paymentHandler} className="paymentForm">
-                    <Typography>Card Info</Typography>
-                    <div>
-                        <CreditCardIcon />
-                        <CardNumberElement className='paymentInput' />
+            <div className="payment_info-container">
+                <div className="payment-detail">
+                    <h3 >Final step, make the payment.</h3>
+                    <p>To confirm your order, kindly complete your payment
+                        using a valid credit/debit card.
+                    </p>
+                    <form onSubmit={paymentHandler} className="payment_form">
+                        <div className='payment-field'>
+
+                            <CreditCardIcon />
+                            <CardNumberElement className='paymentInput' />
+                        </div>
+
+                        <div className='payment_form-lower'>
+                            <div className='payment-field'>
+                                <EventIcon />
+                                <CardExpiryElement className='paymentInput' />
+                            </div>
+
+                            <div className='payment-field'>
+                                <VpnKeyIcon />
+                                <CardCvcElement className='paymentInput' />
+                            </div>
+
+                        </div>
+
+                        <input
+                            type="submit"
+                            value={`Pay Now`}
+                            ref={payBtn}
+                            className="payment_form-btn"
+                        />
+                    </form>
+                </div>
+                <div className="payment-info">
+                    <div >
+                        <p>You've to pay,</p>
+                        <div className='payment-info-price'>₹{orderInfo && orderInfo.totalPrice}</div>
                     </div>
-
-                    <div>
-                        <EventIcon />
-                        <CardExpiryElement className='paymentInput' />
+                    <div className='payment-info-field'>
+                        <div>
+                            <CheckCircleIcon />
+                            <span>Payment & Invoice</span>
+                        </div>
+                        <div>We'll worry about all the transaction and
+                            payment. You can sit back and relax while you make your client happy.
+                        </div>
                     </div>
-
-                    <div>
-                        <VpnKeyIcon />
-                        <CardCvcElement className='paymentInput' />
+                    <div className='payment-info-field'>
+                        <div>
+                            <CheckCircleIcon />
+                            <span>Discount & Offers</span>
+                        </div>
+                        <div>You'll be provided with best discount and offers time to time and have access to our premium product and perks.
+                        </div>
                     </div>
-
-
-                    <input
-                        type="submit"
-                        value={`Pay-₹${orderInfo && orderInfo.totalPrice}`}
-                        ref={payBtn}
-                        className="paymentFormBtn"
-                    />
-                </form>
+                </div>
             </div>
         </>
     )

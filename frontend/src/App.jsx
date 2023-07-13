@@ -38,14 +38,14 @@ import ScrollToTop from './ScrollToTop';
 import Navbar from './components/layout/Header/Navbar';
 import MyAccountInfo from './components/User/MyAccountInfo';
 import Sidebar from './components/Admin/Sidebar';
-import { REQUEST_URL } from './Constants';
+
 
 function App() {
     const { token } = useSelector((state) => state.authToken);
     const [stripeApiKey, setStripeApiKey] = useState('');
 
     async function getStripeApiKey() {
-        const { data } = await axios.get(`${REQUEST_URL}/api/v1/stripeapikey`);
+        const { data } = await axios.get(`/api/v1/stripeapikey`);
         setStripeApiKey(data.stripeApiKey);
     }
     useEffect(() => {
@@ -60,9 +60,7 @@ function App() {
     return (
         <Router>
             <ScrollToTop />
-
             <Navbar />
-
             <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/product/:id" element={<ProductDetails />} />

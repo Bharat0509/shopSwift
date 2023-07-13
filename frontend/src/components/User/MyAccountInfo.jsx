@@ -3,14 +3,14 @@ import { BsFillPersonFill, BsGlobe } from "react-icons/bs"
 import { MdOutlineMarkEmailRead } from "react-icons/md"
 import { TbCalendarStats, TbLanguage } from "react-icons/tb"
 import { useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import './MyAccountInfo.css'
 import Sidebar from "../Admin/Sidebar"
 
 const MyAccountInfo = () => {
     const navigate = useNavigate();
 
-    const { user, loading, isAuthenticated } = useSelector(state => state.authData)
+    const { user, isAuthenticated } = useSelector(state => state.authData)
 
     useEffect(() => {
         if (isAuthenticated === false) {
@@ -26,7 +26,13 @@ const MyAccountInfo = () => {
                     <p>Manage Your personal Information, including phone number and email address<br /> where you can be contactable</p>
 
                 </div>
+                <div className="profile">
+                    <div className="p-info-img">
+                        <img src={user?.avatar?.url} alt={user.name} />
+                    </div>
+                </div>
                 <div className='personal-info'>
+
                     <div>
                         <h4><span><BsFillPersonFill /></span> Full Name </h4>
                         <p>{user.name}</p>
