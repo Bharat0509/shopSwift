@@ -1,8 +1,9 @@
 {
-    "name": "frontend",
+    "name": "shopswift",
     "version": "0.1.0",
     "private": true,
-    "proxy": "https://tiny-plum-coyote-vest.cyclic.app",
+    "author": "bhammar bharat",
+    "proxy": "https://tiny-plum-coyote-vest.cyclic.app/",
     "dependencies": {
         "@emotion/react": "^11.10.6",
         "@emotion/styled": "^11.10.6",
