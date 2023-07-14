@@ -3,7 +3,7 @@ module.exports = function (app) {
     app.use(
         '/api*',
         createProxyMiddleware({
-            target: 'http://localhost:4000',
+            target: 'https://tiny-plum-coyote-vest.cyclic.app',
             changeOrigin: true
         })
     );
