@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { AxiosClient } from '../Constants';
 import {
     ADMIN_PRODUCT_FAIL,
     ADMIN_PRODUCT_REQUEST,
@@ -48,7 +48,7 @@ export const getProducts =
                 link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
             }
 
-            const { data } = await axios.get(link);
+            const { data } = await AxiosClient.get(link);
 
             dispatch({
                 type: ALL_PRODUCT_SUCCESS,
@@ -66,7 +66,7 @@ export const getProducts =
 export const getAdminProducts = () => async (dispatch) => {
     try {
         dispatch({ type: ADMIN_PRODUCT_REQUEST });
-        const { data } = await axios.get(`/api/v1/admin/products`);
+        const { data } = await AxiosClient.get(`/api/v1/admin/products`);
         dispatch({
             type: ADMIN_PRODUCT_SUCCESS,
             payload: data
@@ -85,7 +85,7 @@ export const getProductsDetails = (id) => async (dispatch) => {
         dispatch({
             type: PRODUCT_DETAILS_REQUEST
         });
-        const { data } = await axios.get(`/api/v1/product/${id}`);
+        const { data } = await AxiosClient.get(`/api/v1/product/${id}`);
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -110,7 +110,7 @@ export const newProduct = (productData) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         };
-        const { data } = await axios.post(
+        const { data } = await AxiosClient.post(
             `/api/v1/admin/product/new`,
             productData,
             config
@@ -139,7 +139,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
                 'Content-Type': 'multipart/form-data'
             }
         };
-        const { data } = await axios.put(
+        const { data } = await AxiosClient.put(
             `/api/v1/admin/product/${id}`,
             productData,
             config
@@ -167,7 +167,11 @@ export const newReview = (reviewData) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         };
-        const { data } = await axios.put(`/api/v1/review`, reviewData, config);
+        const { data } = await AxiosClient.put(
+            `/api/v1/review`,
+            reviewData,
+            config
+        );
 
         dispatch({
             type: NEW_REVIEW_SUCCESS,
@@ -188,7 +192,7 @@ export const getReviews = (id) => async (dispatch) => {
             type: ALL_REVIEW_REQUEST
         });
 
-        const { data } = await axios.get(`/api/v1/reviews?id=${id}`);
+        const { data } = await AxiosClient.get(`/api/v1/reviews?id=${id}`);
 
         dispatch({
             type: ALL_REVIEW_SUCCESS,
@@ -209,7 +213,7 @@ export const deleteReviews = (reviewId, productId) => async (dispatch) => {
             type: DELETE_REVIEW_REQUEST
         });
 
-        const { data } = await axios.delete(
+        const { data } = await AxiosClient.delete(
             `/api/v1/delete/reviews?id=${reviewId}&productId=${productId}`
         );
 
@@ -232,7 +236,9 @@ export const deleteProduct = (id) => async (dispatch) => {
             type: DELETE_PRODUCT_REQUEST
         });
 
-        const { data } = await axios.delete(`/api/v1/admin/product/${id}`);
+        const { data } = await AxiosClient.delete(
+            `/api/v1/admin/product/${id}`
+        );
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,

@@ -34,22 +34,22 @@ import user from './routes/userRoute.js';
 import order from './routes/orderRoute.js';
 import payment from './routes/paymentRoute.js';
 
-//Cors Options
-const productionOrigin = [];
-const corsOptions = {
-    origin: [
-        'http://localhost:4000',
-        'http://localhost:3000',
-        'https://shop-swift.onrender.com/',
-        'https://shop-swift.onrender.com',
-        'https://shop-swift-blond.vercel.app/',
-        'https://shop-swift-blond.vercel.app'
-    ],
-    optionsSuccessStatus: 200,
-    credentials: true
-};
-
-app.use(cors(corsOptions));
+app.use(
+    '*',
+    cors({
+        origin: true,
+        credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'DELETE']
+    }),
+    function (req, res, next) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        res.header(
+            'Access-Control-Allow-Headers',
+            'Origin,X-Requested-With,Content-Type'
+        );
+        next();
+    }
+);
 app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));

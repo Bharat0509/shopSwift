@@ -31,7 +31,7 @@ import { useSelector } from 'react-redux';
 import ProtectedRoutes, {
     ProtectedRoutesAdmin
 } from './components/Routes/ProtectedRoute';
-import axios from 'axios';
+import { AxiosClient } from './Constants';
 import NewProduct from './components/Admin/NewProduct';
 import UserList from './components/Admin/UserList';
 import ScrollToTop from './ScrollToTop';
@@ -45,7 +45,7 @@ function App() {
     const [stripeApiKey, setStripeApiKey] = useState('');
 
     async function getStripeApiKey() {
-        const { data } = await axios.get(`/api/v1/stripeapikey`);
+        const { data } = await AxiosClient.get(`/api/v1/stripeapikey`);
         setStripeApiKey(data.stripeApiKey);
     }
     useEffect(() => {

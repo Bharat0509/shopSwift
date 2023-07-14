@@ -14,6 +14,7 @@ import { Typography } from '@mui/material';
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { clearErrors, createOrder } from '../../actions/newOrderAction'
+import { AxiosClient } from '../../Constants'
 
 const ProcessPayment = () => {
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))
@@ -56,7 +57,7 @@ const ProcessPayment = () => {
                     "Content-Type": "application/json"
                 }
             }
-            const { data } = await axios.post("/api/v1/payment/process",
+            const { data } = await AxiosClient.post("/api/v1/payment/process",
                 { paymentData },
                 config);
             const client_secret = data.client_secret

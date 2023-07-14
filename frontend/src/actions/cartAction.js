@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { AxiosClient } from '../Constants';
 import {
     ADD_TO_CARD,
     REMOVE_CART_ITEM,
@@ -7,7 +7,7 @@ import {
 
 //Add to Card ser Action
 export const addItemToCart = (id, quantity) => async (dispatch) => {
-    const { data } = await axios.get(`/api/v1/product/${id}`);
+    const { data } = await AxiosClient.get(`/api/v1/product/${id}`);
 
     dispatch({
         type: ADD_TO_CARD,
