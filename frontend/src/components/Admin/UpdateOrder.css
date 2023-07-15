@@ -1,179 +1,76 @@
-.newProductContainer {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: rgb(221, 221, 221);
-    border-left: 1px solid rgba(0, 0, 0, 0.175);
+.update_order-container {
+    background-color: white;
+    border-left: 1px solid tomato;
+    padding: 2rem;
+    display: flex;
+}
+.update_order-container > div {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    gap: 1rem;
 }
-
-.newProductContainer h1 {
-    color: rgba(0, 0, 0, 0.675);
-    font: 350 2rem "Roboto";
-    text-align: center;
+.confirm_shipping-area > h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 1rem 0;
 }
-
-.createProductForm {
+.order_details-container-box {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: auto;
-    padding: 2vmax;
-    justify-content: space-evenly;
-    height: 90%;
-    transition: all 500ms;
-
+    gap: 1rem;
 }
-
-
-.createProductForm>div {
-    display: flex;
-    align-items: center;
-    width: 100%;
-
-}
-
-
-
-.createProductForm>div>input,
-.createProductForm>div>select,
-.createProductForm>div>textarea {
-    padding: 1vmax 4vmax;
-    padding-right: 1vmax;
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.275);
-    border-radius: 4px;
-    font: 300 1vmax cursive;
-    outline: none;
-}
-
-
-
-.createProductForm>div>svg {
-    position: absolute;
-    transform: translateX(1vmax);
-    font-size: 1.5vmax;
-    color: rgba(0, 0, 0, 0.675);
-}
-
-
-#createProductFormImages {
-    width: 3vmax;
-    aspect-ratio: 1/1;
-    background-size: cover;
-    border-radius: 50%;
-    margin: 0 1vmax 0 0;
-
-}
-
-#createProductFormImage {
-    width: 50rem;
-
+.order_details-container-box > div {
     display: flex;
     gap: 1rem;
-
-    overflow: auto;
 }
-
-#createProductFormImage>img {
-    width: 6rem;
-    height: 6rem;
-    object-fit: cover;
-
+.order_details-container-box p {
+    font-size: 1.15rem;
 }
-
-#createProductFormFile>input {
+.order_status-container {
     display: flex;
-    padding: 0%;
+    margin: 2rem 0;
+    gap: 1rem;
 }
-
-#createProductFormFile>input::file-selector-button {
-    cursor: pointer;
-    width: 100%;
-    z-index: 2;
-    height: 5vh;
-    border: none;
+.order_status-container * {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+.update_order_cartItems-container {
+    display: flex;
+    flex-direction: column;
+}
+.update_order_cartItems-container > p {
+    font-size: 1.25ren;
+    font-family: 500;
+}
+.update_order_cartItems-container > div {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+.update_order_cartItems-container > div > img {
+    height: 10rem;
+    width: 10rem;
+    object-fit: contain;
+}
+.dashboard {
+    height: 100%;
+}
+.order_payment-detail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.order_payment-detail-container h3 {
+    margin: 1rem 0;
+}
+.order-price {
+    font-size: 1.5rem;
     margin: 0;
-    font: 400 .8vmax cursive;
-    transition: all 500ms;
-    color: rgba(0, 0, 0, 0.675);
-    background-color: rgba(255, 255, 255);
-    padding: 0 1vmax;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-#createProductFormFile>input::file-selector-button:hover {
-    background-color: rgb(233, 231, 231);
-}
-
-
-
-.createProductBtn {
-    border: none;
-    background-color: tomato;
-    color: white;
-    width: 100%;
-    font: 300 1vmax "Roboto";
-    padding: .8vmax;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 500ms;
-
-}
-
-.createProductBtn:hover {
-    background-color: rgb(175, 60, 40);
-
-}
-
-
-
-@media screen and (max-width:900px) {
-
-
-
-    .newProductContainer {
-        background-color: white;
-    }
-
-    .createProductForm {
-        padding: 5vmax;
-    }
-
-
-    .createProductForm>div>input,
-    .createProductForm>div>select,
-    .createProductForm>div>textarea {
-        padding: 2.5vmax 5vmax;
-        font: 300 1.8vmax cursive;
-    }
-
-
-    .createProductForm>div>svg {
-
-        font-size: 2.5vmax;
-
-    }
-
-
-    .registerPImage {
-        width: 8vmax;
-        border-radius: 50%;
-
-    }
-
-
-
-    #createProductFormFile>input::file-selector-button {
-        height: 7vh;
-        font: 400 1.8vmax cursive;
-    }
-
-
-    .createProductBtn {
-        padding: 1.8vmax;
-
-    }
-
+.form div {
+    width: 60%;
 }

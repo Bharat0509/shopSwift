@@ -1,11 +1,11 @@
 import Product from '../models/productModel.js';
 import ErrorHandler from '../utils/errorHandler.js';
-import catchAsynchErrors from '../middlewares/catchAsyncError.js';
+import catchAsyncErrors from '../middlewares/catchAsyncError.js';
 import ApiFeatures from '../utils/apiFeatures.js';
 import cloudinary from 'cloudinary';
 
 //Crate Product
-export const createProduct = catchAsynchErrors(async (req, res, next) => {
+export const createProduct = catchAsyncErrors(async (req, res, next) => {
     let images = [];
     if (typeof req.body.images === 'string') {
         images.push(req.body.images);
@@ -33,13 +33,14 @@ export const createProduct = catchAsynchErrors(async (req, res, next) => {
 });
 
 //Get all Products
-export const getAllProducts = catchAsynchErrors(async (req, res, next) => {
+export const getAllProducts = catchAsyncErrors(async (req, res, next) => {
     const resultPerPage = 8;
     const productsCount = await Product.countDocuments();
     const apiFeature = new ApiFeatures(Product.find(), req.query)
         .search()
         .filter()
-        .pagination(resultPerPage);
+        .sort()
+        .pagination();
 
     const products = await apiFeature.query;
 
@@ -51,7 +52,7 @@ export const getAllProducts = catchAsynchErrors(async (req, res, next) => {
 });
 
 //Get all Products ADMIN
-export const getAdminProducts = catchAsynchErrors(async (req, res, next) => {
+export const getAdminProducts = catchAsyncErrors(async (req, res, next) => {
     const products = await Product.find();
 
     return res.status(200).json({
@@ -61,7 +62,7 @@ export const getAdminProducts = catchAsynchErrors(async (req, res, next) => {
 });
 
 //Get Product Details
-export const getProductDetails = catchAsynchErrors(async (req, res, next) => {
+export const getProductDetails = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
     if (!product) return next(new ErrorHandler('Product not found', 404));
     return res.status(201).json({
@@ -71,7 +72,7 @@ export const getProductDetails = catchAsynchErrors(async (req, res, next) => {
 });
 
 //Update Product
-export const updateProduct = catchAsynchErrors(async (req, res, next) => {
+export const updateProduct = catchAsyncErrors(async (req, res, next) => {
     let product = await Product.findById(req.params.id);
     if (!product) return next(new ErrorHandler('Product not found', 404));
 
@@ -84,7 +85,7 @@ export const updateProduct = catchAsynchErrors(async (req, res, next) => {
     }
 
     if (images !== undefined) {
-        //Deleting images from Clodinary
+        //Deleting images from Cloudinary
         for (let i = 0; i < product?.images?.length; i++) {
             await cloudinary.v2.uploader.destroy(product.images[i].public_id);
         }
@@ -114,7 +115,7 @@ export const updateProduct = catchAsynchErrors(async (req, res, next) => {
 });
 
 //Delete A Products
-export const deleteProduct = catchAsynchErrors(async (req, res, next) => {
+export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
     let product = await Product.findById(req.params.id);
 
     if (!product) return next(new ErrorHandler('Product not found', 404));
@@ -131,7 +132,7 @@ export const deleteProduct = catchAsynchErrors(async (req, res, next) => {
 });
 
 //Create New Review Or Update Review
-export const createProductReview = catchAsynchErrors(async (req, res, next) => {
+export const createProductReview = catchAsyncErrors(async (req, res, next) => {
     const { rating, comment, productId } = req.body;
     const Review = {
         user: req.user._id,
@@ -171,7 +172,7 @@ export const createProductReview = catchAsynchErrors(async (req, res, next) => {
 
 //Get All Reviews Of A Product
 
-export const getProductReviews = catchAsynchErrors(async (req, res, next) => {
+export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.query.id);
 
     if (!product) {
@@ -186,7 +187,7 @@ export const getProductReviews = catchAsynchErrors(async (req, res, next) => {
 
 //Get All Reviews Of A Product
 
-export const deleteProductReview = catchAsynchErrors(async (req, res, next) => {
+export const deleteProductReview = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.query.productId);
     if (!product) {
         return next(new ErrorHandler('Product Not Found', 404));
