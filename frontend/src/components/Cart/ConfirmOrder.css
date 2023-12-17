@@ -11,7 +11,7 @@
     margin-top: 2rem;
 }
 .confirm_order-page > div:first-child {
-    border-right: 2px solid tomato;
+    border-right: 2px solid var(--color-primary);
 }
 .order-heading {
     padding: 1rem 0;
@@ -64,7 +64,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .orderSummaryTotal {
-    border-top: 2px solid tomato;
+    border-top: 2px solid var(--color-primary);
     padding: 1rem;
     width: 80%;
     margin: auto;
@@ -85,8 +85,8 @@
     width: 80%;
     padding: 1rem 2rem;
     text-align: center;
-    background-color: tomato;
-    border: 1px solid tomato;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
     justify-content: center;
     border-radius: 0.25rem;
     outline: none;
@@ -95,7 +95,7 @@
     margin: auto;
 }
 .confirm_order-btn > button:hover {
-    color: tomato;
+    color: var(--color-primary);
     background-color: transparent;
 }
 @media screen and (max-width: 768px) {

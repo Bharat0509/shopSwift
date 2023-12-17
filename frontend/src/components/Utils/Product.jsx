@@ -1,7 +1,7 @@
 import './Product.css'
 import { HiArrowSmRight } from 'react-icons/hi'
-import ProductCard from './ProductCard'
 import { Link } from 'react-router-dom'
+import ModernProductCard from './ModernProductCard'
 const Product = ({ data, heading }) => {
 
     const options = {
@@ -39,7 +39,7 @@ const Product = ({ data, heading }) => {
             <div className='products-detail'>
 
                 {
-                    data && data?.map((item) => <ProductCard {...item} />)
+                    data && data?.map((item) => <ModernProductCard {...item} />)
                 }
                 {
                     !data && <h4 style={{ display: 'flex', width: "100%", alignItems: "center", justifyContent: "center" }}>No Data Available </h4>

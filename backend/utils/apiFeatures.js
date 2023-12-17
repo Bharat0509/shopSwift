@@ -40,6 +40,7 @@ class ApiFeatures {
             sortBy = this.queryStr.sort.split(',').join(' ');
         }
         this.query = this.query.sort(sortBy);
+
         return this;
     }
     pagination(resultPerPage) {

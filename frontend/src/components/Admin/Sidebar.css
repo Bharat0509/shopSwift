@@ -54,7 +54,7 @@ img {
 .sidebar-items > div:hover,
 .sidebar-items > a > p:active,
 .sidebar-items > div:active {
-    color: tomato !important;
+    color: var(--color-primary) !important;
     transform: translateX(0.5rem);
 }
 

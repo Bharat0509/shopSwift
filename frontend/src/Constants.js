@@ -5,7 +5,7 @@ export const AxiosClient = axios.create({
     baseURL:
         process.env.NODE_ENV === 'production'
             ? 'https://tiny-plum-coyote-vest.cyclic.app'
-            : 'http://localhost:4000'
+            : 'http://192.168.121.229:4000'
 });
 export const filtersLabels = [
     'Category',

@@ -21,7 +21,7 @@
 }
 
 .shippingBox > div > button {
-    background-color: tomato;
+    background-color: var(--color-primary);
     height: 3px;
     width: 50%;
     border: none;
@@ -100,7 +100,7 @@
 
 .shippingBtn {
     border: none;
-    background-color: tomato;
+    background-color: var(--color-primary);
     color: white;
     width: 100%;
     font: 300 1vmax 'Roboto';
@@ -132,7 +132,7 @@
 
 .profile-name {
     padding-bottom: 3px;
-    border-bottom: 0.25vmax solid tomato;
+    border-bottom: 0.25vmax solid var(--color-primary);
 }
 
 @media screen and (max-width: 900px) {

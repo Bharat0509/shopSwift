@@ -6,7 +6,8 @@ const Loader = () => {
             <div>
                 <img src="./loader.gif" alt="Loading..." />
             </div>
-            <h4>Loading...Please Wait</h4>
+            <h4>Loading...</h4>
+            <h6>Please Wait</h6>
         </div>
     );
 };

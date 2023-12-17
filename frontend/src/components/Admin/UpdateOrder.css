@@ -1,6 +1,6 @@
 .update_order-container {
     background-color: white;
-    border-left: 1px solid tomato;
+    border-left: 1px solid var(--color-primary);
     padding: 2rem;
     display: flex;
 }

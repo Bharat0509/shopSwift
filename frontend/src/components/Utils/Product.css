@@ -9,13 +9,10 @@
 
 a {
     text-decoration: none;
-
 }
-
 
 .product-header {
     display: flex;
-
     overflow: hidden;
     align-items: center;
     justify-content: space-between;
@@ -23,7 +20,6 @@ a {
 
 .product-upper-l {
     display: flex;
-
     gap: 4rem;
 }
 
@@ -38,33 +34,29 @@ a {
 .product-upper-r a {
     display: flex;
     align-items: center;
-    color: tomato;
+    color: var(--color-primary);
     cursor: pointer;
-    gap: .25rem;
+    gap: 0.25rem;
     transform: translateX(-0.5rem);
     transition: all 300ms ease;
 }
 
 .product-upper-r:hover {
-    color: orange;
+    color: var(--color-primary);
     transition: all 300ms ease;
     transform: translateX(0.5rem);
-
 }
 
-.product-upper-l>ul {
+.product-upper-l > ul {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: .5rem;
-
-
-
+    gap: 0.5rem;
 }
 
-.product-upper-l>ul li {
+.product-upper-l > ul li {
     color: rgb(75, 75, 75);
-    padding: .4rem .8rem;
+    padding: 0.4rem 0.8rem;
     border: 1px solid rgba(128, 128, 128, 0.1);
     background-color: rgba(128, 128, 128, 0.1);
     border-radius: 5rem;
@@ -72,28 +64,24 @@ a {
     transition: all 300ms ease-in;
 }
 
-.product-upper-l>ul li:hover {
-    color: tomato;
+.product-upper-l > ul li:hover {
+    color: var(--color-primary);
     background-color: transparent;
-    border: 1px solid tomato;
-
+    border: 1px solid var(--color-primary);
 }
 
 .card {
-
-
     display: block;
     margin: auto;
     border: 1px solid #8080802d;
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     flex: 1;
 
     min-width: 20vw;
     max-width: 30vw;
     min-height: 25rem;
 }
-
 
 .card-upper {
     flex-shrink: 0;
@@ -103,7 +91,6 @@ a {
     height: 15rem;
     box-shadow: 2px gray;
     overflow: hidden;
-
 }
 
 .card-upper img {
@@ -123,7 +110,6 @@ a {
     height: 7rem;
 }
 
-
 .card-lower-title {
     width: 90%;
     margin: 1rem 0 0 0;
@@ -131,7 +117,7 @@ a {
 }
 
 .product-rating {
-    margin: .5rem 0;
+    margin: 0.5rem 0;
     width: 92%;
     display: flex;
     -webkit-box-align: center;
@@ -151,7 +137,6 @@ a {
     font-weight: 500;
 }
 
-
 .card-lower-info {
     display: flex;
     justify-content: space-between;
@@ -167,10 +152,9 @@ a {
     align-items: center;
     border: 1px solid rgba(128, 128, 128, 0.5);
     background-color: 1px solid rgba(128, 128, 128, 0.1);
-
 }
 
-.add-to-cart>button {
+.add-to-cart > button {
     display: block;
     border: none;
     outline: none;
@@ -182,17 +166,15 @@ a {
     font-size: 1.125rem;
     color: gray;
     border-radius: 50%;
-
 }
 
 .add-to-cart-btn {
     display: flex;
-    margin-left: .25rem;
-    padding: .75rem 1.25rem;
-    background-color: tomato;
+    margin-left: 0.25rem;
+    padding: 0.75rem 1.25rem;
+    background-color: var(--color-primary);
     border-radius: 5rem;
     cursor: pointer;
-
 }
 
 .price {
@@ -200,15 +182,15 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 .oldPrice {
     color: gray;
-    font-size: .75rem;
+    font-size: 0.75rem;
 }
 
-@media screen and (max-width:768px) {}
+@media screen and (max-width: 768px) {
+}
 
 #finalPrice {
     font-weight: bold;
@@ -217,7 +199,6 @@ a {
 .add-to-cart-btn:hover {
     background-color: red;
 }
-
 
 .products-btn {
     position: absolute;
@@ -244,39 +225,33 @@ a {
     top: 45%;
 }
 
-
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
     .product-upper-l {
         flex-direction: column;
-        gap: .5rem;
+        gap: 0.5rem;
     }
-
-    .product-upper-l>ul {
+    .product-upper-l > ul {
         font-size: 2.25vw;
     }
-
     .card {
         min-width: 90vw;
         padding: 1vw;
-
-
     }
-
     .card-upper img {
         height: 52vw;
         width: 52vw;
     }
-
-    .card-lower-title, .card-lower-info, .oldPrice, .price, .add-to-cart {
+    .products-detail {
+        gap: 1rem;
+    }
+    .card-lower-title,
+    .card-lower-info,
+    .oldPrice,
+    .price,
+    .add-to-cart {
         font-size: 4vw;
     }
-
-
-
     .card-lower-info {
         font-size: 3vw;
     }
-
-
-
 }

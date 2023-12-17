@@ -44,7 +44,7 @@ img {
 }
 
 .personal-info > div > h4 {
-    color: tomato;
+    color: var(--color-primary);
     padding: 0.5rem;
     font-weight: 500;
     display: flex;

@@ -35,7 +35,7 @@
     margin: 1rem;
 }
 .order-success > a {
-    background-color: tomato;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     padding: 1rem 4rem;

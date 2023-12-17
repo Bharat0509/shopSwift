@@ -75,7 +75,7 @@
     z-index: 5;
     margin-bottom: 5vmax;
     cursor: pointer;
-    background-color: tomato;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     border-radius: 0.25vmax;
@@ -144,7 +144,7 @@
 
 .productCard>span {
     margin: .5vmax;
-    color: tomato;
+    color: var(--color-primary);
     font-size: 1vmax;
 } */
 

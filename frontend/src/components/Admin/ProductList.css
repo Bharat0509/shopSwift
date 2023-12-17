@@ -51,7 +51,7 @@
 }
 
 .productListTable a:hover {
-    color: tomato;
+    color: var(--color-primary);
 }
 
 .MuiDataGrid-columnHeader div {

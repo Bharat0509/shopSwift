@@ -22,41 +22,37 @@ import UpdateOrder from './components/Admin/UpdateOrder.jsx';
 import UpdateUser from './components/Admin/UpdateUser.jsx';
 import ProductReviews from './components/Admin/ProductReviews.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import webfont from 'webfontloader';
-import { useEffect, useState } from 'react';
-import LoginSignUp from './components/User/LoginSignUp';
-import store from './store';
-import { loadUser } from './actions/userActions';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import ProtectedRoutes, {
     ProtectedRoutesAdmin
 } from './components/Routes/ProtectedRoute';
-import { AxiosClient } from './Constants';
 import NewProduct from './components/Admin/NewProduct';
 import UserList from './components/Admin/UserList';
 import ScrollToTop from './ScrollToTop';
 import Navbar from './components/layout/Header/Navbar';
 import MyAccountInfo from './components/User/MyAccountInfo';
 import Sidebar from './components/Admin/Sidebar';
+import Login from './components/User/Login';
+import SignUp from './components/User/SignUp';
 
 
 function App() {
-    const { token } = useSelector((state) => state.authToken);
+    // const { token } = useSelector((state) => state.authToken);
     const [stripeApiKey, setStripeApiKey] = useState('');
 
-    async function getStripeApiKey() {
-        const { data } = await AxiosClient.get(`/api/v1/stripeapikey`);
-        setStripeApiKey(data.stripeApiKey);
-    }
-    useEffect(() => {
-        getStripeApiKey();
-        webfont.load({
-            google: {
-                families: ['Roboto', 'Droid Sans', 'Chilanka']
-            }
-        });
-        if (token) store.dispatch(loadUser(token));
-    }, [token]);
+    // async function getStripeApiKey() {
+    //     const { data } = await AxiosClient.get(`/api/v1/stripeapikey`);
+    //     setStripeApiKey(data.stripeApiKey);
+    // }
+    // useEffect(() => {
+    //     getStripeApiKey();
+    //     webfont.load({
+    //         google: {
+    //             families: ['Roboto', 'Droid Sans', 'Chilanka']
+    //         }
+    //     });
+    //     if (token) store.dispatch(loadUser(token));
+    // }, [token]);
     return (
         <Router>
             <ScrollToTop />
@@ -65,7 +61,8 @@ function App() {
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/product/:id" element={<ProductDetails />} />
                 <Route exact path="/products" element={<Products />} />
-                <Route exact path="/login" element={<LoginSignUp />} />
+                <Route exact path="/signup" element={<SignUp />} />
+                <Route exact path="/login" element={<Login />} />
                 <Route exact path="/orders" element={<MyOrders />} />
                 <Route exact path="/order/:id" element={<MyOrderDetails />} />
                 <Route

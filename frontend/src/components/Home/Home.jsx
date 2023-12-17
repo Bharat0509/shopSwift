@@ -3,7 +3,6 @@ import MetaData from '../layout/MetaData'
 import { getProducts } from '../../actions/productActions'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import ProductCard from '../Utils/ProductCard'
 import Product from "../Utils/Product";
 import Loader from '../layout/Loader/Loader'
 import { useAlert } from 'react-alert'
