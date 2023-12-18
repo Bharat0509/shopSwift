@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAlert } from 'react-alert'
 import { Link, useParams } from 'react-router-dom'
 import { clearErrors, getOrderDetail, updateOrder } from '../../actions/newOrderAction'
 import Loader from '../layout/Loader/Loader'
@@ -12,7 +11,7 @@ import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import { UPDATE_ORDER_RESET } from '../../constants/orderConstant'
 
 const UpdateOrder = () => {
-    const alert = useAlert();
+
     const params = useParams();
     const dispatch = useDispatch();
     const { order, error, loading } = useSelector(state => state.orderDetails)
@@ -37,20 +36,19 @@ const UpdateOrder = () => {
 
     useEffect(() => {
         if (error) {
-            alert.error(error)
+
             dispatch(clearErrors())
         }
         if (updateError) {
-            alert.error(updateError)
+
             dispatch(clearErrors());
 
         }
         if (isUpdated) {
-            alert.success("Order Updated Successfully")
             dispatch({ type: UPDATE_ORDER_RESET })
         }
         dispatch(getOrderDetail(params.id, token))
-    }, [dispatch, alert, error, params.id, isUpdated, updateError, token])
+    }, [dispatch, error, params.id, isUpdated, updateError, token])
     return (
         <> {
             loading ? <Loader /> :

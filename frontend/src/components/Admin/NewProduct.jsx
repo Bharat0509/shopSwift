@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import MetaData from '../layout/MetaData'
 import './NewProduct.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAlert } from 'react-alert'
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -30,7 +29,6 @@ const categories = [
 const NewProduct = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const alert = useAlert();
   const { token } = useSelector(state => state.authToken)
   const { loading, error, success } = useSelector(state => state.newProduct)
 
@@ -91,16 +89,15 @@ const NewProduct = () => {
   useEffect(() => {
 
     if (error) {
-      alert.error(error)
+
       dispatch(clearErrors())
     }
     if (success) {
-      alert.success("Product Created Successfully")
       navigate('/admin/dashboard')
       dispatch({ type: NEW_PRODUCT_RESET })
 
     }
-  }, [dispatch, alert, error, navigate, success])
+  }, [dispatch, error, navigate, success])
 
   return (
     <>

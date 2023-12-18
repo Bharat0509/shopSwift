@@ -1,6 +1,6 @@
-import { Typography } from '@material-ui/core'
+
 import React, { useEffect } from 'react'
-import { useAlert } from 'react-alert'
+import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { clearErrors, getOrderDetail } from '../../actions/newOrderAction'
@@ -10,7 +10,6 @@ import './MyOrdersDetails.css'
 
 const MyOrderDetails = () => {
     const dispatch = useDispatch();
-    const alert = useAlert();
     const params = useParams();
     const { order, error, loading } = useSelector(state => state.orderDetails)
     const { token } = useSelector(state => state.authToken)
@@ -19,12 +18,12 @@ const MyOrderDetails = () => {
 
     useEffect(() => {
         if (error) {
-            alert.error(error)
+            toast.error(error)
             dispatch(clearErrors())
         }
 
         dispatch(getOrderDetail(params.id, token))
-    }, [dispatch, alert, error, params.id, token])
+    }, [dispatch, error, params.id, token])
 
     return (
         <>
@@ -33,9 +32,9 @@ const MyOrderDetails = () => {
                 <>
                     <div className='orderDetailsPage'>
                         <div className="orderDetailsContainer">
-                            <Typography component="h1">
+                            <h2 component="h1">
                                 Order #{order && order._id}
-                            </Typography>
+                            </h2>
                             <div className="orderDetailsContainerBox">
                                 <div>
                                     <p>Name:</p>
@@ -51,7 +50,7 @@ const MyOrderDetails = () => {
                                 </div>
 
                             </div>
-                            <Typography>Payment</Typography>
+                            <h2>Payment</h2>
                             <div className="orderDetailsContainerBox">
                                 <div>
                                     <p
@@ -73,7 +72,7 @@ const MyOrderDetails = () => {
                                     <span>{order.totalPrice && order.totalPrice}</span>
                                 </div>
                             </div>
-                            <Typography>Order Status</Typography>
+                            <h2>Order Status</h2>
                             <div className="orderDetailsContainerBox">
                                 <p
                                     className={
@@ -89,7 +88,7 @@ const MyOrderDetails = () => {
                         </div>
                         <div className='orderDetailsCartItems'>
 
-                            <Typography>Order Items:</Typography>
+                            <h2>Order Items:</h2>
                             <div className="orderDetailsCartItemsContainer">
                                 {
                                     order.orderItems &&

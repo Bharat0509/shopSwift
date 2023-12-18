@@ -1,20 +1,19 @@
+import LockIcon from '@mui/icons-material/Lock'
+import LockOpenIcon from '@mui/icons-material/LockOpen'
+import VpnKeyIcon from '@mui/icons-material/VpnKey'
 import React, { useEffect, useState } from 'react'
-import './UpdatePassword.css'
+import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { clearErrors, loadUser, updatePassword } from '../../actions/userActions'
-import { useAlert } from 'react-alert'
 import { UPDATE_PASSWORD_RESET } from '../../constants/userContants'
-import MetaData from '../layout/MetaData'
-import LockOpenIcon from '@mui/icons-material/LockOpen';
-import LockIcon from '@mui/icons-material/Lock';
-import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import Sidebar from '../Admin/Sidebar'
+import MetaData from '../layout/MetaData'
+import './UpdatePassword.css'
 
 const UpdatePassword = () => {
 
     const dispatch = useDispatch()
-    const alert = useAlert()
     const navigate = useNavigate()
 
     const { user } = useSelector(state => state.authData)
@@ -43,17 +42,17 @@ const UpdatePassword = () => {
 
         }
         if (error) {
-            alert.error(error)
+            toast.error(error)
             dispatch(clearErrors())
         }
         if (isUpdated) {
-            alert.success("Password Updated Successfully!! ");
+            toast.success("Password Updated Successfully!! ");
             dispatch(loadUser(token));
             navigate('/account');
             dispatch({ type: UPDATE_PASSWORD_RESET })
         }
 
-    }, [dispatch, alert, error, isUpdated, user, token, navigate])
+    }, [dispatch, error, isUpdated, user, token, navigate])
     return (
 
 

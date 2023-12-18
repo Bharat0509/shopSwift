@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import FaceIcon from '@mui/icons-material/Face'
 import { clearErrors, loadUser, updateProfile } from '../../actions/userActions'
-import { useAlert } from 'react-alert'
+
 import { UPDATE_PROFILE_RESET } from '../../constants/userContants'
 import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader/Loader'
 
 const UpdateProfile = () => {
     const dispatch = useDispatch()
-    const alert = useAlert()
+
     const navigate = useNavigate()
 
     const { user } = useSelector(state => state.authData)
@@ -59,17 +59,17 @@ const UpdateProfile = () => {
             setAvatarPreview(user.avatar?.url);
         }
         if (error) {
-            alert.error(error)
+
             dispatch(clearErrors())
         }
         if (isUpdated) {
-            alert.success("Profile Updated Successfully!! ");
+
             dispatch(loadUser(token));
             navigate('/account');
             dispatch({ type: UPDATE_PROFILE_RESET })
         }
 
-    }, [dispatch, alert, error, isUpdated, user, token, navigate])
+    }, [dispatch, error, isUpdated, user, token, navigate])
     return (<>
         {
             loading

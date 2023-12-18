@@ -1,26 +1,26 @@
-import axios from 'axios';
-
+import axios from 'axios'
 export const AxiosClient = axios.create({
     withCredentials: true,
     baseURL:
         process.env.NODE_ENV === 'production'
             ? 'https://tiny-plum-coyote-vest.cyclic.app'
-            : 'http://192.168.121.229:4000'
-});
+            : 'http://192.168.139.229:4000',
+})
+
 export const filtersLabels = [
     'Category',
     'Sort By',
     'Rating',
     'Price',
-    'More Filters'
-];
+    'More Filters',
+]
 
 export const sortByItems = [
     'Popularity',
     'Rating: High to Low',
     'Cost: High to Low',
-    'Cost: Low to High'
-];
+    'Cost: Low to High',
+]
 
 export const categoryItems = [
     { label: 'All', value: '' },
@@ -29,5 +29,5 @@ export const categoryItems = [
     { label: 'Bottom', value: 'Bottom' },
     { label: 'Tops', value: 'Tops' },
     { label: 'Attire', value: 'Attire' },
-    { label: 'SmartPhones', value: 'SmartPhones' }
-];
+    { label: 'SmartPhones', value: 'SmartPhones' },
+]

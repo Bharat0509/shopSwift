@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import MetaData from '../layout/MetaData'
 import './UpdateProduct.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAlert } from 'react-alert'
 import PersonIcon from '@mui/icons-material/Person';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
@@ -19,7 +18,7 @@ const UpdateUser = () => {
     const navigate = useNavigate();
     const params = useParams();
     const dispatch = useDispatch();
-    const alert = useAlert();
+
     const { loading, error, user } = useSelector(state => state.userDetails)
     const { loading: updateLoading, error: updateError, isUpdated } = useSelector(state => state.profile)
 
@@ -62,21 +61,21 @@ const UpdateUser = () => {
         }
 
         if (error) {
-            alert.error(error)
+
             dispatch(clearErrors())
         }
 
         if (updateError) {
-            alert.error(updateError)
+
             dispatch(clearErrors())
         }
         if (isUpdated) {
-            alert.success("User Updated Successfully")
+
             navigate('/admin/users')
             dispatch({ type: UPDATE_USER_RESET })
 
         }
-    }, [dispatch, alert, error, navigate, userId, params, isUpdated, user, updateError])
+    }, [dispatch, error, navigate, userId, params, isUpdated, user, updateError])
 
     return (
         <>

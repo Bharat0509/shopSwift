@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { TbArrowNarrowRight } from "react-icons/tb";
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import "./SignUp.css"
-import { clearErrors, login, register } from '../../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { clearErrors, register } from '../../actions/userActions';
+import { toast } from 'react-hot-toast'
+import "./SignUp.css";
 const SignUp = () => {
     const dispatch = useDispatch();
     const location = useLocation();
@@ -14,53 +14,44 @@ const SignUp = () => {
         (state) => state.authData
     );
 
-    const [loginEmail, setLoginEmail] = useState('');
-    const [loginPassword, setLoginPassword] = useState('');
-    const [avatar, setAvatar] = useState();
-    const [avatarPreview, setAvatarPreview] = useState(
-        'https://img.icons8.com/?size=3000&id=ywULFSPkh4kI&format=png'
-    );
     const [user, setUser] = useState({
         name: '',
         email: '',
-        password: ''
+        password: '',
+        avatar: 'https://img.icons8.com/?size=3000&id=ywULFSPkh4kI&format=png'
     });
-    const { name, email, password } = user;
+
 
 
     const registerSubmit = (e) => {
+        console.log("USER", user);
         e.preventDefault();
         const myForm = new FormData();
-        myForm.set('name', name);
-        myForm.set('email', email);
-        myForm.set('password', password);
-        myForm.set('avatar', avatar);
+        myForm.set('name', user.name);
+        myForm.set('email', user.email);
+        myForm.set('password', user.password);
+        myForm.set('avatar', user.avatar);
         dispatch(register(myForm));
     };
 
     useEffect(() => {
-        // const redirectLink = location.search
-        //     ? location.search.split('=')[1]
-        //     : 'account/me';
 
-        // if (error) {
-        //     toast.error(error);
-        //     dispatch(clearErrors());
-        // }
-        // if (isAuthenticated) {
-        //     navigate(`/${redirectLink}`);
-        // } else {
-        //     navigate('/login');
-        // }
-    }, [dispatch, error, isAuthenticated, navigate, location.search]);
+        if (error) {
+            toast.error(error);
+            dispatch(clearErrors());
+        }
+        if (isAuthenticated) {
+            navigate("/account/me")
+        }
+
+    }, [dispatch, error, isAuthenticated, navigate, location.search, user]);
 
     const registerDataChange = (e) => {
         if (e.target.name === 'avatar') {
             const reader = new FileReader();
             reader.onload = () => {
                 if (reader.readyState === 2) {
-                    setAvatarPreview(reader.result);
-                    setAvatar(reader.result);
+                    setUser({ ...user, [e.target.name]: reader.result });
                 }
             };
             reader.readAsDataURL(e.target.files[0]);
@@ -74,7 +65,7 @@ const SignUp = () => {
             <div className='left'>
                 <div className='form_container'>
 
-                    <h2 >Join Us Today !</h2>
+                    <h2 >Create an account!</h2>
                     <p className='login-text'>
                         Unlock exclusive deals and personalized shopping. Create your account now for a seamless experience. Let's get started!
                     </p>
@@ -85,7 +76,7 @@ const SignUp = () => {
                             <label htmlFor="registerImage">
                                 <img
                                     className="registerImage"
-                                    src={avatarPreview}
+                                    src={user?.avatar}
                                     alt="Avatar Preview"
                                 />
                             </label>
@@ -101,17 +92,17 @@ const SignUp = () => {
                         </div>
                         <div className='input_box'>
                             <span>Name</span>
-                            <input type="text" placeholder='John Doe' onChange={e => setLoginEmail(e.target.value)} />
+                            <input type="text" name='name' placeholder='John Doe' onChange={e => registerDataChange(e)} />
                         </div>
 
                         <div className='input_box'>
                             <span>Email</span>
-                            <input type="text" placeholder='john2023@gmail.com' onChange={e => setLoginEmail(e.target.value)} />
+                            <input type="text" name='email' placeholder='john2023@gmail.com' onChange={e => registerDataChange(e)} />
                         </div>
 
                         <div className='input_box relative'>
                             <span>Password</span>
-                            <input type="password" placeholder='john@12345678' onChange={e => setLoginPassword(e.target.value)} />
+                            <input type="password" name='password' placeholder='john@12345678' onChange={e => registerDataChange(e)} />
                         </div>
 
                         <div>

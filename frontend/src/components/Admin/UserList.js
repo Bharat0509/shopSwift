@@ -1,83 +1,73 @@
-import React, { useEffect } from 'react';
-import { useAlert } from 'react-alert';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import './ProductList.css';
-import EditIcon from '@mui/icons-material/Edit';
-import { Button } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import MetaData from '../layout/MetaData';
-import Sidebar from './Sidebar';
-import { DataGrid } from '@mui/x-data-grid';
+import React, { useEffect } from 'react'
+import { toast } from 'react-hot-toast'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import './ProductList.css'
+import EditIcon from '@mui/icons-material/Edit'
+import { Button } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
+import MetaData from '../layout/MetaData'
+import Sidebar from './Sidebar'
+import { DataGrid } from '@mui/x-data-grid'
 
-import { clearErrors } from '../../actions/productActions.js';
-import { deleteUser, getAllUsers } from '../../actions/userActions';
-import { DELETE_USER_RESET } from '../../constants/userContants';
+import { clearErrors } from '../../actions/productActions.js'
+import { deleteUser, getAllUsers } from '../../actions/userActions'
+import { DELETE_USER_RESET } from '../../constants/userContants'
 
 const UserList = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const alert = useAlert();
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {
         error: deleteError,
         isDeleted,
-        message
-    } = useSelector((state) => state.profile);
-    const { token } = useSelector((state) => state.authToken);
+        message,
+    } = useSelector((state) => state.profile)
+    const { token } = useSelector((state) => state.authToken)
 
-    const { error, users } = useSelector((state) => state.allUsers);
+    const { error, users } = useSelector((state) => state.allUsers)
     const deleteUserHandler = (id) => {
-        dispatch(deleteUser(id, token));
-    };
+        dispatch(deleteUser(id, token))
+    }
     useEffect(() => {
         if (error) {
-            alert.error(error);
-            dispatch(clearErrors());
+            toast.error(error)
+            dispatch(clearErrors())
         }
 
         if (deleteError) {
-            alert.error(deleteError);
+            toast.error(deleteError)
 
-            dispatch(clearErrors());
+            dispatch(clearErrors())
         }
 
         if (isDeleted) {
-            alert.success(message);
+            toast.success(message)
 
-            navigate('/admin/users');
-            dispatch({ type: DELETE_USER_RESET });
+            navigate('/admin/users')
+            dispatch({ type: DELETE_USER_RESET })
         }
-        dispatch(getAllUsers(token));
-    }, [
-        dispatch,
-        alert,
-        error,
-        deleteError,
-        navigate,
-        isDeleted,
-        message,
-        token
-    ]);
+        dispatch(getAllUsers(token))
+    }, [dispatch, error, deleteError, navigate, isDeleted, message, token])
 
     const columns = [
         {
             field: 'id',
             headerName: 'User ID',
             minWidth: 100,
-            flex: 0.5
+            flex: 0.5,
         },
         {
             field: 'email',
             headerName: 'Email',
             minWidth: 200,
-            flex: 0.5
+            flex: 0.5,
         },
         {
             field: 'name',
             headerName: 'Name',
             // type: "number",
             minWidth: 100,
-            flex: 0.5
+            flex: 0.5,
         },
         {
             field: 'role',
@@ -85,8 +75,8 @@ const UserList = () => {
             minWidth: 100,
             flex: 0.3,
             cellClassName: (params) => {
-                return params.row.role === 'admin' ? 'greenColor' : 'redColor';
-            }
+                return params.row.role === 'admin' ? 'greenColor' : 'redColor'
+            },
         },
         {
             field: 'actions',
@@ -103,11 +93,11 @@ const UserList = () => {
                         <DeleteIcon />
                     </Button>
                 </>
-            )
-        }
-    ];
+            ),
+        },
+    ]
 
-    const rows = [];
+    const rows = []
 
     users &&
         users.forEach((user) => {
@@ -115,9 +105,9 @@ const UserList = () => {
                 id: user._id,
                 email: user.email,
                 name: user.name,
-                role: user.role
-            });
-        });
+                role: user.role,
+            })
+        })
 
     return (
         <>
@@ -140,7 +130,7 @@ const UserList = () => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default UserList;
+export default UserList

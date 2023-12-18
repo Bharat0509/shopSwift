@@ -1,7 +1,6 @@
 
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAlert } from 'react-alert'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './ProcessPayment.css'
@@ -11,6 +10,7 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import MetaData from '../layout/MetaData';
 import CheckoutSteps from './CheckoutSteps';
 import { Typography } from '@mui/material';
+import { toast } from 'react-hot-toast'
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { clearErrors, createOrder } from '../../actions/newOrderAction'
@@ -22,7 +22,7 @@ const ProcessPayment = () => {
     const dispatch = useDispatch();
     const stripe = useStripe();
     const elements = useElements();
-    const alert = useAlert();
+
     const navigate = useNavigate();
 
     const { shippingInfo, cartItems } = useSelector(state => state.cart)
@@ -85,7 +85,7 @@ const ProcessPayment = () => {
 
             if (result.error) {
                 payBtn.current.disabled = false;
-                alert.error(result.error.message ? result.error.message : "Unexpected Error Encountered.")
+                toast.error(result.error.message ? result.error.message : "Unexpected Error Encountered.")
             }
             else {
                 if (result.paymentIntent.status === "succeeded") {
@@ -98,12 +98,12 @@ const ProcessPayment = () => {
                     navigate('/success')
                 }
                 else {
-                    alert.error(result.error.message ? result.error.message : "Unexpected Error Encountered.")
+                    toast.error(result.error.message ? result.error.message : "Unexpected Error Encountered.")
                 }
             }
         } catch (error) {
             payBtn.current.disabled = false;
-            alert.error(error.data?.message ? error.data.message : "Unexpected Error Encountered.")
+            toast.error(error.data?.message ? error.data.message : "Unexpected Error Encountered.")
 
         }
     }
@@ -111,10 +111,10 @@ const ProcessPayment = () => {
 
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error)
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, error])
+    }, [dispatch, error])
     return (
         <>
             <MetaData title={"Process Payment"} />

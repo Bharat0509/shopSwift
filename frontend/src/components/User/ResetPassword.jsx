@@ -3,14 +3,13 @@ import './ResetPassword.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { clearErrors, resetPassword } from '../../actions/userActions'
-import { useAlert } from 'react-alert'
+import { toast } from 'react-hot-toast'
 import MetaData from '../layout/MetaData'
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import LockIcon from '@mui/icons-material/Lock';
 
 const ResetPassword = () => {
     const dispatch = useDispatch()
-    const alert = useAlert()
     const navigate = useNavigate()
     const params = useParams();
     const { token } = params;
@@ -36,17 +35,17 @@ const ResetPassword = () => {
 
 
         if (error) {
-            alert.error(error)
+            toast.error(error)
             dispatch(clearErrors())
         }
         if (message) {
-            alert.success(message);
+            toast.success(message);
 
             // navigate('/login');
 
         }
 
-    }, [dispatch, alert, error, navigate, token, message])
+    }, [dispatch, error, navigate, token, message])
     return (
 
 

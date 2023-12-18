@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MetaData from '../layout/MetaData'
 import './UpdateProduct.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAlert } from 'react-alert'
+import { toast } from 'react-hot-toast'
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -17,7 +17,7 @@ import { clearErrors, updateProduct, getProductsDetails } from '../../actions/pr
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstant'
 
 import Loader from '../layout/Loader/Loader'
-import Sidebar from './Sidebar'; import { toast } from 'react-hot-toast'
+import Sidebar from './Sidebar';
 
 
 const categories = [
@@ -35,7 +35,6 @@ const UpdateProduct = () => {
     const params = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const alert = useAlert();
     const { token } = useSelector(state => state.authToken)
     const { error, product } = useSelector(state => state.productDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.product)
@@ -126,11 +125,11 @@ const UpdateProduct = () => {
 
         }
         if (error) {
-            alert.error(error)
+            toast.error(error)
             dispatch(clearErrors())
         }
         if (updateError) {
-            alert.error(updateError)
+            toast.error(updateError)
             dispatch(clearErrors())
         }
         if (isUpdated) {
@@ -141,7 +140,7 @@ const UpdateProduct = () => {
         }
 
 
-    }, [dispatch, alert, error, navigate, isUpdated, product, productId, updateError])
+    }, [dispatch, error, navigate, isUpdated, product, productId, updateError])
 
     return (
         <> {

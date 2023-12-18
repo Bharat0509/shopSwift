@@ -1,11 +1,10 @@
 import { useEffect } from "react"
-import { BsFillPersonFill, BsGlobe } from "react-icons/bs"
-import { MdOutlineMarkEmailRead } from "react-icons/md"
-import { TbCalendarStats, TbLanguage } from "react-icons/tb"
+import { TbEdit } from "react-icons/tb";
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+
 import './MyAccountInfo.css'
-import Sidebar from "../Admin/Sidebar"
+import MenuLayout from "./MenuLayout/MenuLayout"
 
 const MyAccountInfo = () => {
     const navigate = useNavigate();
@@ -18,47 +17,53 @@ const MyAccountInfo = () => {
         }
     }, [navigate, isAuthenticated, user])
     return (
-        <div className="dashboard">
-            <Sidebar />
+
+        <MenuLayout>
             <div className="account-info-container">
-                <div>
-                    <h3>Personal Information</h3>
-                    <p>Manage Your personal Information, including phone number and email address<br /> where you can be contactable</p>
 
+                <div className="user-img" title="Edit Profile Image">
+                    <img src={user?.avatar?.url} alt={user.name} />
+                    <span className="edit-img absolute" title="Edit Profile Image">
+                        <TbEdit size={18} />
+                    </span>
                 </div>
-                <div className="profile">
-                    <div className="p-info-img">
-                        <img src={user?.avatar?.url} alt={user.name} />
-                    </div>
-                </div>
+
                 <div className='personal-info'>
-
                     <div>
-                        <h4><span><BsFillPersonFill /></span> Full Name </h4>
+                        <h4>Name </h4>
                         <p>{user.name}</p>
                     </div>
                     <div>
-                        <h4><span><MdOutlineMarkEmailRead /></span> Email</h4>
+                        <h4> Gender </h4>
+                        <div className="gender_radio">
+                            <span>
+                                <input id="gender_male" type="radio" name="gender" value={"Male"} checked />
+                                <label htmlFor="gender_male">Male</label>
+                            </span>
+
+                            <span><input id="gender_female" type="radio" name="gender" value={"Female"} />
+                                <label htmlFor="gender_female">Female</label></span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4> Email</h4>
                         <p>{user.email}</p>
                     </div>
                     <div>
-                        <h4><span><BsGlobe /></span> Country</h4>
-                        <p>India</p>
+                        <h4> Phone</h4>
+                        <p>{user.phone ?? "+91 1234567899"}</p>
                     </div>
                     <div>
-                        <h4><span><TbLanguage /></span> Language</h4>
-                        <p>English</p>
+                        <h4>Country</h4>
+                        <p>India </p>
                     </div>
-                    <div>
-                        <h4><span><TbCalendarStats /></span> Joined on</h4>
-                        <p>{String(user.createdAt.substr(0, 10))}</p>
-                    </div>
+
 
                 </div>
 
             </div>
 
-        </div>
+        </MenuLayout>
     )
 }
 
