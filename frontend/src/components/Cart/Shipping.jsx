@@ -8,7 +8,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import { Country, State } from 'country-state-city'
 import { useDispatch, useSelector } from 'react-redux';
-import { useAlert } from 'react-alert';
+import { toast } from 'react-hot-toast';
 import MetaData from '../layout/MetaData';
 import { useNavigate } from 'react-router-dom'
 import CheckoutSteps from '../Cart/CheckoutSteps.jsx'
@@ -16,7 +16,7 @@ import { saveShippingInfo } from '../../actions/cartAction'
 const Shipping = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const alert = useAlert();
+
     const { shippingInfo, cartItems } = useSelector(state => state.cart)
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
@@ -32,7 +32,7 @@ const Shipping = () => {
 
 
         if (phoneNo.length !== 10) {
-            alert.error("Phone Number is Not Valid ");
+            toast.error("Phone Number is Not Valid ");
             return;
         }
         const data = { cartItems, address, city, state, country, pinCode, phoneNo }
@@ -51,7 +51,7 @@ const Shipping = () => {
             setPinCode(shippingInfo?.pinCode)
             setPhoneNo(shippingInfo?.phoneNo)
         }
-    }, [alert, shippingInfo])
+    }, [toast, shippingInfo])
     return (
         <>
             <MetaData title={`Shipping Info`} />

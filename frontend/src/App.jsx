@@ -58,13 +58,31 @@ function App() {
             <ScrollToTop />
             <Navbar />
             <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/product/:id" element={<ProductDetails />} />
-                <Route exact path="/products" element={<Products />} />
-                <Route exact path="/signup" element={<SignUp />} />
-                <Route exact path="/login" element={<Login />} />
-                <Route exact path="/orders" element={<MyOrders />} />
-                <Route exact path="/order/:id" element={<MyOrderDetails />} />
+                <Route
+                    exact
+                    path="/"
+                    element={<Home />} />
+                <Route
+                    exact
+                    path="/product/:id"
+                    element={<ProductDetails />} />
+                <Route
+                    exact
+                    path="/products"
+                    element={<Products />} />
+                <Route
+                    exact
+                    path="/signUp"
+                    element={<SignUp />} />
+                <Route
+                    exact
+                    path="/login"
+                    element={<Login />} />
+                <Route
+                    exact
+                    path="/signOut"
+                    element={<Login />} />
+
                 <Route
                     exact
                     path="/password/forgot"
@@ -75,8 +93,13 @@ function App() {
                     path="/password/reset/:token"
                     element={<ResetPassword />}
                 />
-                <Route path="/products/:keyword" element={<Products />} />
-                <Route path="/cart" element={<Cart />} />
+                <Route
+                    path="/products/:keyword"
+                    element={<Products />} />
+                <Route
+                    path="/cart"
+                    element={<Cart />} />
+
 
                 {/* Protected User Routes */}
                 <Route element={<ProtectedRoutes stripeKey={stripeApiKey} />}>
@@ -97,6 +120,14 @@ function App() {
                         element={<UpdatePassword />}
                     />
                     <Route exact path="/shipping" element={<Shipping />} />
+                    <Route
+                        exact
+                        path="/account/orders"
+                        element={<MyOrders />} />
+                    <Route
+                        exact
+                        path="/order/:id"
+                        element={<MyOrderDetails />} />
                     <Route
                         exact
                         path="/order/confirm"

@@ -1,31 +1,11 @@
-import React, { useState } from 'react'
-import './ModernProductCard.css'
 import { Rating } from '@mui/material'
+import React from 'react'
+import { AiOutlineHeart } from "react-icons/ai"
 import { Link } from 'react-router-dom'
-import { RiShoppingCartLine } from 'react-icons/ri'
-import { AiOutlineHeart } from "react-icons/ai";
-import { addItemToCart } from '../../actions/cartAction'
-import { useDispatch } from 'react-redux'
+import './ModernProductCard.css'
 
 const ModernProductCard = ({ ratings, _id, images, name, price, numOfReviews, description }) => {
-    const [itmQty, setItmQty] = useState(1)
 
-    const dispatch = useDispatch()
-    const handleAddCartClick = () => {
-        dispatch(addItemToCart(_id, itmQty))
-        alert.success("Item added to Cart ")
-    }
-    const handleDecrementClick = () => {
-        if (itmQty > 1) setItmQty(itmQty - 1);
-    }
-    const handleIncrementClick = () => {
-        setItmQty(itmQty + 1)
-    }
-    const options = {
-        value: Number(ratings),
-        precision: 0.5,
-        readOnly: true
-    }
     return (
         <Link className='product_card' to={`/product/${_id}`}>
 

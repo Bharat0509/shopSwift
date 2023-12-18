@@ -1,16 +1,10 @@
-import './Product.css'
 import { HiArrowSmRight } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
 import ModernProductCard from './ModernProductCard'
+import './Product.css'
 const Product = ({ data, heading }) => {
 
-    const options = {
-        value: 5,
-        precision: 0.5,
-        readOnly: true,
-        size: 'small'
 
-    }
     return (
         <div className='product-card-container'>
             <div className='product-header'>

@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
     scroll-behavior: smooth;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
 }
 :root {
     --color-primary: #f47458;
-    --transition-primary: all 400ms linear;
+    --transition-primary: all 300ms linear;
 }
 
 /* //Chrom and Other */
@@ -20,24 +20,8 @@ input::-webkit-inner-spin-button {
 ::-webkit-scrollbar {
     display: none;
 }
-
-/* //Firefox */
-input[type='number'] {
-    -moz-appearance: textfield;
-}
-
-.greenColor {
-    color: rgb(15, 224, 15) !important;
-}
-
-.redColor {
-    color: red !important;
-}
-
-.MuiDataGrid-columnHeader div {
-    color: black !important;
-    text-align: center;
-    padding-left: 0.5rem;
+a {
+    color: black;
 }
 
 .noReviews {
@@ -59,15 +43,11 @@ input[type='number'] {
 .absolute {
     position: absolute;
 }
-@media screen and (max-width: 768px) {
-    .css-1fs1i0f-MuiDataGrid-root.MuiDataGrid-autoHeight {
-        width: 92vw;
-    }
-}
+
 .loader {
     width: 1.25rem;
     height: 1.25rem;
-    border: 0.125rem solid #fff;
+    border: 0.1rem solid #fff;
     border-bottom-color: var(--color-primary);
     border-radius: 50%;
     display: inline-block;

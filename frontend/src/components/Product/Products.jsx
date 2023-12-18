@@ -1,15 +1,14 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { clearErrors, getProducts } from '../../actions/productActions';
-import './Products.css';
-import { useEffect, useState } from 'react';
-import { useLocation, useParams, useResolvedPath, useSearchParams } from 'react-router-dom';
-import { useAlert } from 'react-alert';
+import { useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import { IoIosArrowForward } from "react-icons/io";
-import MetaData from '../layout/MetaData';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { clearErrors, getProducts } from '../../actions/productActions';
 import ModernProductCard from '../Utils/ModernProductCard';
+import MetaData from '../layout/MetaData';
+import './Products.css';
 
 const Products = () => {
-    const alert = useAlert();
     const location = useLocation()
     const queryParams = new URLSearchParams(location.search)
     let keyword = queryParams.get("product_name")?.replace(/"/, '') ?? ''
@@ -18,11 +17,11 @@ const Products = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors);
         }
         dispatch(getProducts(keyword, 1, [0, 10000]));
-    }, [dispatch, keyword]);
+    }, [dispatch, error, keyword]);
 
     return (
         <>

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import Product from "../Utils/Product";
 import Loader from '../layout/Loader/Loader'
-import { useAlert } from 'react-alert'
+import { toast } from 'react-hot-toast'
 import Wrapper from '../Utils/Wrapper'
 import ServiceInfoCard from '../Utils/ServiceInfoCard'
 import Ad from '../Utils/Ad'
@@ -33,18 +33,17 @@ const service = [
 
 
 const Home = () => {
-    const alert = useAlert();
     const dispatch = useDispatch();
     const { products, loading, error } = useSelector(state => state.products) || [];
 
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error);
             // dispatch(clearErrors)
         }
         dispatch(getProducts());
     },
-        [dispatch, error, alert]
+        [dispatch, error]
     );
 
 

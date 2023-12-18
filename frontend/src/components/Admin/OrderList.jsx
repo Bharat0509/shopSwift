@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import './ProductList.css'
@@ -17,7 +16,7 @@ import { DELETE_ORDER_RESET } from '../../constants/orderConstant';
 const OrderList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const alert = useAlert();
+
     const { error, orders } = useSelector(state => state.allOrders)
     const { error: deleteError, isDeleted } = useSelector(state => state.order)
     const { token } = useSelector(state => state.authToken)
@@ -26,24 +25,23 @@ const OrderList = () => {
     }
     useEffect(() => {
         if (error) {
-            alert.error(error)
+
             dispatch(clearErrors())
         }
 
         if (deleteError) {
-            alert.error(deleteError)
+
             dispatch(clearErrors())
         }
 
         if (isDeleted) {
-            alert.success("Order Deleted Successfully");
 
             navigate('/admin/orders')
             dispatch({ type: DELETE_ORDER_RESET })
         }
         dispatch(getAllOrders(token))
 
-    }, [dispatch, alert, error, deleteError, navigate, isDeleted, token])
+    }, [dispatch, error, deleteError, navigate, isDeleted, token])
 
     const columns = [
         {

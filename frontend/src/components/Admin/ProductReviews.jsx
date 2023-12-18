@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import './ProductReviews.css'
@@ -18,7 +17,7 @@ import { DELETE_REVIEW_RESET } from '../../constants/productConstant';
 const ProductReviews = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const alert = useAlert();
+
     const [productId, setProductId] = useState('')
     const { token } = useSelector(state => state.authToken)
     const { error, reviews, loading } = useSelector(state => state.productReviews)
@@ -38,24 +37,23 @@ const ProductReviews = () => {
             dispatch(getReviews(productId, token))
         }
         if (error) {
-            alert.error(error)
+
             dispatch(clearErrors())
         }
 
         if (deleteError) {
-            alert.error(deleteError)
+
             dispatch(clearErrors())
         }
 
         if (isDeleted) {
-            alert.success("Review Deleted Successfully");
 
             navigate('/admin/reviews')
             dispatch({ type: DELETE_REVIEW_RESET })
         }
 
 
-    }, [dispatch, alert, error, deleteError, navigate, isDeleted, productId, token])
+    }, [dispatch, error, deleteError, navigate, isDeleted, productId, token])
 
     const columns = [
         {

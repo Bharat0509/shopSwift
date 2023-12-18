@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TbArrowNarrowRight } from "react-icons/tb";
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import "./Login.css"
-import { login } from '../../actions/userActions';
+import { login, logout } from '../../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Login = () => {
     const dispatch = useDispatch()
-    const { loading } = useSelector(state => state.authData)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const { user, loading } = useSelector(state => state.authData)
+    console.log("LOADIGN", loading);
+
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
 
@@ -15,6 +19,18 @@ const Login = () => {
         e.preventDefault();
         dispatch(login(loginEmail, loginPassword));
     };
+    useEffect(() => {
+
+        if (user && user?.email) {
+            navigate("/account/me")
+        }
+
+        if (location.pathname === '/signOut') {
+
+            dispatch(logout())
+        }
+
+    }, [dispatch, location.pathname, navigate, user])
     return (
         <div className='login_container'>
             <div className='left'>

@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
-import './MyOrders.css'
+import { useNavigate } from 'react-router-dom'
 import MetaData from '../layout/MetaData.js'
-import Loader from '../layout/Loader/Loader'
-import { Link, useNavigate } from 'react-router-dom'
+import './MyOrders.css'
 
+import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAlert } from 'react-alert'
-import { myOrders, clearErrors } from '../../actions/newOrderAction'
-import Sidebar from '../Admin/Sidebar'
+import { clearErrors, myOrders } from '../../actions/newOrderAction'
+import MenuLayout from '../User/MenuLayout/MenuLayout'
+import { FiSearch } from "react-icons/fi";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 const MyOrders = () => {
 
     const dispatch = useDispatch();
-    const alert = useAlert();
     const navigate = useNavigate();
 
     const { loading, error, orders } = useSelector(state => state.myOrders)
@@ -23,51 +23,153 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (error) {
-            alert.error(error)
+            toast.error(error)
             dispatch(clearErrors());
         }
         if (!isAuthenticated) navigate('/login?redirect=orders')
 
         dispatch(myOrders(token))
 
-    }, [dispatch, alert, error, user, isAuthenticated, navigate, token])
+    }, [dispatch, error, user, isAuthenticated, navigate, token])
     return (
         <>
-            <MetaData title={`${user?.name}-Orders`} />
-            <div className='dashboard'>
-                <Sidebar />
-                {
-                    loading ?
-
-                        <Loader />
-                        :
-
-                        <div className="myOrdersPage">
-
-                            <div className='theading'>
-                                <h3 className='p-id'>Product ID</h3>
-                                <h3>Payment ID</h3>
-                                <h3>Status</h3>
-                                <h3>Amount</h3>
-                                <h3>Actions</h3>
+            <MetaData title={`${user?.name ?? "User"}-Orders`} />
+            <MenuLayout title='My Orders'>
+                <div className="orders_container">
+                    <div className='orders_container-search'>
+                        <FiSearch size={20} />
+                        <input type="text" placeholder='Search' />
+                    </div>
+                    <div className='orders_container-list'>
+                        <div className="orders_container-table">
+                            <div className="table-row">
+                                <div id='order_id' className='heading'>Order ID</div>
+                                <div id='order_date' className='heading'>Date</div>
+                                <div id='order_amount' className='heading'>Amount</div>
+                                <div id='order_status' className='heading'>Status</div>
+                                <div id='order_more' className='heading'>
+                                    <BsThreeDotsVertical />
+                                </div>
                             </div>
-                            {orders && orders.length > 0 &&
-                                orders.map(order =>
-                                    <div className='tdata'>
-                                        <h3 className='p-id'>{order._id}</h3>
-                                        <h3>{order.paymentInfo.id}</h3>
-                                        <h3 className={`${order.orderStatus === 'Delivered' ? 'greenColor' : 'redColor'}`}>{order.orderStatus}</h3>
-                                        <h3>{order.totalPrice}</h3>
-                                        <h3><Link to={`orders/${order._id}`}> View Details</Link></h3>
-                                    </div>)
-                            }
 
+                            <div className="orders">
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
 
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+                                <div className="table-row">
+                                    <div id='order_id' className='order'>dzc7b4k6naea53k35dfd353</div>
+                                    <div id='order_date' className='order'>23/12/2023</div>
+                                    <div id='order_amount' className='order'>17,500</div>
+                                    <div id='order_status' className='order'>Pending</div>
+                                    <div id='order_more' >
+                                        <BsThreeDotsVertical />
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
-
-                }
-            </div>
+                    </div>
+                </div>
+            </MenuLayout>
 
         </>
     )

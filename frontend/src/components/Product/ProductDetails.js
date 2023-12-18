@@ -1,94 +1,87 @@
-import React, { useEffect, useState } from 'react';
-import './ProductDetails.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import './ProductDetails.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { useLocation, useParams } from 'react-router-dom'
 import {
     clearErrors,
     getProductsDetails,
-    newReview
-} from '../../actions/productActions';
+    newReview,
+} from '../../actions/productActions'
 
-import ReviewCard from './ReviewCard.js';
-import Loader from '../layout/Loader/Loader';
-import { useAlert } from 'react-alert';
-import MetaData from '../layout/MetaData';
-import { addItemToCart } from '../../actions/cartAction';
-import {
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    Button
-} from '@material-ui/core';
-import { Rating } from '@mui/material';
-import { NEW_REVIEW_RESET } from '../../constants/productConstant';
+import ReviewCard from './ReviewCard.js'
+import Loader from '../layout/Loader/Loader'
+import { toast } from 'react-hot-toast'
+import MetaData from '../layout/MetaData'
+import { addItemToCart } from '../../actions/cartAction'
+
+import { Rating } from '@mui/material'
+import { NEW_REVIEW_RESET } from '../../constants/productConstant'
 
 const ProductDetails = () => {
-    const alert = useAlert();
-    const dispatch = useDispatch();
-    const params = useParams();
-    let pathname = useLocation().pathname.replaceAll('/', ' > ');
-    pathname = 'ShopSwift' + pathname;
+    const dispatch = useDispatch()
+    const params = useParams()
+    let pathname = useLocation().pathname.replaceAll('/', ' > ')
+    pathname = 'ShopSwift' + pathname
 
-    const { token } = useSelector((state) => state.authToken);
+    const { token } = useSelector((state) => state.authToken)
     const { product, loading, error } = useSelector(
         (state) => state.productDetails
-    );
+    )
 
     const { success, error: reviewError } = useSelector(
         (state) => state.newReview
-    );
+    )
 
-    const [posterImageIndex, setPosterImageIndex] = useState(0);
-    const [quantity, setQuantity] = useState(1);
-    const [open, setOpen] = useState(false);
-    const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState('');
+    const [posterImageIndex, setPosterImageIndex] = useState(0)
+    const [quantity, setQuantity] = useState(1)
+    const [open, setOpen] = useState(false)
+    const [rating, setRating] = useState(0)
+    const [comment, setComment] = useState('')
 
     const decrementQuantity = () =>
-        setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
-    const incrementQuantity = () => setQuantity(quantity + 1);
+        setQuantity(quantity - 1 < 1 ? 1 : quantity - 1)
+    const incrementQuantity = () => setQuantity(quantity + 1)
 
     const addToCardHandler = () => {
-        dispatch(addItemToCart(params.id, quantity));
-        alert.success('Item added to Cart ');
-    };
+        dispatch(addItemToCart(params.id, quantity))
+        toast.success('Item added to Cart ')
+    }
     const submitReviewToggle = () => {
-        setOpen(!open);
-    };
+        setOpen(!open)
+    }
     const reviewSubmitHandler = () => {
-        const myForm = new FormData();
-        myForm.set('rating', rating);
-        myForm.set('comment', comment);
-        myForm.set('productId', params.id);
-        myForm.set('token', token);
-        dispatch(newReview(myForm));
-        setOpen(false);
-    };
+        const myForm = new FormData()
+        myForm.set('rating', rating)
+        myForm.set('comment', comment)
+        myForm.set('productId', params.id)
+        myForm.set('token', token)
+        dispatch(newReview(myForm))
+        setOpen(false)
+    }
     useEffect(() => {
         if (error) {
-            alert.error(error);
-            dispatch(clearErrors);
+            toast.error(error)
+            dispatch(clearErrors)
         }
 
         if (reviewError) {
-            alert.error(reviewError);
-            dispatch(clearErrors);
+            toast.error(reviewError)
+            dispatch(clearErrors)
         }
         if (success) {
-            alert.success('Review Submitted Successfully !!');
-            dispatch({ type: NEW_REVIEW_RESET });
+            toast.success('Review Submitted Successfully !!')
+            dispatch({ type: NEW_REVIEW_RESET })
         }
 
-        dispatch(getProductsDetails(params.id));
-    }, [params.id, alert, dispatch, error, success, reviewError]);
+        dispatch(getProductsDetails(params.id))
+    }, [params.id, dispatch, error, success, reviewError])
 
     const options = {
         // size: "large",
         value: Number(product?.ratings),
         precision: 0.5,
-        readOnly: true
-    };
+        readOnly: true,
+    }
 
     return (
         <>
@@ -185,42 +178,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
                     <h3 className="reviewHeading">REVIEWS</h3>
-                    <Dialog
-                        aria-labelledby="simple-dialog-title"
-                        open={open}
-                        onClose={submitReviewToggle}
-                    >
-                        <DialogTitle>Submit Review</DialogTitle>
-                        <DialogContent className="submitDialog">
-                            <Rating
-                                onChange={(e) => setRating(e.target.value)}
-                                value={rating}
-                                size="large"
-                            />
-                            <textarea
-                                className="submitDialogTextArea"
-                                cols={30}
-                                rows={5}
-                                value={comment}
-                                onChange={(e) => setComment(e.target.value)}
-                            ></textarea>
-                            <DialogActions>
-                                <Button
-                                    onClick={submitReviewToggle}
-                                    color="secondary"
-                                >
-                                    {' '}
-                                    Cancle
-                                </Button>
-                                <Button
-                                    onClick={reviewSubmitHandler}
-                                    color="primary"
-                                >
-                                    Submit
-                                </Button>
-                            </DialogActions>
-                        </DialogContent>
-                    </Dialog>
+
                     {product && product.reviews && product.reviews[0] ? (
                         <div className="reviews">
                             {product.reviews &&
@@ -239,7 +197,7 @@ const ProductDetails = () => {
                 </>
             )}
         </>
-    );
-};
+    )
+}
 
-export default ProductDetails;
+export default ProductDetails

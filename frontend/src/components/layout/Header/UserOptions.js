@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
-import './Header.css';
-import { useNavigate } from 'react-router-dom';
-import { SpeedDial, SpeedDialAction } from '@material-ui/lab';
-import { Backdrop } from '@material-ui/core';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonIcon from '@mui/icons-material/Person';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import { logout } from '../../../actions/userActions';
-import { useDispatch, useSelector } from 'react-redux';
-import { useAlert } from 'react-alert';
+import React, { useState } from 'react'
+import './Header.css'
+import { useNavigate } from 'react-router-dom'
+import { SpeedDial, SpeedDialAction } from '@material-ui/lab'
+import { Backdrop } from '@material-ui/core'
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import PersonIcon from '@mui/icons-material/Person'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import ListAltIcon from '@mui/icons-material/ListAlt'
+import { logout } from '../../../actions/userActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-hot-toast'
 
 const UserOptions = ({ user }) => {
-    const dispatch = useDispatch();
-    const { cartItems } = useSelector((state) => state.cart);
-    const alert = useAlert();
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const { cartItems } = useSelector((state) => state.cart)
 
-    const dashboard = () => navigate('/admin/dashboard');
-    const Orders = () => navigate('/orders');
-    const Account = () => navigate('/account');
-    const Cart = () => navigate('/cart');
+    const navigate = useNavigate()
+
+    const dashboard = () => navigate('/admin/dashboard')
+    const Orders = () => navigate('/orders')
+    const Account = () => navigate('/account')
+    const Cart = () => navigate('/cart')
     const logoutUser = () => {
-        dispatch(logout());
-        alert.success('Logout Succesfully! ');
-    };
+        dispatch(logout())
+        toast.success('Logout Succesfully! ')
+    }
     const Options = [
         { icon: <ListAltIcon />, name: 'Orders', func: Orders },
         { icon: <PersonIcon />, name: 'Profile', func: Account },
@@ -34,23 +34,23 @@ const UserOptions = ({ user }) => {
                 <ShoppingCartIcon
                     style={{
                         color:
-                            cartItems.length > 0 ? 'var(--color-primary)' : ''
+                            cartItems.length > 0 ? 'var(--color-primary)' : '',
                     }}
                 />
             ),
             name: `Cart(${cartItems.length})`,
-            func: Cart
+            func: Cart,
         },
-        { icon: <ExitToAppIcon />, name: 'Logout', func: logoutUser }
-    ];
+        { icon: <ExitToAppIcon />, name: 'Logout', func: logoutUser },
+    ]
     if (user?.role === 'admin') {
         Options.unshift({
             icon: <DashboardIcon />,
             name: 'Dashboard',
-            func: dashboard
-        });
+            func: dashboard,
+        })
     }
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
 
     return (
         <>
@@ -86,7 +86,7 @@ const UserOptions = ({ user }) => {
                 ))}
             </SpeedDial>
         </>
-    );
-};
+    )
+}
 
-export default UserOptions;
+export default UserOptions

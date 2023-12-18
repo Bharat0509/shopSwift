@@ -255,3 +255,34 @@ a {
         font-size: 3vw;
     }
 }
+
+@media screen and (max-width: 420px) {
+    .product-upper-l {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .product-upper-l > ul {
+        font-size: 2.25vw;
+    }
+    .card {
+        min-width: 90vw;
+        padding: 1vw;
+    }
+    .card-upper img {
+        height: 52vw;
+        width: 52vw;
+    }
+    .products-detail {
+        gap: 0.5rem;
+    }
+    .card-lower-title,
+    .card-lower-info,
+    .oldPrice,
+    .price,
+    .add-to-cart {
+        font-size: 4vw;
+    }
+    .card-lower-info {
+        font-size: 3vw;
+    }
+}

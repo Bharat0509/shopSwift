@@ -10,12 +10,13 @@ import { BsFillBasket2Fill, BsPersonFill } from "react-icons/bs";
 import { MdDoNotDisturb, MdLogout } from "react-icons/md";
 import { FaRegStar } from "react-icons/fa";
 import { AiOutlineHeart } from "react-icons/ai";
+import { HiOutlineLogin } from "react-icons/hi";
 import { RxUpdate } from "react-icons/rx";
 const User_Menu = [
     {
         label: "My Account",
         icon: <BsPersonFill />,
-        path: "/account/profile"
+        path: "/account/me"
     },
     {
         label: "My Orders",
@@ -79,22 +80,32 @@ const Navbar = () => {
                 <div className='nav-l-right relative'>
                     <div onClick={e => setToggleMenu(!toggleMenu)} >
                         <Avatar user={user} />
-                        {toggleMenu && <div className="user-menus absolute">
-                            <div className='user-info'>
-                                <div>
-                                    <Avatar user={user} size="xl" />
+                        {toggleMenu && (
+                            user?.email ? <>
+                                <div className="user-menus absolute">
+                                    <div className='user-info'>
+                                        <div>
+                                            <Avatar user={user} size="xl" />
+                                        </div>
+                                        <div>
+                                            <span>Hello,</span>
+                                            <p>{user.name ?? "Anonymous"}</p>
+                                        </div>
+                                    </div>
+                                    {
+                                        User_Menu.map(menu => <Link to={menu.path} className='user-menu'>
+                                            {menu?.icon}
+                                            {menu.label}</Link>)
+                                    }
                                 </div>
-                                <div>
-                                    <span>Hello,</span>
-                                    <p>{user.name ?? "Anonymous"}</p>
+                            </> : <>
+                                <div className="user-menus absolute">
+                                    <Link to={"/login"} className='user-menu'>
+                                        <HiOutlineLogin size={22} />
+                                        Login</Link>
                                 </div>
-                            </div>
-                            {
-                                User_Menu.map(menu => <Link to={menu.path} className='user-menu'>
-                                    {menu?.icon}
-                                    {menu.label}</Link>)
-                            }
-                        </div>}
+                            </>
+                        )}
                     </div>
                     <Link to='/cart' className='cartSVG icon'>
                         <IoCartOutline size={24} /><span hidden>Cart</span>
