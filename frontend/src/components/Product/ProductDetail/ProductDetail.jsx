@@ -18,6 +18,7 @@ const ProductDetail = () => {
     const params = useParams();
     const dispatch = useDispatch();
     const [currMainImgIdx, setCurrMainImgIdx] = useState(0)
+    const [additionalInfoTab, setAdditionalInfoTab] = useState('specifications')
     const [quantity, setQuantity] = useState(1)
     const { product, loading, error } = useSelector(
         (state) => state.productDetails
@@ -55,6 +56,7 @@ const ProductDetail = () => {
 
         dispatch(getProductsDetails(params.productId))
     }, [params.id, error, params.productId, dispatch])
+    if (loading) return <h4>Now Loading ...</h4>
     return (
         <>
             <MetaData title={`${product?.name}`} />
@@ -64,7 +66,7 @@ const ProductDetail = () => {
                         <img src={product?.images[currMainImgIdx]?.url} alt="Product Preview" />
                     </div>
                     <div className="all-images">
-                        {product.images.map((img, idx) => (
+                        {product?.images?.map((img, idx) => (
                             <img
                                 className={`${currMainImgIdx === idx && 'active'}`}
                                 src={img.url}
@@ -135,8 +137,22 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <h1>FUll Specification</h1>
+            <div className="additional-info">
+                <div>
+                    <li>Full Specifications</li>
+                    <li>Review & Ratings</li>
+                </div>
+                <div>
+                    {
+                        additionalInfoTab === "specifications" ?
+                            <div className="specs">{
+                                product.description}</div>
+                            :
+                            <div className="review">
+
+                            </div>
+                    }
+                </div>
             </div>
         </>
     )
