@@ -56,8 +56,9 @@ const Navbar = () => {
 
     const navigate = useNavigate();
     const [keyword, setKeyword] = useState("")
-
+    console.log(user);
     const searchSubmitHandler = (e) => {
+
         const url = `/products?product_name=${keyword}`
         e.preventDefault();
         if (keyword.trim()) {
@@ -89,7 +90,7 @@ const Navbar = () => {
                                         </div>
                                         <div>
                                             <span>Hello,</span>
-                                            <p>{user.name ?? "Anonymous"}</p>
+                                            <p>{user?.name ?? "Anonymous"}</p>
                                         </div>
                                     </div>
                                     {
@@ -109,7 +110,7 @@ const Navbar = () => {
                     </div>
                     <Link to='/cart' className='cartSVG icon'>
                         <IoCartOutline size={24} /><span hidden>Cart</span>
-                        {cartItems.length > 0 && <span className='cartItem'>{cartItems.length}</span>}
+                        {cartItems.length > 0 && <span className='cartItemCount'>{cartItems.length}</span>}
                     </Link>
                 </div>
             </div>

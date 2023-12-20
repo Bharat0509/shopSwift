@@ -22,7 +22,7 @@ import UpdateOrder from './components/Admin/UpdateOrder.jsx';
 import UpdateUser from './components/Admin/UpdateUser.jsx';
 import ProductReviews from './components/Admin/ProductReviews.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProtectedRoutes, {
     ProtectedRoutesAdmin
 } from './components/Routes/ProtectedRoute';
@@ -34,10 +34,14 @@ import MyAccountInfo from './components/User/MyAccountInfo';
 import Sidebar from './components/Admin/Sidebar';
 import Login from './components/User/Login';
 import SignUp from './components/User/SignUp';
+import { useDispatch } from 'react-redux';
+import { loadUser } from './actions/userActions';
+import ProductDetail from './components/Product/ProductDetail/ProductDetail';
 
 
 function App() {
-    // const { token } = useSelector((state) => state.authToken);
+
+    const dispatch = useDispatch()
     const [stripeApiKey, setStripeApiKey] = useState('');
 
     // async function getStripeApiKey() {
@@ -45,14 +49,8 @@ function App() {
     //     setStripeApiKey(data.stripeApiKey);
     // }
     // useEffect(() => {
-    //     getStripeApiKey();
-    //     webfont.load({
-    //         google: {
-    //             families: ['Roboto', 'Droid Sans', 'Chilanka']
-    //         }
-    //     });
-    //     if (token) store.dispatch(loadUser(token));
-    // }, [token]);
+    //     dispatch(loadUser())
+    // }, [dispatch]);
     return (
         <Router>
             <ScrollToTop />
@@ -62,14 +60,7 @@ function App() {
                     exact
                     path="/"
                     element={<Home />} />
-                <Route
-                    exact
-                    path="/product/:id"
-                    element={<ProductDetails />} />
-                <Route
-                    exact
-                    path="/products"
-                    element={<Products />} />
+
                 <Route
                     exact
                     path="/signUp"
@@ -82,7 +73,6 @@ function App() {
                     exact
                     path="/signOut"
                     element={<Login />} />
-
                 <Route
                     exact
                     path="/password/forgot"
@@ -94,8 +84,18 @@ function App() {
                     element={<ResetPassword />}
                 />
                 <Route
+                    exact
+                    path="/products"
+                    element={<Products />} />
+                <Route
+                    exact
+                    path="/product/:productId"
+                    element={<ProductDetail />} />
+
+                <Route
                     path="/products/:keyword"
                     element={<Products />} />
+
                 <Route
                     path="/cart"
                     element={<Cart />} />

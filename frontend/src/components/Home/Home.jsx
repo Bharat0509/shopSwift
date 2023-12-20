@@ -1,6 +1,6 @@
 import './Home.css'
 import MetaData from '../layout/MetaData'
-import { getProducts } from '../../actions/productActions'
+import { clearErrors, getProducts } from '../../actions/productActions'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import Product from "../Utils/Product";
@@ -34,15 +34,16 @@ const service = [
 
 const Home = () => {
     const dispatch = useDispatch();
-    const { products, loading, error } = useSelector(state => state.products) || [];
+    const { products, loading, error } = useSelector(state => state.products) ?? [];
 
     useEffect(() => {
         if (error) {
             toast.error(error);
-            // dispatch(clearErrors)
+            dispatch(clearErrors)
         }
         dispatch(getProducts());
     },
+
         [dispatch, error]
     );
 
@@ -56,7 +57,7 @@ const Home = () => {
 
                     <Hero />
                     <Product heading={'Back In Stock This Week'} data={products} />
-                    <Ad />
+
 
                     <Product heading={'Top Rated Products'} data={products} />
 
