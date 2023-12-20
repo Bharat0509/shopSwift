@@ -54,9 +54,9 @@
     color: var(--color-primary);
 }
 
-.MuiDataGrid-columnHeader div {
+/* .MuiDataGrid-columnHeader div {
     color: aliceblue;
-}
+} */
 
 @media screen and (max-width: 600px) {
     .productListTable div {

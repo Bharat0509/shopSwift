@@ -32,8 +32,12 @@
     background-color: transparent;
     color: var(--color-primary);
 }
+
+.cart_container {
+    width: 95%;
+    margin: auto;
+}
 .cart {
-    width: 90%;
     margin: auto;
     display: grid;
     grid-template-columns: 5fr 2fr;

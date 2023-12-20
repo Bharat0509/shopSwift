@@ -13,6 +13,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import { clearErrors } from '../../actions/productActions.js'
 import { deleteUser, getAllUsers } from '../../actions/userActions'
 import { DELETE_USER_RESET } from '../../constants/userContants'
+import DashboardLayout from './DashboardLayout/DashboardLayout'
 
 const UserList = () => {
     const dispatch = useDispatch()
@@ -112,23 +113,25 @@ const UserList = () => {
     return (
         <>
             <MetaData title={'All Users - Admin'} />
-            <div className="dashboard">
-                <Sidebar />
-                <div className="productListContainer">
-                    <h1 className="productListHeading">All Users</h1>
-                    <div style={{ width: '80vw' }}>
-                        <DataGrid
-                            rows={rows}
-                            columns={columns}
-                            pageSize={'10'}
-                            pagination
-                            disableRowSelectionOnClick
-                            autoHeight
-                            sx={{ m: 2 }}
-                        />
+            <DashboardLayout title='Manage Users'>
+                <div className="dashboard">
+
+                    <div className="productListContainer">
+
+                        <div style={{ width: '80vw' }}>
+                            <DataGrid
+                                rows={rows}
+                                columns={columns}
+                                pageSize={'10'}
+                                pagination
+                                disableRowSelectionOnClick
+                                autoHeight
+                                sx={{ m: 2 }}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </DashboardLayout>
         </>
     )
 }

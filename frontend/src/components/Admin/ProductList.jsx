@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom';
-import './ProductList.css'
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DataGrid } from "@mui/x-data-grid";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import MetaData from '../layout/MetaData';
-import Sidebar from './Sidebar'
-import { DataGrid } from "@mui/x-data-grid"
+import './ProductList.css';
 
 
-import { clearErrors, getAdminProducts, deleteProduct } from '../../actions/productActions.js'
+import { clearErrors, deleteProduct, getAdminProducts } from '../../actions/productActions.js';
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstant';
+import DashboardLayout from './DashboardLayout/DashboardLayout';
 
 
 
@@ -111,16 +111,16 @@ const ProductList = () => {
         <>
 
             <MetaData title={"All Products-Admin"} />
-            <div className="dashboard">
-                <Sidebar />
-                <div className="productListContainer">
-                    <h1 className="productListHeading">All Products</h1>
-                    <div style={{ width: '80vw' }}>
-                        <DataGrid rows={rows} columns={columns} pageSize={10} pagination disableRowSelectionOnClick autoHeight sx={{ m: 2 }} />
+            <DashboardLayout title='All Products'>
+                <div className="dashboard" >
+                    <div className="productListContainer">
+                        <div >
+                            <DataGrid rows={rows} columns={columns} pageSize={5} pagination disableRowSelectionOnClick autoHeight sx={{ m: 2 }} />
 
+                        </div>
                     </div>
                 </div>
-            </div>
+            </DashboardLayout>
 
 
         </>
