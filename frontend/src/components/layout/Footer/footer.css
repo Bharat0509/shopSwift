@@ -36,12 +36,12 @@ footer {
     width: 15vmax;
 }
 
-img {
+footer img {
     padding: 1vmax 0;
     width: 10vmax;
 }
 
-p {
+footer p {
     color: rgb(121, 118, 118);
 }
 

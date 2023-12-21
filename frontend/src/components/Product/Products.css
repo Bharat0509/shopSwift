@@ -13,14 +13,13 @@
     min-height: 50vh;
     overflow: hidden;
     position: relative;
-
     margin: auto;
     display: flex;
     gap: 4rem;
 }
 
 .products-sidebar {
-    width: 12rem;
+    width: 30rem;
     display: flex;
     min-height: 50vh;
     padding: 1rem;
@@ -104,12 +103,16 @@
         gap: 0;
     }
     .products-sidebar {
+        display: none;
         flex-direction: column;
         width: 100vw;
     }
     .products-sidebar > ul {
         flex-direction: row;
         overflow-x: scroll;
+    }
+    .products-main {
+        gap: 1vw;
     }
 
     .productHeading {

@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { TbArrowNarrowRight } from "react-icons/tb";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import "./Login.css"
-import { login, logout } from '../../actions/userActions';
+import { clearErrors, login, logout } from '../../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-hot-toast';
+
 
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
-    const { user, loading } = useSelector(state => state.authData)
-    console.log("LOADIGN", loading);
+    const queryParams = new URLSearchParams(location.search)
+    const { user, loading, error } = useSelector(state => state.authData)
 
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
@@ -22,15 +24,18 @@ const Login = () => {
     useEffect(() => {
 
         if (user && user?.email) {
-            navigate("/account/me")
+            const redirectTo = queryParams?.get("redirect") ?? "account/me"
+            navigate(`/${redirectTo}`)
         }
 
         if (location.pathname === '/signOut') {
-
             dispatch(logout())
         }
-
-    }, [dispatch, location.pathname, navigate, user])
+        if (error) {
+            toast.error(error)
+            dispatch(clearErrors())
+        }
+    }, [dispatch, error, location, location.pathname, navigate, queryParams, user])
     return (
         <div className='login_container'>
             <div className='left'>

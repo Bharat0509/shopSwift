@@ -1,43 +1,44 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import Footer from './components/layout/Footer/Footer.jsx';
-import Home from './components/Home/Home';
-import ProductDetails from './components/Product/ProductDetails';
-import Products from './components/Product/Products';
-import UpdateProfile from './components/User/UpdateProfile.jsx';
-import UpdatePassword from './components/User/UpdatePassword.jsx';
-import ForgotPassword from './components/User/ForgotPassword.jsx';
-import ResetPassword from './components/User/ResetPassword.jsx';
-import Shipping from './components/Cart/Shipping.jsx';
+import ScrollToTop from './ScrollToTop';
+import NewProduct from './components/Admin/NewProduct';
+import OrderList from './components/Admin/OrderList.jsx';
+import ProductList from './components/Admin/ProductList.jsx';
+import ProductReviews from './components/Admin/ProductReviews.jsx';
+import Sidebar from './components/Admin/Sidebar';
+import UpdateOrder from './components/Admin/UpdateOrder.jsx';
+import UpdateProduct from './components/Admin/UpdateProduct.jsx';
+import UpdateUser from './components/Admin/UpdateUser.jsx';
+import UserList from './components/Admin/UserList';
 import Cart from './components/Cart/Cart.jsx';
 import ConfirmOrder from './components/Cart/ConfirmOrder.jsx';
-import ProcessPayment from './components/Cart/ProcessPayment.jsx';
 import PaymentSuccess from './components/Cart/PaymentSuccess.jsx';
-import MyOrders from './components/Order/MyOrders.jsx';
+import ProcessPayment from './components/Cart/ProcessPayment.jsx';
+import Shipping from './components/Cart/Shipping.jsx';
+import Home from './components/Home/Home';
 import MyOrderDetails from './components/Order/MyOrderDetails.jsx';
-import Dashboard from './components/Admin/Dashboard.jsx';
-import ProductList from './components/Admin/ProductList.jsx';
-import UpdateProduct from './components/Admin/UpdateProduct.jsx';
-import OrderList from './components/Admin/OrderList.jsx';
-import UpdateOrder from './components/Admin/UpdateOrder.jsx';
-import UpdateUser from './components/Admin/UpdateUser.jsx';
-import ProductReviews from './components/Admin/ProductReviews.jsx';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import MyOrders from './components/Order/MyOrders.jsx';
+import ProductDetail from './components/Product/ProductDetail/ProductDetail';
+import Products from './components/Product/Products';
 import ProtectedRoutes, {
     ProtectedRoutesAdmin
 } from './components/Routes/ProtectedRoute';
-import NewProduct from './components/Admin/NewProduct';
-import UserList from './components/Admin/UserList';
-import ScrollToTop from './ScrollToTop';
-import Navbar from './components/layout/Header/Navbar';
-import MyAccountInfo from './components/User/MyAccountInfo';
-import Sidebar from './components/Admin/Sidebar';
+import ForgotPassword from './components/User/ForgotPassword.jsx';
 import Login from './components/User/Login';
+import MyAccountInfo from './components/User/MyAccountInfo';
+import ResetPassword from './components/User/ResetPassword.jsx';
 import SignUp from './components/User/SignUp';
+import UpdatePassword from './components/User/UpdatePassword.jsx';
+import UpdateProfile from './components/User/UpdateProfile.jsx';
+import Footer from './components/layout/Footer/Footer.jsx';
+import Navbar from './components/layout/Header/Navbar';
 
 
 function App() {
-    // const { token } = useSelector((state) => state.authToken);
+
+    const dispatch = useDispatch()
     const [stripeApiKey, setStripeApiKey] = useState('');
 
     // async function getStripeApiKey() {
@@ -45,14 +46,8 @@ function App() {
     //     setStripeApiKey(data.stripeApiKey);
     // }
     // useEffect(() => {
-    //     getStripeApiKey();
-    //     webfont.load({
-    //         google: {
-    //             families: ['Roboto', 'Droid Sans', 'Chilanka']
-    //         }
-    //     });
-    //     if (token) store.dispatch(loadUser(token));
-    // }, [token]);
+    //     dispatch(loadUser())
+    // }, [dispatch]);
     return (
         <Router>
             <ScrollToTop />
@@ -62,14 +57,7 @@ function App() {
                     exact
                     path="/"
                     element={<Home />} />
-                <Route
-                    exact
-                    path="/product/:id"
-                    element={<ProductDetails />} />
-                <Route
-                    exact
-                    path="/products"
-                    element={<Products />} />
+
                 <Route
                     exact
                     path="/signUp"
@@ -82,7 +70,6 @@ function App() {
                     exact
                     path="/signOut"
                     element={<Login />} />
-
                 <Route
                     exact
                     path="/password/forgot"
@@ -94,8 +81,18 @@ function App() {
                     element={<ResetPassword />}
                 />
                 <Route
+                    exact
+                    path="/products"
+                    element={<Products />} />
+                <Route
+                    exact
+                    path="/product/:productId"
+                    element={<ProductDetail />} />
+
+                <Route
                     path="/products/:keyword"
                     element={<Products />} />
+
                 <Route
                     path="/cart"
                     element={<Cart />} />
@@ -145,48 +142,48 @@ function App() {
                 <Route element={<ProtectedRoutesAdmin />}>
                     <Route
                         isAdmin={true}
-                        path="/admin/dashboard"
-                        element={<Dashboard />}
-                    />
-                    <Route
-                        isAdmin={true}
-                        path="/admin/products"
+                        path="/dashboard/analytics"
                         element={<ProductList />}
                     />
                     <Route
                         isAdmin={true}
-                        path="/admin/product"
+                        path="/dashboard/products/all"
+                        element={<ProductList />}
+                    />
+                    <Route
+                        isAdmin={true}
+                        path="/dashboard/products/new"
                         element={<NewProduct />}
                     />
                     <Route
                         isAdmin={true}
-                        path="/admin/product/:id"
+                        path="/dashboard/products/:id"
                         element={<UpdateProduct />}
                     />
                     <Route
                         isAdmin={true}
-                        path="/admin/orders"
+                        path="/dashboard/orders/all"
                         element={<OrderList />}
                     />
                     <Route
                         isAdmin={true}
-                        path="/admin/order/:id"
+                        path="/dashboard/orders/:id"
                         element={<UpdateOrder />}
                     />
                     <Route
                         isAdmin={true}
-                        path="/admin/users"
+                        path="/dashboard/users"
                         element={<UserList />}
                     />
                     <Route
                         isAdmin={true}
-                        path="/admin/user/:id"
+                        path="/dashboard/users/:id"
                         element={<UpdateUser />}
                     />
 
                     <Route
                         isAdmin={true}
-                        path="/admin/reviews"
+                        path="/dashboard/reviews"
                         element={<ProductReviews />}
                     />
                 </Route>

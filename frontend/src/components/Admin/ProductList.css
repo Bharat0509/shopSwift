@@ -19,11 +19,11 @@
     text-align: center;
 }
 
-.MuiDataGrid-row {
+/* .MuiDataGrid-row {
     display: flex;
     align-items: center;
     padding: 0 2rem;
-}
+} */
 
 .productListTable {
     background-color: white;
@@ -54,18 +54,18 @@
     color: var(--color-primary);
 }
 
-.MuiDataGrid-columnHeader div {
+/* .MuiDataGrid-columnHeader div {
     color: aliceblue;
-}
+} */
 
 @media screen and (max-width: 600px) {
     .productListTable div {
         font: 350 4vw 'Roboto';
     }
 
-    .MuiDataGrid-row {
+    /* .MuiDataGrid-row {
         display: flex;
         align-items: center;
         padding: 0 1rem;
-    }
+    } */
 }

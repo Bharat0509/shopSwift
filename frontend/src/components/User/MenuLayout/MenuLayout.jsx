@@ -19,7 +19,7 @@ const User_Menu = [
     {
         label: "My Dashboard",
         icon: <MdDashboard />,
-        path: "/account/profile"
+        path: "/dashboard/analytics"
     },
     {
         label: "My Orders",

@@ -1,9 +1,8 @@
-import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import { addItemToCart, removeItemFromCart } from '../../actions/cartAction'
-import './Cart.css'
-import CardItemCard from './CartItemCard.jsx'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { addItemToCart, removeItemFromCart } from '../../actions/cartAction';
+import './Cart.css';
+import CardItemCard from './CartItemCard.jsx';
 
 
 
@@ -34,69 +33,70 @@ const Cart = () => {
             {
                 cartItems.length === 0 ?
                     <div className="emptyCart">
-                        <RemoveShoppingCartIcon />
-                        <p>No Product in Your Cart</p>
-                        <Link to={'/products'}>View  Products</Link>
+                        <img src="/empty-shopping-cart.png" alt="No Item  in cart" />
+                        <Link to={'/products'}>Continue Shopping</Link>
                     </div> :
                     <>
-                        <h2 className='heading'><span className='profile-name'>Your C</span>art</h2>
-                        <div className='cart'>
-                            <div className="cart_product-info">
+                        <div className="cart_container">
+                            <h2 className='heading'>Your Shopping Bag</h2>
+                            <div className='cart'>
+                                <div className="cart_product-info">
 
-                                <div className="cart-header">
-                                    <p>Product</p>
+                                    <div className="cart-header">
+                                        <p>Product</p>
 
-                                    <p>Quantity</p>
+                                        <p>Quantity</p>
 
-                                    <p>Subtotal</p>
-                                </div>
-                                {
-                                    cartItems && cartItems.map((item) => (
-                                        <div className="cartContainer" key={item.product}>
-                                            <CardItemCard item={item} deleteCartItem={deleteCartItem} />
-                                            <div className="cart-manage">
-                                                <div className='cart-quantity'>
-                                                    <button onClick={() => decreaseQuantity(item.product, item.quantity, item.stock)}>-</button>
-                                                    <input type="number" value={item.quantity} readOnly />
-                                                    <button onClick={() => increaseQuantity(item.product, item.quantity, item.stock)}>+</button>
+                                        <p>Subtotal</p>
+                                    </div>
+                                    {
+                                        cartItems && cartItems.map((item) => (
+                                            <div className="cartContainer" key={item.product}>
+                                                <CardItemCard item={item} deleteCartItem={deleteCartItem} />
+                                                <div className="cart-manage">
+                                                    <div className='cart-quantity'>
+                                                        <button onClick={() => decreaseQuantity(item.product, item.quantity, item.stock)}>-</button>
+                                                        <input type="number" value={item.quantity} readOnly />
+                                                        <button onClick={() => increaseQuantity(item.product, item.quantity, item.stock)}>+</button>
 
+                                                    </div>
+                                                    <div className='cart_remove-btn' onClick={() => deleteCartItem(item.product)}>Drop Item</div>
                                                 </div>
-                                                <div className='cart_remove-btn' onClick={() => deleteCartItem(item.product)}>Drop Item</div>
+                                                <p className='cartSubtotal'>{`₹${item.price * item.quantity}`}</p>
                                             </div>
-                                            <p className='cartSubtotal'>{`₹${item.price * item.quantity}`}</p>
-                                        </div>
-                                    ))
-                                }
+                                        ))
+                                    }
 
-
-                            </div>
-                            <div>
-                                <div className="cart_price-info">
-                                    <div className='cart_price-field'>
-                                        <p className='cart-field'>Subtotal</p>
-                                        <p className='cart-price'>{`₹${cartItems.reduce(
-                                            (acc, item) => acc + item.quantity * item.price, 0)}`}</p>
-                                    </div>
-
-                                    <div className='cart_price-field'>
-                                        <p className='cart-field'>Discounts</p>
-                                        <p className='cart-price'>₹0.00</p>
-                                    </div>
-                                    <hr />
-                                    <div className='cart_price-field'>
-                                        <p className='cart-field'>Gross Total</p>
-                                        <p className='cart-price'>{`₹${cartItems.reduce(
-                                            (acc, item) => acc + item.quantity * item.price, 0)}`}</p>
-                                    </div>
-                                    <div className='cart_price-field'>
-                                        <button className='cart_checkout-btn' onClick={checkOutHandler}>
-                                            Checkout Now
-                                        </button>
-                                    </div>
 
                                 </div>
-                            </div>
+                                <div>
+                                    <div className="cart_price-info">
+                                        <div className='cart_price-field'>
+                                            <p className='cart-field'>Subtotal</p>
+                                            <p className='cart-price'>{`₹${cartItems.reduce(
+                                                (acc, item) => acc + item.quantity * item.price, 0)}`}</p>
+                                        </div>
 
+                                        <div className='cart_price-field'>
+                                            <p className='cart-field'>Discounts</p>
+                                            <p className='cart-price'>₹0.00</p>
+                                        </div>
+                                        <hr />
+                                        <div className='cart_price-field'>
+                                            <p className='cart-field'>Gross Total</p>
+                                            <p className='cart-price'>{`₹${cartItems.reduce(
+                                                (acc, item) => acc + item.quantity * item.price, 0)}`}</p>
+                                        </div>
+                                        <div className='cart_price-field'>
+                                            <button className='cart_checkout-btn' onClick={checkOutHandler}>
+                                                Checkout Now
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </>
 

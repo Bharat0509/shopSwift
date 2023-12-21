@@ -1,4 +1,4 @@
-const catchAsyncError = thefunc => (req, res, next) => {
-  Promise.resolve(thefunc(req, res, next)).catch(next)
+const catchAsyncError = (fn) => (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch(next)
 }
 export default catchAsyncError

@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom';
-import './ProductList.css'
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DataGrid } from "@mui/x-data-grid";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import MetaData from '../layout/MetaData';
-import Sidebar from './Sidebar'
-import { DataGrid } from "@mui/x-data-grid"
+import './ProductList.css';
 
 import { clearErrors, deleteOrder, getAllOrders } from '../../actions/newOrderAction';
 import { DELETE_ORDER_RESET } from '../../constants/orderConstant';
+import DashboardLayout from './DashboardLayout/DashboardLayout';
 
 
 const OrderList = () => {
@@ -109,25 +109,25 @@ const OrderList = () => {
         <>
 
             <MetaData title={"All Orders - Admin"} />
-            <div className="dashboard">
-                <Sidebar />
-                <div className="productListContainer">
-                    <h1 className="productListHeading">All Products</h1>
-                    <div style={{ width: '80vw' }}>
-                        <DataGrid
-                            rows={rows}
-                            columns={columns}
-                            pageSize={10}
-                            disableRowSelectionOnClick
-                            autoHeight
-                            sx={{ m: 2 }}
-                        />
+            <DashboardLayout title='All Orders'>
+                <div className="dashboard">
 
+                    <div className="productListContainer">
+                        <div >
+                            <DataGrid
+                                rows={rows}
+                                columns={columns}
+                                pageSize={10}
+                                disableRowSelectionOnClick
+                                autoHeight
+                                sx={{ m: 2 }}
+                            />
+
+                        </div>
                     </div>
                 </div>
-            </div>
 
-
+            </DashboardLayout>
         </>
     )
 }
