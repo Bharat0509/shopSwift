@@ -214,14 +214,14 @@
     border-bottom: 2px solid gray;
 }
 
-li {
+.additional-info li {
     list-style: none;
     font-size: 1.25rem;
     font-weight: 500;
     cursor: pointer;
     padding: 1rem;
 }
-li:hover {
+.additional-info :hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
 .specs {

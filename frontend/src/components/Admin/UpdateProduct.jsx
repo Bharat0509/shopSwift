@@ -18,6 +18,7 @@ import { UPDATE_PRODUCT_RESET } from '../../constants/productConstant'
 
 import Loader from '../layout/Loader/Loader'
 import Sidebar from './Sidebar';
+import DashboardLayout from './DashboardLayout/DashboardLayout'
 
 
 const categories = [
@@ -71,7 +72,7 @@ const UpdateProduct = () => {
         images?.forEach(image => {
             myForm.images.push(image)
         })
-        notify('Updating...')
+        notify('Updating Details...')
         dispatch(updateProduct(params.id, myForm))
 
 
@@ -125,7 +126,8 @@ const UpdateProduct = () => {
 
         }
         if (error) {
-            toast.error(error)
+            toast.error(error, { id: toastId.current })
+
             dispatch(clearErrors())
         }
         if (updateError) {
@@ -147,160 +149,162 @@ const UpdateProduct = () => {
             loading ? <Loader /> :
                 <>
                     <MetaData title={'Create Product'} />
-                    <div className="dashboard">
-                        <Sidebar />
-                        <div className="addProductContainer">
+                    <DashboardLayout title='Update Product Details'>
+                        <div className="dashboard">
 
-                            <form
-                                className='addProductForm'
-                                encType='multipart/form-data'
-                                onSubmit={UpdateProductSubmitHandler}
-                            >
-                                <div><h1>Add Product</h1>
-                                    <span className='extra-info'>To start selling,all you need is name, price, category and a photo</span></div>
-                                <div>
-                                    <div>
-                                        <label htmlFor="p-name">Name</label>
-                                    </div>
-                                    <div className='form-input'>
-                                        <SpellcheckIcon />
-                                        <input
-                                            type="text"
-                                            id='p-name'
-                                            value={Name}
-                                            placeholder='Product Name'
-                                            required
-                                            onChange={e => setName(e.target.value)} />
-                                    </div>
-                                    <div>
-                                        <span className='extra-info'>Give your product a short and clear name</span>
-                                    </div>
-                                </div>
+                            <div className="addProductContainer">
 
-                                <div>
-                                    <div>
-                                        <label htmlFor="p-price">Price</label>
-                                    </div>
-                                    <div className='form-input'>
-                                        <AttachMoneyIcon />
-                                        <input
-                                            type="number"
-                                            placeholder='Price'
-                                            value={Price}
-                                            id='p-price'
-                                            required
-                                            onChange={e => setPrice(e.target.value)} />
-                                    </div>
-                                    <div>
-                                        <span className='extra-info'>Allow customers to pay what they want?</span>
-                                    </div>
-                                </div>
-
-
-                                <div>
-                                    <div>
-                                        <label htmlFor="p-desc">Description</label>
-                                    </div>
-                                    <div className='form-input'>
-                                        <DescriptionIcon />
-                                        <textarea
-                                            id='p-desc'
-                                            placeholder='Product Description'
-                                            value={Description}
-                                            required
-                                            onChange={e => setDescription(e.target.value)}
-
-                                        />
-                                    </div>
-                                    <div>
-                                        <span className='extra-info'>Give your product a short and clear description</span>
-                                    </div>
-                                </div>
-
-
-                                <div>
-                                    <div>
-                                        <label >Category</label>
-                                    </div>
-                                    <div className='form-input'>
-                                        <AccountTreeIcon />
-                                        <select
-                                            value={Category}
-                                            onChange={e => setCategory(e.target.value)}
-                                        >
-                                            {
-                                                categories.map(cate => (<option key={cate} value={cate}>{cate}</option>))
-                                            }
-
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <span className='extra-info'>Tag a category which suites most to your product</span>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div>
-                                        <label htmlFor='p-stock'>Stock</label>
-                                    </div>
-                                    <div className='form-input'>
-                                        <StorageIcon />
-                                        <input
-                                            type="Number"
-                                            placeholder='Stock'
-                                            required
-                                            value={Stock}
-                                            onChange={(e) => setStock(e.target.value)}
-                                        />
-                                    </div>
-                                    <div>
-                                        <span className='extra-info'>Allot expected stock you have</span>
-                                    </div>
-                                </div>
-
-                                <div >
-                                    <span className='extra-info'>Add upto 5 clear images of your product</span>
-                                    <div className='media'>
-                                        <div id='registerImage'>
-
-                                            <input type="file"
-                                                id='p-media'
-                                                name='avatar'
-                                                accept='image/*'
-                                                multiple
-                                                style={{ display: 'none' }}
-                                                onChange={UpdateProductImagesChange} />
-
-                                        </div>
-
-                                        <div id="addProductFormImage">
-                                            {
-                                                imagesPreview.map((image, idx) =>
-                                                    <img key={idx} src={image} alt="Avatar Preview" />
-                                                )
-
-                                            }
-                                        </div>
-                                        <div className='addMediaFiles' title='Add media files'>
-                                            <label htmlFor='p-media'><AddPhotoAlternateIcon /></label>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <button
-                                    className='createProductBtn'
-                                    type='submit'
-                                    disabled={loading ? true : false}
+                                <form
+                                    className='addProductForm'
+                                    encType='multipart/form-data'
+                                    onSubmit={UpdateProductSubmitHandler}
                                 >
-                                    Create
-                                </button>
+                                    <div>
+                                        <span className='extra-info'>To start selling,all you need is name, price, category and a photo</span></div>
+                                    <div>
+                                        <div>
+                                            <label htmlFor="p-name">Name</label>
+                                        </div>
+                                        <div className='form-input'>
+                                            <SpellcheckIcon />
+                                            <input
+                                                type="text"
+                                                id='p-name'
+                                                value={Name}
+                                                placeholder='Product Name'
+                                                required
+                                                onChange={e => setName(e.target.value)} />
+                                        </div>
+                                        <div>
+                                            <span className='extra-info'>Give your product a short and clear name</span>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div>
+                                            <label htmlFor="p-price">Price</label>
+                                        </div>
+                                        <div className='form-input'>
+                                            <AttachMoneyIcon />
+                                            <input
+                                                type="number"
+                                                placeholder='Price'
+                                                value={Price}
+                                                id='p-price'
+                                                required
+                                                onChange={e => setPrice(e.target.value)} />
+                                        </div>
+                                        <div>
+                                            <span className='extra-info'>Allow customers to pay what they want?</span>
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <div>
+                                            <label htmlFor="p-desc">Description</label>
+                                        </div>
+                                        <div className='form-input'>
+                                            <DescriptionIcon />
+                                            <textarea
+                                                id='p-desc'
+                                                placeholder='Product Description'
+                                                value={Description}
+                                                required
+                                                onChange={e => setDescription(e.target.value)}
+
+                                            />
+                                        </div>
+                                        <div>
+                                            <span className='extra-info'>Give your product a short and clear description</span>
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <div>
+                                            <label >Category</label>
+                                        </div>
+                                        <div className='form-input'>
+                                            <AccountTreeIcon />
+                                            <select
+                                                value={Category}
+                                                onChange={e => setCategory(e.target.value)}
+                                            >
+                                                {
+                                                    categories.map(cate => (<option key={cate} value={cate}>{cate}</option>))
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <span className='extra-info'>Tag a category which suites most to your product</span>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div>
+                                            <label htmlFor='p-stock'>Stock</label>
+                                        </div>
+                                        <div className='form-input'>
+                                            <StorageIcon />
+                                            <input
+                                                type="Number"
+                                                placeholder='Stock'
+                                                required
+                                                value={Stock}
+                                                onChange={(e) => setStock(e.target.value)}
+                                            />
+                                        </div>
+                                        <div>
+                                            <span className='extra-info'>Allot expected stock you have</span>
+                                        </div>
+                                    </div>
+
+                                    <div >
+                                        <span className='extra-info'>Add upto 5 clear images of your product</span>
+                                        <div className='media'>
+                                            <div id='registerImage'>
+
+                                                <input type="file"
+                                                    id='p-media'
+                                                    name='avatar'
+                                                    accept='image/*'
+                                                    multiple
+                                                    style={{ display: 'none' }}
+                                                    onChange={UpdateProductImagesChange} />
+
+                                            </div>
+
+                                            <div id="addProductFormImage">
+                                                {
+                                                    imagesPreview.map((image, idx) =>
+                                                        <img key={idx} src={image} alt="Avatar Preview" />
+                                                    )
+
+                                                }
+                                            </div>
+                                            <div className='addMediaFiles' title='Add media files'>
+                                                <label htmlFor='p-media'><AddPhotoAlternateIcon /></label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <button
+                                        className='createProductBtn'
+                                        type='submit'
+                                        disabled={loading ? true : false}
+                                    >
+                                        Create
+                                    </button>
 
 
 
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    </DashboardLayout>
                 </>
         }
         </>

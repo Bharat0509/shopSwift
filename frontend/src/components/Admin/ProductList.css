@@ -19,11 +19,11 @@
     text-align: center;
 }
 
-.MuiDataGrid-row {
+/* .MuiDataGrid-row {
     display: flex;
     align-items: center;
     padding: 0 2rem;
-}
+} */
 
 .productListTable {
     background-color: white;
@@ -63,9 +63,9 @@
         font: 350 4vw 'Roboto';
     }
 
-    .MuiDataGrid-row {
+    /* .MuiDataGrid-row {
         display: flex;
         align-items: center;
         padding: 0 1rem;
-    }
+    } */
 }

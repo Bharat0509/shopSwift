@@ -25,7 +25,7 @@ const ProductDetail = () => {
     )
     const options = {
         size: "large",
-        value: Math.floor(Math.random() * 5 + 1) ?? Number(product?.ratings),
+        value: Number(product?.ratings),
         precision: 0.5,
         readOnly: true,
     }
@@ -63,13 +63,13 @@ const ProductDetail = () => {
             <div className="product_detail-container">
                 <div className="product_detail-images">
                     <div className="main-image">
-                        <img src={product?.images[currMainImgIdx]?.url} alt="Product Preview" />
+                        <img src={product?.images ? product.images[currMainImgIdx]?.url : ""} alt="Product Preview" />
                     </div>
                     <div className="all-images">
                         {product?.images?.map((img, idx) => (
                             <img
                                 className={`${currMainImgIdx === idx && 'active'}`}
-                                src={img.url}
+                                src={img?.url}
                                 onClick={e => setCurrMainImgIdx(idx)}
                                 alt={img?.public_id} />
                         ))}
@@ -85,7 +85,7 @@ const ProductDetail = () => {
                             {product?.rating}
                         </span>
                             <Rating {...options} /> (
-                            {Math.floor(Math.random() * 500) ?? product?.numOfReviews} Reviews)
+                            {product?.numOfReviews} Reviews)
                         </div>
                         <div>
                             Price : <span id="price">{product.price} Rs.</span>
@@ -101,12 +101,9 @@ const ProductDetail = () => {
 
                             <AiOutlinePlus size={20} onClick={incrementQuantity} />
 
-
                         </div>
 
-
-
-                        <span>Only <span id="stock"> 17</span> Items Left !! <br /> Don't miss it!</span>
+                        <span>Only <span id="stock">{product.stock}</span> Items Left !! <br /> Don't miss it!</span>
 
                     </div>
 

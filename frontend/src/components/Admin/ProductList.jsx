@@ -18,11 +18,10 @@ import DashboardLayout from './DashboardLayout/DashboardLayout';
 const ProductList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const { token } = useSelector(state => state.authToken)
     const { error, products } = useSelector(state => state.products)
     const { error: deleteError, isDeleted } = useSelector(state => state.product)
     const deleteProductHandler = (id) => {
-        dispatch(deleteProduct(id, token))
+        dispatch(deleteProduct(id))
     }
     useEffect(() => {
         if (error) {
@@ -37,54 +36,54 @@ const ProductList = () => {
 
         if (isDeleted) {
 
-            navigate('/admin/dashboard')
+            navigate('/dashboard/products/all')
             dispatch({ type: DELETE_PRODUCT_RESET })
         }
-        dispatch(getAdminProducts(token))
+        dispatch(getAdminProducts())
 
-    }, [dispatch, error, deleteError, navigate, isDeleted, token])
+    }, [dispatch, error, deleteError, navigate, isDeleted])
 
     const columns = [
         {
             field: "id",
             headerName: "Product ID",
-            minWidth: 200,
-            flex: 0.5
+            minWidth: 100,
+            flex: 0.75
 
         },
         {
             field: "name",
             headerName: "Name",
-            minWidth: 350,
-            flex: 1
+            minWidth: 100,
+            flex: 0.75
 
         },
         {
             field: "stock",
             headerName: "Stock",
             // type: "number",
-            minWidth: 150,
-            flex: 0.3
+            minWidth: 75,
+            flex: 0.5
 
         },
         {
             field: "price",
             headerName: "Price",
-            minWidth: 270,
-            flex: 0.3
+            minWidth: 75,
+            flex: 0.5
 
         }
         ,
         {
             field: "actions",
             headerName: "Actions",
-            minWidth: 150,
+            minWidth: 100,
             sortable: false,
-            flex: 0.3,
+            flex: 0.5,
             renderCell: (params) =>
 
                 <>
-                    <Link to={`/admin/product/${params?.id}`}><EditIcon /></Link>
+                    <Link to={`/dashboard/products/${params?.id}`}><EditIcon /></Link>
                     <Button onClick={e => deleteProductHandler(params?.id)}>
                         <DeleteIcon />
                     </Button>
@@ -115,7 +114,19 @@ const ProductList = () => {
                 <div className="dashboard" >
                     <div className="productListContainer">
                         <div >
-                            <DataGrid rows={rows} columns={columns} pageSize={5} pagination disableRowSelectionOnClick autoHeight sx={{ m: 2 }} />
+                            <DataGrid
+                                initialState={{
+                                    pagination: {
+                                        paginationModel: { pageSize: 8, page: 0 },
+                                    },
+                                }}
+                                rows={rows}
+                                columns={columns}
+                                disableRowSelectionOnClick
+                                autoHeight
+
+
+                            />
 
                         </div>
                     </div>
