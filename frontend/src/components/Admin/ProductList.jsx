@@ -79,7 +79,7 @@ const ProductList = () => {
             headerName: "Actions",
             minWidth: 100,
             sortable: false,
-            flex: 0.5,
+            flex: 0.3,
             renderCell: (params) =>
 
                 <>
@@ -117,15 +117,13 @@ const ProductList = () => {
                             <DataGrid
                                 initialState={{
                                     pagination: {
-                                        paginationModel: { pageSize: 8, page: 0 },
+                                        paginationModel: { pageSize: 7, page: 0 },
                                     },
                                 }}
                                 rows={rows}
                                 columns={columns}
                                 disableRowSelectionOnClick
                                 autoHeight
-
-
                             />
 
                         </div>

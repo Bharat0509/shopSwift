@@ -45,12 +45,12 @@ const OrderList = () => {
 
     const columns = [
         {
-            field: "id", headerName: "Order ID", minWidth: 300, flex: 0.5
+            field: "id", headerName: "Order ID", minWidth: 100, flex: 0.5
         },
         {
             field: "status",
             headerName: "Status",
-            minWidth: 200,
+            minWidth: 100,
             flex: .4,
             cellClassName: (params) => {
                 return (params.row.status === "Delivered" ? "greenColor" : "redColor")
@@ -61,7 +61,7 @@ const OrderList = () => {
         {
             field: 'itemQty',
             headerName: "Items Qty",
-            minWidth: 350,
+            minWidth: 100,
             flex: .25
             ,
 
@@ -69,13 +69,13 @@ const OrderList = () => {
         {
             field: "amount",
             headerName: "Amount",
-            minWidth: 150,
+            minWidth: 100,
             flex: 0.25
         },
         {
             field: "actions",
             headerName: "Actions",
-            minWidth: 270,
+            minWidth: 100,
             flex: 0.2,
             sortable: false,
 
@@ -117,10 +117,10 @@ const OrderList = () => {
                             <DataGrid
                                 rows={rows}
                                 columns={columns}
-                                pageSize={10}
+                                pageSize={6}
                                 disableRowSelectionOnClick
                                 autoHeight
-                                sx={{ m: 2 }}
+                            // sx={{ m: 2 }}
                             />
 
                         </div>

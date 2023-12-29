@@ -1,15 +1,14 @@
-import './Home.css'
-import MetaData from '../layout/MetaData'
-import { clearErrors, getProducts } from '../../actions/productActions'
-import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import Product from "../Utils/Product";
-import Loader from '../layout/Loader/Loader'
 import { toast } from 'react-hot-toast'
-import Wrapper from '../Utils/Wrapper'
-import ServiceInfoCard from '../Utils/ServiceInfoCard'
-import Ad from '../Utils/Ad'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearErrors, getProducts } from '../../actions/productActions'
 import Hero from '../Hero/Hero'
+import Product from "../Utils/Product"
+import ServiceInfoCard from '../Utils/ServiceInfoCard'
+import Wrapper from '../Utils/Wrapper'
+import Loader from '../layout/Loader/Loader'
+import MetaData from '../layout/MetaData'
+import './Home.css'
 
 
 
