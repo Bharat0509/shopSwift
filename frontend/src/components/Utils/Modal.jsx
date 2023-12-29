@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import './Modal.css'
-import CloseIcon from '@mui/icons-material/Close'
 const Modal = ({ children, setIsOpen }) => {
     const modalRef = useRef()
     const wrapper = useRef()

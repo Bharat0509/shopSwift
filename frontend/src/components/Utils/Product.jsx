@@ -36,7 +36,7 @@ const Product = ({ data, heading }) => {
                     data && data?.map((item) => <ModernProductCard {...item} />)
                 }
                 {
-                    !data && <h4 style={{ display: 'flex', width: "100%", alignItems: "center", justifyContent: "center" }}>No Data Available </h4>
+                    (!data || data.length === 0) && <h4 style={{ display: 'flex', width: "100%", alignItems: "center", justifyContent: "center", marginTop: "1rem" }}>No Products Available </h4>
                 }
 
 

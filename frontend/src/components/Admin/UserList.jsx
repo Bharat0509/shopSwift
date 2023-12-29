@@ -60,7 +60,7 @@ const UserList = () => {
         {
             field: 'email',
             headerName: 'Email',
-            minWidth: 200,
+            minWidth: 100,
             flex: 0.5,
         },
         {
@@ -68,13 +68,13 @@ const UserList = () => {
             headerName: 'Name',
             // type: "number",
             minWidth: 100,
-            flex: 0.5,
+            flex: 0.45,
         },
         {
             field: 'role',
             headerName: 'Role',
             minWidth: 100,
-            flex: 0.3,
+            flex: 0.25,
             cellClassName: (params) => {
                 return params.row.role === 'admin' ? 'greenColor' : 'redColor'
             },
@@ -84,7 +84,7 @@ const UserList = () => {
             headerName: 'Actions',
             minWidth: 100,
             sortable: false,
-            flex: 0.3,
+            flex: 0.25,
             renderCell: (params) => (
                 <>
                     <Link to={`/admin/user/${params?.id}`}>
@@ -118,15 +118,15 @@ const UserList = () => {
 
                     <div className="productListContainer">
 
-                        <div style={{ width: '80vw' }}>
+                        <div >
                             <DataGrid
                                 rows={rows}
                                 columns={columns}
-                                pageSize={'10'}
+                                pageSize={'5'}
                                 pagination
                                 disableRowSelectionOnClick
                                 autoHeight
-                                sx={{ m: 2 }}
+
                             />
                         </div>
                     </div>

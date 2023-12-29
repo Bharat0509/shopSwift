@@ -34,6 +34,7 @@ import UpdatePassword from './components/User/UpdatePassword.jsx';
 import UpdateProfile from './components/User/UpdateProfile.jsx';
 import Footer from './components/layout/Footer/Footer.jsx';
 import Navbar from './components/layout/Header/Navbar';
+import TandC from './components/T&C/TandC';
 
 
 function App() {
@@ -96,6 +97,9 @@ function App() {
                 <Route
                     path="/cart"
                     element={<Cart />} />
+                <Route
+                    path="/dashboard/term-condition"
+                    element={<TandC />} />
 
 
                 {/* Protected User Routes */}

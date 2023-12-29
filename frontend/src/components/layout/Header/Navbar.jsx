@@ -12,6 +12,7 @@ import { FaRegStar } from "react-icons/fa";
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineLogin } from "react-icons/hi";
 import { RxUpdate } from "react-icons/rx";
+import Modal from '../../Utils/Modal'
 const User_Menu = [
     {
         label: "My Account",
@@ -55,6 +56,7 @@ const Navbar = () => {
     const { user } = useSelector(state => state.authData)
 
     const navigate = useNavigate();
+    const [IsOpen, setIsOpen] = useState(false)
     const [keyword, setKeyword] = useState("")
     console.log(user);
     const searchSubmitHandler = (e) => {
@@ -81,6 +83,7 @@ const Navbar = () => {
                 <div className='nav-l-right relative'>
                     <div onClick={e => setToggleMenu(!toggleMenu)} >
                         <Avatar user={user} />
+
                         {toggleMenu && (
                             user?.email ? <>
                                 <div className="user-menus absolute">
@@ -107,6 +110,7 @@ const Navbar = () => {
                                 </div>
                             </>
                         )}
+
                     </div>
                     <Link to='/cart' className='cartSVG icon'>
                         <IoCartOutline size={24} /><span hidden>Cart</span>

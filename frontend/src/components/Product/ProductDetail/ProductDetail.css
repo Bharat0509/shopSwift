@@ -206,27 +206,63 @@
     gap: 2rem;
     transition: var(--transition-primary);
 }
-.additional-info div:first-child {
+.info-tabs {
     display: flex;
-    width: 100%;
-    gap: 2rem;
-
-    border-bottom: 2px solid gray;
+    justify-content: space-around;
+}
+.info-tabs li {
+    flex: 1;
+    text-align: center;
+    list-style: none;
+    font-size: large;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    transition: var(--transition-primary);
+}
+.info-tabs li.active-tab {
+    font-weight: 500;
+    border-bottom: 2px solid rgba(0, 0, 0, 1);
 }
 
-.additional-info li {
-    list-style: none;
-    font-size: 1.25rem;
-    font-weight: 500;
-    cursor: pointer;
+.specs-container > h2 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+.specs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.specs {
+    margin: 0.25rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.125rem;
     padding: 1rem;
 }
-.additional-info :hover {
+.spec {
+    display: flex;
+    /* flex-direction: column; */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: auto;
+    justify-content: space-evenly;
     background-color: rgba(0, 0, 0, 0.05);
 }
-.specs {
-    width: 40rem !important;
+.spec h2 {
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin: 0.25rem 0;
+    width: 20vw;
 }
+.spec p {
+    margin: 0.25rem 0;
+    width: 40vw;
+}
+
 @media screen and (max-width: 768px) {
     .product_detail-container {
         width: 100%;
@@ -249,5 +285,19 @@
     }
     .product_add-to-cart {
         font-size: 4vw;
+    }
+    .info-tabs li {
+        font-size: 0.8rem;
+        padding-bottom: 0.5rem;
+    }
+    .spec h2 {
+        color: var(--color-primary);
+        font-weight: 500;
+        font-size: 3vw;
+        width: 20vw;
+    }
+    .spec p {
+        margin: 0.25rem 0;
+        width: 60vw;
     }
 }
