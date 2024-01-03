@@ -29,7 +29,7 @@ const Products = () => {
             <h2 className="productHeading">Products</h2>
             <div className="products-container">
                 <div className="products-sidebar">
-                    <div className='filter-option'>
+                    {/* <div className='filter-option'>
                         <span>Price</span>
                         <span><IoIosArrowForward /></span>
                     </div>
@@ -42,8 +42,11 @@ const Products = () => {
                     <div className='filter-option'>
                         <span>Ratings</span>
                         <span><IoIosArrowForward /></span>
-                    </div>
+                    </div> */}
 
+                    <FilterOption title={"Price"} />
+                    <FilterOption title={"Category"} />
+                    <FilterOption title={"Ratings"} />
                 </div>
 
                 <main className="products-main">
@@ -57,4 +60,10 @@ const Products = () => {
     );
 };
 
+export const FilterOption = ({ title, data }) => {
+    return (<div className='filter-option'>
+        <span>{title}</span>
+        <span><IoIosArrowForward /></span>
+    </div>)
+}
 export default Products;

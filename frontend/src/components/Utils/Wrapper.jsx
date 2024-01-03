@@ -8,7 +8,7 @@ const Wrapper = ({ Card, heading, data, hw }) => {
             <div className="wrapper-container" style={{ height: { hw } }}>
                 {
                     data &&
-                    data?.map(item => <Card key={item._id} {...item} />)
+                    data?.map((item, idx) => <Card key={idx} {...item} />)
 
                 }
             </div>

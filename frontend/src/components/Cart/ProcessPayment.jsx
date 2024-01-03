@@ -84,8 +84,9 @@ const ProcessPayment = () => {
                 })
 
             if (result.error) {
+                console.log(result);
                 payBtn.current.disabled = false;
-                toast.error(result.error.message ? result.error.message : "Unexpected Error Encountered.")
+                toast.error(result.error.message ? result.error.message : "Unexpected Error Encountered.Line no 90")
             }
             else {
                 if (result.paymentIntent.status === "succeeded") {
@@ -98,17 +99,15 @@ const ProcessPayment = () => {
                     navigate('/success')
                 }
                 else {
-                    toast.error(result.error.message ? result.error.message : "Unexpected Error Encountered.")
+                    console.log(result);
+                    toast.error(result.error.message ? result.error.message : "Unexpected Error Encountered.Line no 104")
                 }
             }
         } catch (error) {
             payBtn.current.disabled = false;
-            toast.error(error.data?.message ? error.data.message : "Unexpected Error Encountered.")
-
+            toast.error(error.response.data.error ?? error.data?.message ?? error.data.message ?? "Unexpected Error Encountered.")
         }
     }
-
-
     useEffect(() => {
         if (error) {
             toast.error(error)

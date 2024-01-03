@@ -3,8 +3,11 @@
 }
 
 .MuiStepConnector-root {
-    height: 1px;
+    height: 0.125rem;
     background-color: rgba(0, 0, 0, 0.4);
+}
+.css-1hv8oq8-MuiStepLabel-label.MuiStepLabel-alternativeLabel {
+    margin: 0.5rem 0 1rem 0 !important;
 }
 
 .MuiStepConnector-active,

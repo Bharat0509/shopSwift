@@ -17,11 +17,6 @@ const User_Menu = [
         path: "/account/me"
     },
     {
-        label: "My Dashboard",
-        icon: <MdDashboard />,
-        path: "/dashboard/analytics"
-    },
-    {
         label: "My Orders",
         icon: <BsFillBasket2Fill />,
         path: "/account/orders"
@@ -55,7 +50,7 @@ const User_Menu = [
 const MenuLayout = ({ children, title = "Personal Information" }) => {
 
     const { user } = useSelector(state => state.authData)
-
+    console.log(user);
     return (
         <div className='menu_container'>
             <div className='sidebar'>
@@ -71,8 +66,15 @@ const MenuLayout = ({ children, title = "Personal Information" }) => {
                         </div>
                     </div>
                     {
+                        !!user.role === 'admin' &&
+                        <Link key={'/dashboard/analytics'} to={'/dashboard/analytics'} className='user-menu'>
+                            <MdDashboard />
+                            Dashboard
+                        </Link>
+                    }
+                    {
                         User_Menu.map(menu => (
-                            <Link to={menu.path} className='user-menu'>
+                            <Link key={menu.path} to={menu.path} className='user-menu'>
                                 {menu?.icon}
                                 {menu.label}
                             </Link>)
