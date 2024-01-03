@@ -8,47 +8,45 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import './CheckoutSteps.css'
 import { Typography } from '@mui/material';
 const CheckoutSteps = ({ activeStep }) => {
-    const steps = [
-        {
-            label: <Typography>Shipping Details</Typography>,
-            icon: <LocalShippingIcon />
-        },
-        {
-            label: <Typography>Confirm Order</Typography>,
-            icon: <LibraryAddCheckIcon />
-        },
-        {
-            label: <Typography>Payment</Typography>,
-            icon: <AccountBalanceIcon />
-        }
-    ]
+	const steps = [
+		{
+			label: <Typography>Shipping Address</Typography>,
+			icon: <LocalShippingIcon />
+		},
+		{
+			label: <Typography>Confirmation</Typography>,
+			icon: <LibraryAddCheckIcon />
+		},
+		{
+			label: <Typography>Payment Info</Typography>,
+			icon: <AccountBalanceIcon />
+		}
+	]
 
-    const stepStyle = {
-        boxSizing: "border-box",
-        padding: "2.5vmax 0 0 0",
+	const stepStyle = {
+		boxSizing: "border-box",
+		padding: "2.25rem 0 0 0",
+		width: "50%",
+		margin: "auto"
+	}
+	return (
+		<Stepper activeStep={activeStep} alternativeLabel style={stepStyle}>
+			{steps.map((item, index) => (
+				<Step
+					key={index}
+					active={activeStep === index}
+					completed={activeStep >= index}
+				>
+					<StepLabel
+						style={{
+							color: activeStep >= index ? "var(--color-primary)" : "rgba(0,0,0,0.5)"
+						}}
+						icon={item.icon}>{item.label}</StepLabel>
+				</Step>
+			))}
+		</Stepper>
 
-
-
-    }
-    return (
-        <>
-            <Stepper activeStep={activeStep} alternativeLabel style={stepStyle}>
-                {steps.map((item, index) => (
-                    <Step
-                        key={item.name}
-                        active={activeStep === index ? true : false}
-                        completed={activeStep >= index ? true : false}
-                    >
-                        <StepLabel
-                            style={{
-                                color: activeStep >= index ? "var(--color-primary)" : "rgba(0,0,0,0.65)"
-                            }}
-                            icon={item.icon}>{item.label}</StepLabel>
-                    </Step>
-                ))}
-            </Stepper>
-        </>
-    )
+	)
 }
 
 export default CheckoutSteps

@@ -1,19 +1,17 @@
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+import { Button } from '@mui/material'
+import { DataGrid } from '@mui/x-data-grid'
 import React, { useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import './ProductList.css'
-import EditIcon from '@mui/icons-material/Edit'
-import { Button } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete'
-import MetaData from '../layout/MetaData'
-import Sidebar from './Sidebar'
-import { DataGrid } from '@mui/x-data-grid'
-
 import { clearErrors } from '../../actions/productActions.js'
 import { deleteUser, getAllUsers } from '../../actions/userActions'
 import { DELETE_USER_RESET } from '../../constants/userContants'
+import MetaData from '../layout/MetaData'
 import DashboardLayout from './DashboardLayout/DashboardLayout'
+import './ProductList.css'
 
 const UserList = () => {
     const dispatch = useDispatch()
@@ -47,7 +45,7 @@ const UserList = () => {
             navigate('/admin/users')
             dispatch({ type: DELETE_USER_RESET })
         }
-        dispatch(getAllUsers(token))
+        dispatch(getAllUsers())
     }, [dispatch, error, deleteError, navigate, isDeleted, message, token])
 
     const columns = [

@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { AiOutlineHeart } from "react-icons/ai"
+import { BsFillBasket2Fill, BsPersonFill } from "react-icons/bs"
+import { FaRegStar } from "react-icons/fa"
+import { HiOutlineLogin } from "react-icons/hi"
+import { IoCartOutline } from "react-icons/io5"
+import { MdDashboard, MdDoNotDisturb, MdLogout } from "react-icons/md"
+import { RxUpdate } from "react-icons/rx"
 import { useSelector } from 'react-redux'
-import './Navbar.css'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-import Input from './Input/Input'
-import { IoCartOutline } from "react-icons/io5";
+import { Link, useNavigate } from 'react-router-dom'
 import Avatar from '../../Avatar/Avatar'
-import { BsFillBasket2Fill, BsPersonFill } from "react-icons/bs";
-import { MdDoNotDisturb, MdLogout } from "react-icons/md";
-import { FaRegStar } from "react-icons/fa";
-import { AiOutlineHeart } from "react-icons/ai";
-import { HiOutlineLogin } from "react-icons/hi";
-import { RxUpdate } from "react-icons/rx";
-import Modal from '../../Utils/Modal'
+import Input from './Input/Input'
+import './Navbar.css'
 const User_Menu = [
     {
         label: "My Account",
@@ -58,7 +56,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [IsOpen, setIsOpen] = useState(false)
     const [keyword, setKeyword] = useState("")
-    console.log(user);
+
     const searchSubmitHandler = (e) => {
 
         const url = `/products?product_name=${keyword}`
@@ -97,7 +95,16 @@ const Navbar = () => {
                                         </div>
                                     </div>
                                     {
-                                        User_Menu.map(menu => <Link to={menu.path} className='user-menu'>
+                                        user.role === 'admin' &&
+                                        <Link key={'/dashboard/analytics'} to={'/dashboard/analytics'} className='user-menu'>
+                                            <MdDashboard />
+                                            Dashboard
+                                        </Link>
+                                    }
+                                    {
+
+
+                                        User_Menu.map(menu => <Link key={menu.path} to={menu.path} className='user-menu'>
                                             {menu?.icon}
                                             {menu.label}</Link>)
                                     }

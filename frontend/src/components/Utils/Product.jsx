@@ -33,7 +33,7 @@ const Product = ({ data, heading }) => {
             <div className='products-detail'>
 
                 {
-                    data && data?.map((item) => <ModernProductCard {...item} />)
+                    data && data?.map((item) => <ModernProductCard key={item._id} {...item} />)
                 }
                 {
                     (!data || data.length === 0) && <h4 style={{ display: 'flex', width: "100%", alignItems: "center", justifyContent: "center", marginTop: "1rem" }}>No Products Available </h4>

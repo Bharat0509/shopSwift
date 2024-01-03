@@ -1,8 +1,8 @@
 .product_card {
     display: flex;
     flex-direction: column;
-    width: 15rem;
-    height: 20rem;
+    width: 16rem;
+    height: 21rem;
     /* max-height: 25rem; */
     overflow: hidden;
     border-radius: 0.5rem;
@@ -15,7 +15,7 @@
 }
 .product_card-upper {
     background-color: rgba(0, 0, 0, 0.05);
-    height: 70%;
+    height: 14rem;
     position: relative;
 }
 .product_card-upper > img {
@@ -41,7 +41,7 @@
     flex-direction: column;
     gap: 0.5rem;
     justify-content: space-between;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 .product_card-lower > h2 {
     font-size: 1.25rem;
