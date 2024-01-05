@@ -11,7 +11,7 @@ const Product = ({ data, heading }) => {
                 <div className='product-upper-l'>
                     <h2>{heading}</h2>
                     <ul>
-                        <li>
+                        <li >
                             Hottest
                         </li>
                         <li>
@@ -20,7 +20,7 @@ const Product = ({ data, heading }) => {
                         <li>
                             Low Prices
                         </li>
-                        <li>
+                        <li id='active-selection'>
                             Back In Stock
                         </li>
                     </ul>

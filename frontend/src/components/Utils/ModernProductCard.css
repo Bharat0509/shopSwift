@@ -72,3 +72,13 @@
         font-size: 1rem;
     }
 }
+
+@media screen and (max-width: 420px) {
+    .product_card {
+        width: 95vw;
+        height: fit-content;
+    }
+    .product_card-lower > h2 {
+        font-size: 5vw;
+    }
+}
