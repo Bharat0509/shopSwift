@@ -19,7 +19,7 @@
 }
 
 .products-sidebar {
-    width: 14rem;
+    width: 28rem;
     display: flex;
     min-height: 50vh;
     padding: 1rem;
@@ -27,6 +27,7 @@
     color: rgba(0, 0, 0, 0.8);
     border-right: 3px solid rgba(0, 0, 0, 0.1);
 }
+
 .filter-option {
     display: flex;
     justify-content: space-between;
@@ -56,7 +57,23 @@
 .selected-filters > li > svg {
     cursor: pointer;
 }
-
+.filter-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.7rem;
+    margin: 2rem 1rem;
+    width: 80%;
+}
+.filter-container > li {
+    display: inline-block;
+    cursor: pointer;
+    list-style: none;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    font-size: small;
+}
 .ratingFilter,
 .categoryFilter {
     display: flex;
