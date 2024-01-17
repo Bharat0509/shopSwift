@@ -9,14 +9,13 @@ const Input = ({ setKeyword, onSubmit, value }) => {
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
-            console.log("Enter were pressed");
             onSubmit(e)
         }
     }
     return (
         <div className='search-input'>
             <FiSearch />
-            <input type="text" placeholder='Search a product' onChange={handleSearchChange} onKeyDown={handleKeyDown} />
+            <input type="text" placeholder='Search a product...' onChange={handleSearchChange} onKeyDown={handleKeyDown} />
         </div>
     )
 }
