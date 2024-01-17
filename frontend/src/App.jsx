@@ -36,8 +36,9 @@ function App() {
 
     return (
         <Router>
-            <ScrollToTop />
+
             <Navbar />
+            <ScrollToTop />
             <Routes>
                 <Route exact path='/' element={<Home />} />
                 <Route exact path='/signUp' element={<SignUp />} />

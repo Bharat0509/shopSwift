@@ -54,7 +54,7 @@ const Navbar = () => {
     const { user } = useSelector(state => state.authData)
 
     const navigate = useNavigate();
-    const [IsOpen, setIsOpen] = useState(false)
+
     const [keyword, setKeyword] = useState("")
 
     const searchSubmitHandler = (e) => {
@@ -67,7 +67,9 @@ const Navbar = () => {
             navigate(`/products`)
         }
     }
-    useEffect(() => { }, [cartItems])
+    useEffect(() => {
+
+    }, [cartItems])
 
     return (
         <nav className='nav-container'>

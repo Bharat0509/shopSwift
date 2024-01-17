@@ -82,7 +82,7 @@ const OrderList = () => {
             renderCell: (params) =>
 
                 <>
-                    <Link to={`/admin/order/${params.row.id}`}><EditIcon /></Link>
+                    <Link to={`/dashboard/orders/${params.row.id}`}><EditIcon /></Link>
                     <Button onClick={e => deleteOrderHandler(params.row.id)}>
                         <DeleteIcon />
                     </Button>
