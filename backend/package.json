@@ -1,8 +1,7 @@
 {
-  "name": "bettermart",
+  "name": "shop-swift-backend",
   "version": "1.0.0",
   "description": "",
-  "proxy": "https://bharatecommerce.onrender.com",
   "main": "backend/app.js",
   "type": "module",
   "scripts": {

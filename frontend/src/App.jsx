@@ -33,7 +33,7 @@ import Footer from './components/layout/Footer/Footer.jsx'
 import Navbar from './components/layout/Header/Navbar'
 
 function App() {
-    console.log(process.env.REACT_APP_STRIPE_API_KEY);
+
     return (
         <Router>
             <ScrollToTop />
@@ -50,6 +50,7 @@ function App() {
                 <Route path='/products/:keyword' element={<Products />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/dashboard/term-condition' element={<TandC />} />
+
                 {/* Protected User Routes */}
                 <Route element={<ProtectedRoutes />}>
                     <Route exact path='/account' element={<Sidebar />} />
@@ -63,6 +64,7 @@ function App() {
                     <Route exact path='/process/payment' element={<ProcessPayment />} />
                     <Route exact path='/success' element={<PaymentSuccess />} />
                 </Route>
+
                 {/* Admin Routes */}
                 <Route element={<ProtectedRoutesAdmin />}>
                     <Route isAdmin={true} path='/dashboard/analytics' element={<ProductList />} />
