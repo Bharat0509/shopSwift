@@ -63,6 +63,11 @@ cloudinary.config({
     api_secret: 'T8bjOinQ4NWc7mphFRuVA9PDifY',
 })
 
+app.get('/health-check', (_, res) =>
+    res
+        .status(200)
+        .json({ status: 'OK', message: '🟢 Service is Up and running .' })
+)
 // Rotes
 // ********Product Route*********** */
 app.use('/api/v1', product)

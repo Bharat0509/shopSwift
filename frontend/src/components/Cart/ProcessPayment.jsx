@@ -53,6 +53,7 @@ const ProcessPayment = () => {
         payBtn.current.disabled = true;
         try {
             const config = {
+                withCredentials: true,
                 Headers: {
                     "Content-Type": "application/json"
                 }

@@ -1,10 +1,10 @@
 import axios from 'axios'
 export const AxiosClient = axios.create({
     withCredentials: true,
-
-    // baseURL: process.env.NODE_ENV === 'production'
-    //   ? 'https://tiny-plum-coyote-vest.cyclic.app'
-    //   : 'http://localhost:4000'
+    baseURL:
+        process.env.NODE_ENV === 'production'
+            ? 'https://tiny-plum-coyote-vest.cyclic.app'
+            : 'http://localhost:4000',
 })
 
 export const filtersLabels = [
