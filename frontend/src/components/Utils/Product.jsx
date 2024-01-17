@@ -32,6 +32,7 @@ const Product = ({ data, heading }) => {
             </div>
             <div className='products-detail'>
 
+
                 {
                     data && data?.map((item) => <ModernProductCard key={item._id} {...item} />)
                 }

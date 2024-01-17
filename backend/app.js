@@ -1,23 +1,14 @@
-import app from './server.js'
-import dotenv from 'dotenv'
-import cloudinary from 'cloudinary'
-import ErrorHandlerMiddleware from './middlewares/error.js'
-import fileUpload from 'express-fileupload'
 import bodyParser from 'body-parser'
+import cloudinary from 'cloudinary'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import dotenv from 'dotenv'
 import express from 'express'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import fileUpload from 'express-fileupload'
+import ErrorHandlerMiddleware from './middlewares/error.js'
+import app from './server.js'
 
-const __filename = fileURLToPath(import.meta.url)
-
-const __dirname = path.dirname(__filename)
-
-// if(process.env.NODE_ENV!=="PRODUCTION"){
 dotenv.config({ path: './backend/config/config.env' })
-// }
-// Handling Uncaught Error
 
 process.on('uncaughtException', (err) => {
     console.log(`Error:${err.message}`)
@@ -29,10 +20,10 @@ process.on('uncaughtException', (err) => {
 import MongoServer from './config/database.js'
 
 // Routes Imports
-import product from './routes/productRoute.js'
-import user from './routes/userRoute.js'
 import order from './routes/orderRoute.js'
 import payment from './routes/paymentRoute.js'
+import product from './routes/productRoute.js'
+import user from './routes/userRoute.js'
 
 app.use(
     '*',

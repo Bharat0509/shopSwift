@@ -3,8 +3,10 @@ import "./OrderList.css"
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { FiSearch } from 'react-icons/fi'
+import * as moment from 'moment'
 
 const OrderList = ({ ordersData = [] }) => {
+    console.log(ordersData);
     return (
         <div className="orders_container">
             <div className='orders_container-search'>
@@ -27,10 +29,10 @@ const OrderList = ({ ordersData = [] }) => {
                         {ordersData.length > 0 ?
                             (ordersData?.map(order => <div key={order?._id} className="table-row">
                                 <div id='order_id' className='order'>{order?._id}</div>
-                                <div id='order_date' className='order'>{order?.date}</div>
-                                <div id='order_amount' className='order'>{order?.totalAmount}</div>
-                                <div id='order_status' className='order'>{order?.status}</div>
-                                <OrderMoreOption />
+                                <div id='order_date' className='order'>{moment(order.createAt).format('L')}</div>
+                                <div id='order_amount' className='order'>{order?.totalPrice}</div>
+                                <div id='order_status' className='order'>{order?.orderStatus}</div>
+                                <OrderMoreOption orderId={order._id} />
                             </div>)
                             )
                             :
@@ -49,13 +51,13 @@ const OrderList = ({ ordersData = [] }) => {
 }
 
 
-const OrderMoreOption = () => {
+const OrderMoreOption = ({ orderId }) => {
     const [toggle, setToggle] = useState(false)
     return <div id='order_more' className='relative' onClick={e => setToggle(!toggle)} >
         <BsThreeDotsVertical />
         {toggle && <div className="order_more-options ">
-            <Link to={`/order/${null ?? "orderId_not_found"}`}>View </Link>
-            <Link to={'/order/delete/orderid'}>Delete </Link>
+            <Link to={`/account/orders/${orderId ?? "orderId_not_found"}`}>View </Link>
+            <Link to={'#'}>Delete </Link>
         </div>}
     </div>
 }

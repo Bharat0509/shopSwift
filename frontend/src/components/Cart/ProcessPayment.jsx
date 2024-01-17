@@ -57,7 +57,7 @@ const ProcessPayment = () => {
                     "Content-Type": "application/json"
                 }
             }
-            const { data } = await AxiosClient.post("/api/v1/payment/process",
+            const { data } = await AxiosClient.get("/api/v1/payment/process",
                 { paymentData },
                 config);
             const client_secret = data.client_secret
@@ -104,8 +104,9 @@ const ProcessPayment = () => {
                 }
             }
         } catch (error) {
+            console.log(error);
             payBtn.current.disabled = false;
-            toast.error(error.response.data.error ?? error.data?.message ?? error.data.message ?? "Unexpected Error Encountered.")
+            toast.error(error?.response?.data?.error ?? error?.data?.message ?? error?.data?.message ?? "Unexpected Error Encountered.")
         }
     }
     useEffect(() => {

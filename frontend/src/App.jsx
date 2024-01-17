@@ -33,6 +33,7 @@ import Footer from './components/layout/Footer/Footer.jsx'
 import Navbar from './components/layout/Header/Navbar'
 
 function App() {
+    console.log(process.env.REACT_APP_STRIPE_API_KEY);
     return (
         <Router>
             <ScrollToTop />
@@ -57,7 +58,7 @@ function App() {
                     <Route exact path='/password/update' element={<UpdatePassword />} />
                     <Route exact path='/shipping' element={<Shipping />} />
                     <Route exact path='/account/orders' element={<MyOrders />} />
-                    <Route exact path='/order/:id' element={<MyOrderDetails />} />
+                    <Route exact path='/account/orders/:id' element={<MyOrderDetails />} />
                     <Route exact path='/order/confirm' element={<ConfirmOrder />} />
                     <Route exact path='/process/payment' element={<ProcessPayment />} />
                     <Route exact path='/success' element={<PaymentSuccess />} />

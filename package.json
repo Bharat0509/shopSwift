@@ -2,7 +2,6 @@
     "name": "shopswift",
     "version": "1.0.0",
     "description": "",
-    "proxy": "https://tiny-plum-coyote-vest.cyclic.app/",
     "main": "backend/app.js",
     "type": "module",
     "scripts": {

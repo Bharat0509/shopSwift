@@ -120,7 +120,6 @@ const OrderList = () => {
                                 pageSize={6}
                                 disableRowSelectionOnClick
                                 autoHeight
-                            // sx={{ m: 2 }}
                             />
 
                         </div>
