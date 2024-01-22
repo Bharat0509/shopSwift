@@ -31,6 +31,7 @@ import UpdatePassword from './components/User/UpdatePassword.jsx'
 import UpdateProfile from './components/User/UpdateProfile.jsx'
 import Footer from './components/layout/Footer/Footer.jsx'
 import Navbar from './components/layout/Header/Navbar'
+import AdminAnalytics from './components/Admin/AdminAnalytics/AdminAnalytics.jsx'
 
 function App() {
 
@@ -68,7 +69,7 @@ function App() {
 
                 {/* Admin Routes */}
                 <Route element={<ProtectedRoutesAdmin />}>
-                    <Route isAdmin={true} path='/dashboard/analytics' element={<ProductList />} />
+                    <Route isAdmin={true} path='/dashboard/analytics' element={<AdminAnalytics />} />
                     <Route isAdmin={true} path='/dashboard/products/all' element={<ProductList />} />
                     <Route isAdmin={true} path='/dashboard/products/new' element={<NewProduct />} />
                     <Route isAdmin={true} path='/dashboard/products/:id' element={<UpdateProduct />} />

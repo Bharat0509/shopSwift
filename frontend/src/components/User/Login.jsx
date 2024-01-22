@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { TbArrowNarrowRight } from "react-icons/tb";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import "./Login.css"
@@ -11,7 +11,9 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
-    const queryParams = new URLSearchParams(location.search)
+    const queryParams = useCallback(() => {
+        return new URLSearchParams(location.search)
+    }, [location.search])
     const { user, loading, error } = useSelector(state => state.authData)
 
     const [loginEmail, setLoginEmail] = useState('');

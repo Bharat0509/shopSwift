@@ -66,9 +66,9 @@ const DashboardLayout = ({ children, title = 'Personal Information' }) => {
                         <p>Dashboard</p>
                     </div>
                     {User_Menu.map((menu) => (
-                        <Link id={menu.path} to={menu.path} className={`user-menu ${location.pathname === menu.path ? "active_menu" : ""}`}>
+                        <Link key={menu.path} id={menu.path} to={menu.path} className={`user-menu ${location.pathname === menu.path ? "active_menu" : ""}`}>
                             {menu?.icon}
-                            {menu.label}
+                            <p className='menu-label'>{menu.label}</p>
                         </Link>
                     ))}
                 </div>
