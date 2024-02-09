@@ -85,6 +85,7 @@
     color: white;
     text-transform: uppercase;
     cursor: pointer;
+
     transition: var(--transition-primary);
 }
 .btn:hover {

@@ -1,4 +1,4 @@
-import { AxiosClient } from '../Constants'
+import { AxiosClient } from '../config/Constants'
 import {
     ADMIN_PRODUCT_FAIL,
     ADMIN_PRODUCT_REQUEST,

@@ -1,4 +1,4 @@
-import { AxiosClient } from '../Constants'
+import { AxiosClient } from '../config/Constants'
 import {
     ALL_USERS_FAIL,
     ALL_USERS_REQUEST,

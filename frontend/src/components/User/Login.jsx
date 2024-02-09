@@ -11,9 +11,10 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
-    const queryParams = useCallback(() => {
-        return new URLSearchParams(location.search)
-    }, [location.search])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const queryParams = new URLSearchParams(location.search);
+
+    console.log(queryParams)
     const { user, loading, error } = useSelector(state => state.authData)
 
     const [loginEmail, setLoginEmail] = useState('');

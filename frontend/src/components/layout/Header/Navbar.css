@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .icon {
     background-color: rgba(0, 0, 0, 0.1);
     padding: 0.5rem;
@@ -54,8 +55,6 @@
     background-color: white;
     padding: 1rem 3rem;
     display: flex;
-    /* padding-bottom: 1rem; */
-
     justify-content: space-between;
     border-bottom: 2px solid rgba(128, 128, 128, 0.1);
 }
@@ -68,22 +67,13 @@
     position: relative;
 }
 
-.search-results {
-    position: absolute;
-    width: 20rem;
-
-    height: 30rem;
-    background-color: red;
-}
-
 .nav-l-left > a {
     font-size: 1.5rem;
-    color: var(--color-primary);
-    font-family: cursive;
 }
 
 .nav-l-left > a > span {
     font-weight: 600;
+    color: var(--color-primary);
 }
 
 .nav-l-right {
@@ -94,7 +84,6 @@
 .nav-l-right > a {
     display: flex;
     flex-direction: column;
-    /* text-align: center; */
     justify-content: center;
     align-items: center;
     transition: all 300ms ease-in;
@@ -113,7 +102,6 @@
     align-items: center;
     justify-content: center;
     font-size: 0.75rem;
-
     position: absolute;
     top: 0rem;
     left: 1.75rem;
@@ -152,7 +140,6 @@
 .navbar-sidebar-items > div {
     font-weight: 400;
     font-size: 1.25rem;
-    /* color: rgb(75, 75, 75); */
     color: white;
     margin: 0;
     padding: 0;
@@ -176,7 +163,6 @@
 
 .navbar-sidebar-items > a > p {
     display: flex;
-
     color: white;
     gap: 0.5vw;
     align-items: center;
@@ -186,6 +172,7 @@
 .MuiTypography-root {
     background-color: transparent !important;
 }
+
 .navbar_user-image {
     border: 1px solid rgba(255, 99, 71, 0.4);
     height: 2.25rem;
@@ -202,23 +189,26 @@
     flex-direction: column;
     padding: 1rem;
     background-color: rgba(242, 242, 242, 0.9);
-    /* background-color: #f3f3f3a1; */
     backdrop-filter: blur(0.25rem);
     border-radius: 0.25rem;
 }
+
 .user-menu {
     padding: 0.75rem 0.75rem;
     border-radius: 0.25rem;
     display: flex;
     align-items: center;
 }
+
 .user-menu svg {
     font-size: 1.25rem;
     margin-right: 0.5rem;
 }
+
 .user-menu:hover {
     background-color: rgba(0, 0, 0, 0.07);
 }
+
 .user-info {
     display: flex;
     gap: 1rem;
@@ -226,16 +216,18 @@
     align-items: center;
     border-bottom: 2px solid rgb(218, 218, 218);
 }
+
 .user-info div span {
     font-size: 0.75rem;
     color: gray;
 }
+
 .user-info div p {
     font-size: 1.25rem;
     color: black;
 }
-/* ----------Media Query------- */
 
+/* Media Query */
 @media screen and (max-width: 1200px) {
     .nav-upper {
         padding: 1.2vw;
@@ -292,7 +284,6 @@
 
     .nav-l-left a {
         margin: 0.5rem 0.25rem;
-
         font-size: 1.5rem;
     }
 
@@ -309,6 +300,7 @@
     .nav-l-right svg {
         font-size: 1.75rem;
     }
+
     .nav-l-right > a {
         display: flex;
         flex-direction: row;

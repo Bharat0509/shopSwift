@@ -9,7 +9,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
     gap: 4vw;
     margin: 1rem;
 }
@@ -17,7 +16,7 @@ main {
     box-sizing: border-box;
     border-radius: 1rem;
     padding: 1.5rem;
-    width: 15rem;
+    width: 16rem;
     height: 8rem;
     background-color: white;
     display: flex;
@@ -60,7 +59,7 @@ main {
     justify-content: space-between;
 }
 .card-analytics_value {
-    font-size: 1.5rem !important;
+    font-size: 1.75rem !important;
     color: var(--color-primary);
     font-weight: 500;
 }
