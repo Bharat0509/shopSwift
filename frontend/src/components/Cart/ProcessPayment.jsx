@@ -14,7 +14,7 @@ import { toast } from 'react-hot-toast'
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { clearErrors, createOrder } from '../../actions/newOrderAction'
-import { AxiosClient } from '../../Constants'
+import { AxiosClient } from '../../config/Constants'
 
 const ProcessPayment = () => {
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))

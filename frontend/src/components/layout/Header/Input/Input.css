@@ -5,6 +5,7 @@
     border-radius: 5rem;
     padding: 0.5rem;
     width: 50vw;
+    position: relative;
 }
 .search-input > svg {
     height: 1.5rem;
@@ -45,6 +46,19 @@
 
 .search-btn:hover {
     background-color: var(--color-primary);
+}
+
+.search-results {
+    position: absolute;
+    top: 2.05rem;
+    width: 99%;
+    left: 0.5%;
+    background-color: #ebebeb;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    height: 20rem;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 1200px) {

@@ -79,6 +79,8 @@ const Navbar = () => {
                     <Link to={'/'}> <span>Shop</span>Swift</Link>
                     <Input onSubmit={searchSubmitHandler} setKeyword={setKeyword} value={keyword} />
 
+
+
                 </div>
                 <div className='nav-l-right relative'>
                     <div onClick={e => setToggleMenu(!toggleMenu)} >

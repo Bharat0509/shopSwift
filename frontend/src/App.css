@@ -11,7 +11,7 @@
     --transition-primary: all 300ms linear;
 }
 
-/* //Chrom and Other */
+/* //Chrome and Other */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -22,6 +22,22 @@ input::-webkit-inner-spin-button {
 }
 a {
     color: black;
+    text-emphasis: none;
+}
+li {
+    list-style: none;
+}
+
+.btns {
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    background: transparent;
+    border: none;
+    border: 0.6px solid var(--color-primary);
+    border-radius: 5px;
+    color: #323232;
+    cursor: pointer;
+    width: max-content;
 }
 
 .noReviews {

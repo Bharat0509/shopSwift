@@ -345,3 +345,60 @@ const fakeProductArray = [
         user: '658142fc0a340c2640b737a8',
     },
 ]
+
+export const data = [
+    {
+        _id: '648d3b2837ce90a805a45b66',
+        name: 'Apple iPhone 12',
+        description:
+            'Our most advanced dual‐camera system ever. An even brighter Oled display. A lightning‐fast chip that leaves the competition behind. A huge leap in battery life. SIM-free\r\nScreen Size: 6.1 inches\r\nRelease Date: September 2021\r\nBattery Capacity: 3,240 mAh\r\nBody Material: Aluminium, Glass',
+        price: 597,
+        ratings: 0,
+        images: [
+            {
+                _id: '65c58ddd7c794556d04e6c71',
+                public_id: 'products/s62fbsutp8mkoq6ply1g',
+                url: 'https://www.pngmart.com/files/15/Apple-iPhone-11-PNG-Clipart.png',
+            },
+            {
+                _id: '65c58ddd7c794556d04e6c72',
+                public_id: 'products/s61fbsutp8mkoq6ply1g',
+                url: 'https://www.pngmart.com/files/4/Asus-Laptop-Transparent-Background.png',
+            },
+        ],
+        category: 'SmartPhones',
+        stock: 9,
+        numOfReviews: 1,
+        user: '64720b70eaa340bd12f10e9c',
+        createdAt: '2023-06-17T04:48:31.391Z',
+        reviews: [],
+        __v: 0,
+    },
+    {
+        _id: '648d3b2837ce90a805a45b66',
+        name: 'Apple iPhone 12',
+        description:
+            'Our most advanced dual‐camera system ever. An even brighter Oled display. A lightning‐fast chip that leaves the competition behind. A huge leap in battery life. SIM-free\r\nScreen Size: 6.1 inches\r\nRelease Date: September 2021\r\nBattery Capacity: 3,240 mAh\r\nBody Material: Aluminium, Glass',
+        price: 597,
+        ratings: 0,
+        images: [
+            {
+                _id: '65c58ddd7c794556d04e6c71',
+                public_id: 'products/s62fbsutp8mkoq6ply1g',
+                url: 'https://www.pngmart.com/files/15/Apple-iPhone-11-PNG-Clipart.png',
+            },
+            {
+                _id: '65c58ddd7c794556d04e6c72',
+                public_id: 'products/s61fbsutp8mkoq6ply1g',
+                url: 'https://www.pngmart.com/files/4/Asus-Laptop-Transparent-Background.png',
+            },
+        ],
+        category: 'SmartPhones',
+        stock: 9,
+        numOfReviews: 1,
+        user: '64720b70eaa340bd12f10e9c',
+        createdAt: '2023-06-17T04:48:31.391Z',
+        reviews: [],
+        __v: 0,
+    },
+]

@@ -31,6 +31,8 @@ import UpdatePassword from './components/User/UpdatePassword.jsx'
 import UpdateProfile from './components/User/UpdateProfile.jsx'
 import Footer from './components/layout/Footer/Footer.jsx'
 import Navbar from './components/layout/Header/Navbar'
+import AdminAnalytics from './components/Admin/AdminAnalytics/AdminAnalytics.jsx'
+import ProductListPage from './components/ProductList/ProductList'
 
 function App() {
 
@@ -46,7 +48,7 @@ function App() {
                 <Route exact path='/signOut' element={<Login />} />
                 <Route exact path='/password/forgot' element={<ForgotPassword />} />
                 <Route exact path='/password/reset/:token' element={<ResetPassword />} />
-                <Route exact path='/products' element={<Products />} />
+                <Route exact path='/products' element={<ProductListPage />} />
                 <Route exact path='/product/:productId' element={<ProductDetail />} />
                 <Route path='/products/:keyword' element={<Products />} />
                 <Route path='/cart' element={<Cart />} />
@@ -68,7 +70,7 @@ function App() {
 
                 {/* Admin Routes */}
                 <Route element={<ProtectedRoutesAdmin />}>
-                    <Route isAdmin={true} path='/dashboard/analytics' element={<ProductList />} />
+                    <Route isAdmin={true} path='/dashboard/analytics' element={<AdminAnalytics />} />
                     <Route isAdmin={true} path='/dashboard/products/all' element={<ProductList />} />
                     <Route isAdmin={true} path='/dashboard/products/new' element={<NewProduct />} />
                     <Route isAdmin={true} path='/dashboard/products/:id' element={<UpdateProduct />} />
@@ -79,7 +81,7 @@ function App() {
                     <Route isAdmin={true} path='/dashboard/reviews' element={<ProductReviews />} />
                 </Route>
             </Routes>
-            <Footer />
+
         </Router>
     )
 }

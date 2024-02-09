@@ -1,4 +1,4 @@
-import { AxiosClient } from '../Constants.js'
+import { AxiosClient } from '../config/Constants.js'
 import {
     ALL_ORDERS_FAIL,
     ALL_ORDERS_REQUEST,

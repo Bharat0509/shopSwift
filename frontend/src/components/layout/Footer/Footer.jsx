@@ -10,8 +10,7 @@ const Footer = () => {
                     <div className='h-stack-1'>
                         <img src='https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e86ab4c21faa7bc0bd90dd_Logo.svg' alt='' />
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, porro eius. lore01 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum illo nobis
-                            debitis, molestias voluptatibus optio temporibus maiores impedit fugit!
+                            Welcome to ShopSwift: Your one-stop destination for fast, secure, and stylish online shopping, anytime, anywhere
                         </p>
                     </div>
                     <div className='h-stack-2'>

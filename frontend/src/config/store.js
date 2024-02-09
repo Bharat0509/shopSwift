@@ -5,14 +5,14 @@ import {
     combineReducers,
 } from 'redux'
 import thunk from 'redux-thunk'
-import { cartReducer } from './reducers/cartReducer'
+import { cartReducer } from '../reducers/cartReducer'
 import {
     allOrdersReducer,
     myOrderDetailsReducer,
     myOrdersReducer,
     newOrderReducer,
     orderReducer,
-} from './reducers/orderReducer'
+} from '../reducers/orderReducer'
 import {
     newProductReducer,
     newReviewReducer,
@@ -21,7 +21,7 @@ import {
     productReviewsDetailsReducer,
     productsReducer,
     revieswReducer,
-} from './reducers/productReducer'
+} from '../reducers/productReducer'
 import {
     allUsersReducer,
     forgotPasswordReducer,
@@ -29,7 +29,7 @@ import {
     tokenReducer,
     userDetailsReducer,
     userReducer,
-} from './reducers/userReducer'
+} from '../reducers/userReducer'
 
 const reducer = combineReducers({
     authToken: tokenReducer,

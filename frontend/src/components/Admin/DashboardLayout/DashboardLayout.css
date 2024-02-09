@@ -63,7 +63,10 @@
 .dashboard_text p {
     color: black;
 }
+
 .children h2 {
+    width: 100%;
+    height: auto;
     padding: 1.25rem 1.5rem;
     border-bottom: 2px solid rgb(186, 184, 184);
     color: rgb(78, 77, 77);
