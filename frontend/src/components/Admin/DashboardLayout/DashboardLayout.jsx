@@ -55,8 +55,8 @@ const User_Menu = [
 const DashboardLayout = ({ children, title = 'Personal Information' }) => {
     const location = useLocation()
 
-    const { user } = useSelector((state) => state.authData)
-
+    const { data } = useSelector((state) => state.user)
+    const { user } = data;
     return (
         <div className="menu_container">
             <div className="sidebar">

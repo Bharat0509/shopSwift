@@ -27,7 +27,11 @@ a {
 li {
     list-style: none;
 }
-
+.errors {
+    color: red;
+    margin: 2rem;
+    font-weight: bold;
+}
 .btns {
     padding: 0.5rem;
     margin-right: 0.5rem;

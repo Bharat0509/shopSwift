@@ -9,20 +9,20 @@ import MenuLayout from "./MenuLayout/MenuLayout"
 const MyAccountInfo = () => {
     const navigate = useNavigate();
 
-    const { user, isAuthenticated } = useSelector(state => state.authData)
+    const { data } = useSelector(state => state.user)
 
     useEffect(() => {
-        if (isAuthenticated === false) {
+        if (!data?.user?.email) {
             navigate('/login')
         }
-    }, [navigate, isAuthenticated, user])
+    }, [navigate, data.user.email])
     return (
 
         <MenuLayout>
             <div className="account-info-container">
 
                 <div className="user-img" title="Edit Profile Image">
-                    <img src={user?.avatar?.url} alt={user.name} />
+                    <img src={data.user?.avatar?.url} alt={data.user?.name} />
                     <span className="edit-img absolute" title="Edit Profile Image">
                         <TbEdit size={18} />
                     </span>
@@ -31,7 +31,7 @@ const MyAccountInfo = () => {
                 <div className='personal-info'>
                     <div>
                         <h4>Name </h4>
-                        <p>{user.name}</p>
+                        <p>{data.user.name}</p>
                     </div>
                     <div>
                         <h4> Gender </h4>
@@ -47,11 +47,11 @@ const MyAccountInfo = () => {
                     </div>
                     <div>
                         <h4> Email</h4>
-                        <p>{user.email}</p>
+                        <p>{data.user.email}</p>
                     </div>
                     <div>
                         <h4> Phone</h4>
-                        <p>{user.phone ?? "+91 1234567899"}</p>
+                        <p>{data.user.phone ?? "+91 1234567899"}</p>
                     </div>
                     <div>
                         <h4>Country</h4>

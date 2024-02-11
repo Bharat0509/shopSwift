@@ -12,36 +12,36 @@ import './ProductList.css';
 import { clearErrors, deleteProduct, getAdminProducts } from '../../actions/productActions.js';
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstant';
 import DashboardLayout from './DashboardLayout/DashboardLayout';
+import { fetchAdminProducts } from '../../features/dashboard/dashboardSlice';
 
 
 
 const ProductList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const { error, products } = useSelector(state => state.products)
-    const { error: deleteError, isDeleted } = useSelector(state => state.product)
+    const { error, data } = useSelector(state => state.dashboard)
+    const { error: deleteError } = useSelector(state => state.products)
+    const products = data.products;
     const deleteProductHandler = (id) => {
         dispatch(deleteProduct(id))
     }
+
     useEffect(() => {
         if (error) {
 
             dispatch(clearErrors())
         }
 
-        if (deleteError) {
 
-            dispatch(clearErrors())
-        }
 
-        if (isDeleted) {
+        // if (isDeleted) {
 
-            navigate('/dashboard/products/all')
-            dispatch({ type: DELETE_PRODUCT_RESET })
-        }
-        dispatch(getAdminProducts())
+        //     navigate('/dashboard/products/all')
 
-    }, [dispatch, error, deleteError, navigate, isDeleted])
+        // }
+        dispatch(fetchAdminProducts())
+
+    }, [dispatch, error, deleteError, navigate])
 
     const columns = [
         {

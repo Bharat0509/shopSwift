@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { TbArrowNarrowRight } from "react-icons/tb";
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import "./Login.css"
-import { clearErrors, login, logout } from '../../actions/userActions';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { TbArrowNarrowRight } from "react-icons/tb";
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { logout } from '../../actions/userActions';
+import { clearErrors, loginUser } from '../../features/user/userSlice';
+import "./Login.css";
 
 
 const Login = () => {
@@ -14,19 +15,18 @@ const Login = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const queryParams = new URLSearchParams(location.search);
 
-    console.log(queryParams)
-    const { user, loading, error } = useSelector(state => state.authData)
+    const { data, loading, error } = useSelector(state => state.user)
 
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
 
     const loginSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(loginEmail, loginPassword));
+        dispatch(loginUser({ email: loginEmail, password: loginPassword }));
     };
     useEffect(() => {
 
-        if (user && user?.email) {
+        if (data && data?.user?.email) {
             const redirectTo = queryParams?.get("redirect") ?? "account/me"
             navigate(`/${redirectTo}`)
         }
@@ -35,10 +35,10 @@ const Login = () => {
             dispatch(logout())
         }
         if (error) {
-            toast.error(error)
+            toast.error(error.message)
             dispatch(clearErrors())
         }
-    }, [dispatch, error, location, location.pathname, navigate, queryParams, user])
+    }, [data, dispatch, error, location, location.pathname, navigate, queryParams])
     return (
         <div className='login_container'>
             <div className='left'>
