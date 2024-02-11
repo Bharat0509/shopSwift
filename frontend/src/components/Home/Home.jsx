@@ -1,16 +1,11 @@
-import { Suspense, useEffect } from 'react'
-import { toast } from 'react-hot-toast'
-import { useDispatch, useSelector } from 'react-redux'
-import { clearErrors, getProducts } from '../../actions/productActions'
 import Hero from '../Hero/Hero'
+import Ad from '../Utils/Ad'
 import Product from "../Utils/Product"
 import ServiceInfoCard from '../Utils/ServiceInfoCard'
 import Wrapper from '../Utils/Wrapper'
-import Loader from '../layout/Loader/Loader'
+import Footer from '../layout/Footer/Footer'
 import MetaData from '../layout/MetaData'
 import './Home.css'
-import Ad from '../Utils/Ad'
-import Footer from '../layout/Footer/Footer'
 
 
 
@@ -31,27 +26,15 @@ const service = [
         url: 'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e544663ba3d0fd2bb8_home%20delivery-min.png'
     }
 ]
-
-
-
 const Home = () => {
-
-
-
     return (
 
         <>
             <MetaData title="ShopSwift - Your Shortcut to Shopping Satisfaction" />
-
-
             <Hero />
-            <Suspense fallback={<Loader />}>
-                <Product heading={'Back In Stock This Week'} />
-            </Suspense>
+            <Product heading={'Back In Stock This Week'} />
             <Ad />
-            <Suspense fallback={<Loader />}>
-                <Product heading={'Top Rated Products'} />
-            </Suspense>
+            <Product heading={'Top Rated Products'} />
             <div className="product-container-wrapper" id='container'>
                 <Wrapper Card={ServiceInfoCard} data={service} heading="Service To Help You Shop " hw={'18rem'} />
             </div>

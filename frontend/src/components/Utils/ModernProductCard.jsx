@@ -10,7 +10,7 @@ const ModernProductCard = ({ ratings, _id, images, name, price, numOfReviews, de
         <Link className='product_card' to={`/product/${_id}`}>
 
             <div className='product_card-upper '>
-                <img src={images[0]?.url} alt="" />
+                <img src={images?.[0]?.url} alt="" />
                 <span className='wishlist'><AiOutlineHeart /></span>
             </div>
 

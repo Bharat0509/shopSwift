@@ -1,6 +1,9 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './App.css'
 import ScrollToTop from './ScrollToTop'
+import AdminAnalytics from './components/Admin/AdminAnalytics/AdminAnalytics.jsx'
 import NewProduct from './components/Admin/NewProduct'
 import OrderList from './components/Admin/OrderList.jsx'
 import ProductList from './components/Admin/ProductList.jsx'
@@ -20,6 +23,7 @@ import MyOrderDetails from './components/Order/MyOrderDetails.jsx'
 import MyOrders from './components/Order/MyOrders.jsx'
 import ProductDetail from './components/Product/ProductDetail/ProductDetail'
 import Products from './components/Product/Products'
+import ProductListPage from './components/ProductList/ProductList'
 import ProtectedRoutes, { ProtectedRoutesAdmin } from './components/Routes/ProtectedRoute'
 import TandC from './components/T&C/TandC'
 import ForgotPassword from './components/User/ForgotPassword.jsx'
@@ -29,12 +33,15 @@ import ResetPassword from './components/User/ResetPassword.jsx'
 import SignUp from './components/User/SignUp'
 import UpdatePassword from './components/User/UpdatePassword.jsx'
 import UpdateProfile from './components/User/UpdateProfile.jsx'
-import Footer from './components/layout/Footer/Footer.jsx'
 import Navbar from './components/layout/Header/Navbar'
-import AdminAnalytics from './components/Admin/AdminAnalytics/AdminAnalytics.jsx'
-import ProductListPage from './components/ProductList/ProductList'
+import { loadUser } from './features/user/userSlice'
 
 function App() {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(loadUser())
+    })
 
     return (
         <Router>

@@ -402,3 +402,24 @@ export const data = [
         __v: 0,
     },
 ]
+
+// Wrapper function for retrying an async thunk
+export const retryThunk =
+    (apiRequest, retries = 3, delay = 1000) =>
+    async () => {
+        let retryCount = 0
+        let lastError = null
+
+        while (retryCount < retries) {
+            try {
+                const response = await apiRequest()
+                return response
+            } catch (error) {
+                lastError = error
+                retryCount++
+                await new Promise((resolve) => setTimeout(resolve, delay))
+            }
+        }
+
+        throw lastError // If all retries fail, throw the last error
+    }

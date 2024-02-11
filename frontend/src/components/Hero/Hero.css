@@ -9,6 +9,6 @@
 .hero-container img {
     height: 100%;
     width: 100%;
-    min-height: 25vh;
-    object-fit: fill;
+    max-height: 75vh;
+    object-fit: cover;
 }

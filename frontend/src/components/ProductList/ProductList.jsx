@@ -15,7 +15,7 @@ const ProductListPage = () => {
       <Recommended ShowProductFilterSidebar={ShowProductFilterSidebar} setShowProductFilterSidebar={setShowProductFilterSidebar} />
       <section className="card-container">
         {
-          products.map((el, ind) => <ModernProductCard key={ind} {...el} />)
+          (products ?? []).map((el, ind) => <ModernProductCard key={ind} {...el} />)
         }
       </section>
 

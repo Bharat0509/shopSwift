@@ -3,7 +3,11 @@
     height: 20rem;
     background-color: #f8f9fa;
     border-radius: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 95%;
+    margin: auto;
+
+    overflow: hidden;
 }
 
 .ad-container .left {

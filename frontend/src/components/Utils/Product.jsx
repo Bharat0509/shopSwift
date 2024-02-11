@@ -1,24 +1,47 @@
 import React, { useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import { HiArrowSmRight } from 'react-icons/hi';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { fetchProducts, clearErrors } from '../../features/products/productsSlice';
 import ModernProductCard from './ModernProductCard';
 import './Product.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
-import { clearErrors, getProducts } from '../../actions/productActions';
+import Loader from '../layout/Loader/Loader';
+
+
 
 function Product({ heading }) {
     const dispatch = useDispatch();
-    const { products: data, error } = useSelector((state) => state.products) ?? [];
+    const { data, error, status } = useSelector((state) => state.products);
 
     useEffect(() => {
         if (error) {
-            toast.error(error);
-            dispatch(clearErrors);
+            toast.error(error.message || error.code);
+            dispatch(clearErrors())
         }
-        dispatch(getProducts());
-    }, [dispatch, error]);
+        if (status === "idle") {
+            dispatch(fetchProducts());
+        }
+    }, [dispatch, error, status]);
 
+    function renderProducts() {
+
+        if (status === "loading") {
+            return <Loader />;
+        }
+        if (status === 'failed') {
+            return <p className='errors'>Sorry, Something went wrong from Our Side.</p>
+        }
+
+        return <>
+            {
+                (data?.products ?? []).map((item) => <ModernProductCard key={item._id} {...item} />)}
+            {!data || data?.products?.length === 0 ? (
+                <h4 className='no-products-msg'>No Products Available </h4>
+            ) : null}
+        </>
+    }
     return (
         <div className='product-card-container'>
             <div className='product-header'>
@@ -38,11 +61,9 @@ function Product({ heading }) {
                 </div>
             </div>
             <div className='products-detail'>
-                {data &&
-                    data.map((item) => <ModernProductCard key={item._id} {...item} />)}
-                {!data || data.length === 0 ? (
-                    <h4 className='no-products-msg'>No Products Available </h4>
-                ) : null}
+                {
+                    renderProducts()
+                }
             </div>
         </div>
     );

@@ -51,7 +51,7 @@ const User_Menu = [
 const Navbar = () => {
     const [toggleMenu, setToggleMenu] = useState(false)
     const { cartItems } = useSelector(state => state.cart)
-    const { user } = useSelector(state => state.authData)
+    const { data, status } = useSelector(state => state.user)
 
     const navigate = useNavigate();
 
@@ -69,7 +69,7 @@ const Navbar = () => {
     }
     useEffect(() => {
 
-    }, [cartItems])
+    }, [cartItems, data, status])
 
     return (
         <nav className='nav-container'>
@@ -84,22 +84,22 @@ const Navbar = () => {
                 </div>
                 <div className='nav-l-right relative'>
                     <div onClick={e => setToggleMenu(!toggleMenu)} >
-                        <Avatar user={user} />
+                        <Avatar user={data.user} />
 
                         {toggleMenu && (
-                            user?.email ? <>
+                            data.user?.email ? <>
                                 <div className="user-menus absolute">
                                     <div className='user-info'>
                                         <div>
-                                            <Avatar user={user} size="xl" />
+                                            <Avatar user={data.user} size="xl" />
                                         </div>
                                         <div>
                                             <span>Hello,</span>
-                                            <p>{user?.name ?? "Anonymous"}</p>
+                                            <p>{data.user?.name ?? "Anonymous"}</p>
                                         </div>
                                     </div>
                                     {
-                                        user.role === 'admin' &&
+                                        data.user.role === 'admin' &&
                                         <Link key={'/dashboard/analytics'} to={'/dashboard/analytics'} className='user-menu'>
                                             <MdDashboard />
                                             Dashboard

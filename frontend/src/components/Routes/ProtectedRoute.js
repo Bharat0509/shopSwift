@@ -6,11 +6,11 @@ import { Navigate, Outlet } from 'react-router-dom'
 import Loader from '../layout/Loader/Loader'
 
 const ProtectedRoutes = () => {
-    const { loading, isAuthenticated } = useSelector((state) => state.authData)
-    useEffect(() => {}, [isAuthenticated])
-    return loading ? (
+    const { status, data } = useSelector((state) => state.user)
+    useEffect(() => {}, [data, status])
+    return status !== 'succeeded' ? (
         <Loader />
-    ) : isAuthenticated ? (
+    ) : data.user?.email ? (
         <Elements
             stripe={loadStripe(
                 'pk_test_51MfGEmSFoYXjK6ahTQWkGAkRpdkVcW8cekaQrpUyQdlv8DoqXzU5cHlevv6B664nfqNmJbSLkSiM7w1KOANCBVMV00SHK5U1cu'
@@ -24,14 +24,12 @@ const ProtectedRoutes = () => {
 }
 
 export const ProtectedRoutesAdmin = ({ isAdmin }) => {
-    const { loading, user, isAuthenticated } = useSelector(
-        (state) => state.authData
-    )
+    const { status, data } = useSelector((state) => state.user)
 
-    useEffect(() => {}, [isAuthenticated])
-    return loading ? (
+    useEffect(() => {}, [data, status])
+    return status !== 'succeeded' ? (
         <Loader />
-    ) : (isAdmin && user?.role !== 'admin') || !isAuthenticated ? (
+    ) : isAdmin && data?.user?.role !== 'admin' ? (
         <Navigate to={'/login'} />
     ) : (
         <Outlet />

@@ -8,8 +8,9 @@ import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { TbTruckReturn } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { addItemToCart } from "../../../actions/cartAction";
-import { clearErrors, getProductsDetails } from "../../../actions/productActions";
+import { clearErrors } from "../../../actions/productActions";
+import { fetchProductDetails } from "../../../features/products/productDetails";
+import Loader from "../../layout/Loader/Loader";
 import MetaData from "../../layout/MetaData";
 import RatingReview from "../RatingReview/RatingReview";
 import "./ProductDetail.css";
@@ -70,12 +71,12 @@ const ProductDetail = () => {
     const [currMainImgIdx, setCurrMainImgIdx] = useState(0)
     const [additionalInfoTab, setAdditionalInfoTab] = useState('Full Specification')
     const [quantity, setQuantity] = useState(1)
-    const { product, loading, error } = useSelector(
+    const { data, status, error } = useSelector(
         (state) => state.productDetails
     )
     const options = {
         size: "large",
-        value: Number(product?.ratings),
+        value: Number(data?.product?.ratings),
         precision: 0.5,
         readOnly: true,
     }
@@ -85,38 +86,31 @@ const ProductDetail = () => {
     const incrementQuantity = () => setQuantity(quantity + 1)
 
     const addToCartHandler = () => {
-        dispatch(addItemToCart(params.productId, quantity))
+        // dispatch(addItemToCart(params.productId, quantity))
         toast.success('Item added to Cart. ')
     }
 
     useEffect(() => {
         if (error) {
-            toast.error(error)
-            dispatch(clearErrors)
+            toast.error(error.message || error.code);
+            dispatch(clearErrors())
         }
-
-        // if (reviewError) {
-        //     toast.error(reviewError)
-        //     dispatch(clearErrors)
-        // }
-        // if (success) {
-        //     toast.success('Review Submitted Successfully !!')
-        //     dispatch({ type: NEW_REVIEW_RESET })
-        // }
-
-        dispatch(getProductsDetails(params.productId))
-    }, [params.id, error, params.productId, dispatch])
-    if (loading) return <h4>Now Loading ...</h4>
+        if (status === "idle" || data?.product?._id !== params.productId) {
+            dispatch(fetchProductDetails(params.productId));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [error, params.productId, dispatch, status])
+    if (status !== 'succeeded') return <Loader />
     return (
         <>
-            <MetaData title={`${product?.name}`} />
+            <MetaData title={`${data.product?.name}`} />
             <div className="product_detail-container">
                 <div className="product_detail-images">
                     <div className="main-image">
-                        <img src={product?.images ? product.images[currMainImgIdx]?.url : ""} alt="Product Preview" />
+                        <img src={data.product?.images ? data.product.images[currMainImgIdx]?.url : ""} alt="Product Preview" />
                     </div>
                     <div className="all-images">
-                        {product?.images?.map((img, idx) => (
+                        {data.product?.images?.map((img, idx) => (
                             <img
                                 key={img.url}
                                 className={`${currMainImgIdx === idx && 'active'}`}
@@ -128,18 +122,18 @@ const ProductDetail = () => {
                 </div>
                 <div className="product_detail-info">
                     <div className="product_name-id">
-                        <p>#{product._id}</p>
-                        <h2>{product.name}</h2>
+                        <p>#{data.product._id}</p>
+                        <h2>{data.product.name}</h2>
                     </div>
                     <div className="product_rating-price">
                         <div> <span id="product-info-rating">
-                            {product?.rating}
+                            {data.product?.rating}
                         </span>
                             <Rating {...options} /> (
-                            {product?.numOfReviews} Reviews)
+                            {data.product?.numOfReviews} Reviews)
                         </div>
                         <div>
-                            Price : <span id="price">{product.price} Rs.</span>
+                            Price : <span id="price">{data.product.price} Rs.</span>
                         </div>
                     </div>
                     <div className="product_quantity-stock">
@@ -154,7 +148,7 @@ const ProductDetail = () => {
 
                         </div>
 
-                        <span>Only <span id="stock">{product.stock}</span> Items Left !! <br /> Don't miss it!</span>
+                        <span>Only <span id="stock">{data.product.stock}</span> Items Left !! <br /> Don't miss it!</span>
 
                     </div>
 

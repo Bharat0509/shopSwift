@@ -49,8 +49,8 @@ const User_Menu = [
 ]
 const MenuLayout = ({ children, title = "Personal Information" }) => {
 
-    const { user } = useSelector(state => state.authData)
-    console.log(user);
+    const { data } = useSelector(state => state.user)
+
     return (
         <div className='menu_container'>
             <div className='sidebar'>
@@ -58,15 +58,15 @@ const MenuLayout = ({ children, title = "Personal Information" }) => {
                 <div className="user-menus">
                     <div className='user-info'>
                         <div>
-                            <Avatar user={user} size="xl" />
+                            <Avatar user={data.user} size="xl" />
                         </div>
                         <div>
                             <span>Hello,</span>
-                            <p>{user.name ?? "Anonymous"}</p>
+                            <p>{data.user.name ?? "Anonymous"}</p>
                         </div>
                     </div>
                     {
-                        !!user.role === 'admin' &&
+                        !!data.user.role === 'admin' &&
                         <Link key={'/dashboard/analytics'} to={'/dashboard/analytics'} className='user-menu'>
                             <MdDashboard />
                             Dashboard
