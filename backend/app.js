@@ -24,25 +24,12 @@ import order from './routes/orderRoute.js'
 import payment from './routes/paymentRoute.js'
 import product from './routes/productRoute.js'
 import user from './routes/userRoute.js'
+import corsOptions from './config/corsOptions.js'
+import credentials from './middlewares/credentials.js'
 
-app.use(
-    '*',
-    cors({
-        origin: true,
-        credentials: true,
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    }),
-    function (req, res, next) {
-        res.header('Access-Control-Allow-Origin', req.headers.origin)
-        res.header(
-            'Access-Control-Allow-Headers',
-            'Origin,X-Requested-With,Content-Type'
-        )
-        next()
-    }
-)
+app.use(credentials)
+app.use(cors(corsOptions))
 app.use(express.json())
-
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(fileUpload())

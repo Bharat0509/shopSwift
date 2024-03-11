@@ -51,11 +51,17 @@ const userSlice = createSlice({
 const loginUser = createAsyncThunk(
     'user/loginUser',
     async ({ email, password }) => {
-        const { data } = await AxiosClient.post(`/api/v1/login`, {
-            email,
-            password,
-        })
-        return data
+        try {
+            const { data } = await AxiosClient.post(`/api/v1/login`, {
+                email,
+                password,
+            })
+            return data
+        } catch (error) {
+            return Promise.reject(
+                error?.response?.data?.error || 'Something went wrong...'
+            )
+        }
     }
 )
 

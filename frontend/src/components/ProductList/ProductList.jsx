@@ -10,7 +10,7 @@ const ProductListPage = () => {
   const { products } = useSelector(state => state.products)
   const [ShowProductFilterSidebar, setShowProductFilterSidebar] = useState(false)
   return (
-    <section className='products-list'>
+    <section className='products-list' >
       <Sidebar ShowProductFilterSidebar={ShowProductFilterSidebar} setShowProductFilterSidebar={setShowProductFilterSidebar} />
       <Recommended ShowProductFilterSidebar={ShowProductFilterSidebar} setShowProductFilterSidebar={setShowProductFilterSidebar} />
       <section className="card-container">

@@ -14,24 +14,24 @@ const MyOrders = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { loading, error, orders } = useSelector(state => state.myOrders)
-    const { user, isAuthenticated } = useSelector(state => state.authData)
+    // const { loading, error, orders } = useSelector(state => state.myOrders)
+    const { data, error } = useSelector(state => state.user)
 
     useEffect(() => {
         if (error) {
             toast.error(error)
             dispatch(clearErrors());
         }
-        if (!isAuthenticated) navigate('/login?redirect=orders')
+        if (!data?.user?.email) navigate('/login?redirect=orders')
 
         dispatch(myOrders())
 
-    }, [dispatch, error, user, isAuthenticated, navigate])
+    }, [dispatch, error, navigate, data?.user?.email])
     return (
         <>
-            <MetaData title={`${user?.name ?? "User"}-Orders`} />
+            <MetaData title={`${data.user?.name ?? "User"}-Orders`} />
             <MenuLayout title='My Orders'>
-                <OrderList ordersData={orders} />
+                {/* <OrderList ordersData={orders} /> */}
             </MenuLayout>
 
         </>

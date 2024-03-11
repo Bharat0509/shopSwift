@@ -45,7 +45,7 @@ const User_Menu = [
 
         label: "Log out",
         icon: <MdLogout />,
-        path: "/signOut"
+        path: "/login?loggedOut"
     }
 ]
 const Navbar = () => {
@@ -83,12 +83,12 @@ const Navbar = () => {
 
                 </div>
                 <div className='nav-l-right relative'>
-                    <div onClick={e => setToggleMenu(!toggleMenu)} >
+                    <div onClick={e => setToggleMenu(!toggleMenu)}  >
                         <Avatar user={data.user} />
 
                         {toggleMenu && (
                             data.user?.email ? <>
-                                <div className="user-menus absolute">
+                                <div className="user-menus absolute " onBlur={e => setToggleMenu(false)}>
                                     <div className='user-info'>
                                         <div>
                                             <Avatar user={data.user} size="xl" />
